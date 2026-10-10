@@ -41,15 +41,14 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
             background: rgba(20, 20, 20, 0.8);
         }
-        /* Dinamik Blur Arka Plan Renk Geçişleri */
         .ambient-blob {
             position: fixed;
-            width: 600px;
-            height: 600px;
+            width: 700px;
+            height: 700px;
             border-radius: 50%;
-            filter: blur(140px);
+            filter: blur(150px);
             z-index: -1;
-            opacity: 0.15;
+            opacity: 0.12;
             transition: background 1s ease, transform 1s ease;
             pointer-events: none;
         }
@@ -63,7 +62,7 @@
 
     <!-- Dinamik Arka Plan Blur Objeleri -->
     <div id="blob-1" class="ambient-blob bg-white top-[-10%] left-[-10%]"></div>
-    <div id="blob-2" class="ambient-blob bg-neutral-500 bottom-[-10%] right-[-10%]"></div>
+    <div id="blob-2" class="ambient-blob bg-neutral-600 bottom-[-10%] right-[-10%]"></div>
 
     <!-- Top Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10 transition-all duration-300">
@@ -79,7 +78,9 @@
             </div>
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-400">
                 <a href="#features" class="hover:text-white transition">Architecture</a>
+                <a href="#mockup" class="hover:text-white transition">Live GUI</a>
                 <a href="#terminal" class="hover:text-white transition">Interactive Terminal</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
             </div>
             <div>
                 <a href="#terminal" class="px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-200 text-black font-bold text-xs uppercase tracking-wider transition">
@@ -90,18 +91,31 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative pt-44 pb-32 md:pt-56 md:pb-40 flex items-center justify-center overflow-hidden">
+    <header class="relative pt-44 pb-20 md:pt-56 md:pb-28 flex items-center justify-center overflow-hidden">
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10 hero-content">
             <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel mb-8 border border-white/10">
                 <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
-                <span class="text-xs mono-font uppercase tracking-widest text-neutral-300">Interactive Enterprise Core</span>
+                <span class="text-xs mono-font uppercase tracking-widest text-neutral-300">Enterprise Security & Automation Core</span>
             </div>
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
                 Next-Gen Automation & <br><span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-300 to-neutral-600">Security Core Engine</span>
             </h1>
-            <p class="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-                Click any architectural specification below to bind and test real-time interactive telemetry protocols.
+            <p class="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Hardware-bound licensing, multi-threaded worker dispatch, and autonomous DOM scraping architecture wrapped in absolute monochrome precision.
             </p>
+
+            <!-- Quick CLI Copy Box -->
+            <div class="max-w-md mx-auto mb-12 glass-panel p-2 rounded-2xl flex items-center justify-between border border-white/10 shadow-2xl">
+                <div class="flex items-center space-x-3 px-3 mono-font text-xs text-neutral-300">
+                    <span class="text-neutral-500">$</span>
+                    <span>pip install lacas-client --secure</span>
+                </div>
+                <button onclick="copyCLI(this)" class="px-4 py-2 bg-white hover:bg-neutral-200 text-black text-xs font-bold rounded-xl transition flex items-center space-x-2">
+                    <i class="fa-solid fa-copy"></i>
+                    <span>Copy</span>
+                </button>
+            </div>
+
             <div class="flex justify-center gap-4">
                 <a href="#features" class="px-8 py-4 rounded-xl bg-white text-black font-bold hover:bg-neutral-200 transition shadow-2xl flex items-center space-x-3">
                     <span>Explore Specifications</span>
@@ -111,7 +125,92 @@
         </div>
     </header>
 
-    <!-- Features Grid Section (İnteraktif Bağlantılı) -->
+    <!-- Live Performance Counters Section -->
+    <section class="py-16 border-y border-white/10 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">128</div>
+                <div class="text-xs uppercase tracking-widest text-neutral-400">Worker Threads</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">99.9%</div>
+                <div class="text-xs uppercase tracking-widest text-neutral-400">Uptime Stability</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">&lt;12ms</div>
+                <div class="text-xs uppercase tracking-widest text-neutral-400">Response Latency</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">50K+</div>
+                <div class="text-xs uppercase tracking-widest text-neutral-400">Secured Sessions</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live App GUI Mockup Section -->
+    <section id="mockup" class="py-28 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">CustomTkinter Interface Preview</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Interactive Client Core GUI</h2>
+        </div>
+        <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/15 shadow-2xl">
+            <!-- App Window Topbar -->
+            <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-8">
+                <div class="flex items-center space-x-3">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-neutral-600"></div>
+                        <div class="w-3 h-3 rounded-full bg-neutral-600"></div>
+                        <div class="w-3 h-3 rounded-full bg-neutral-600"></div>
+                    </div>
+                    <span class="text-xs mono-font text-neutral-400 ml-4">Lacas_Client_v1.0_Secure_Runtime.exe</span>
+                </div>
+                <div class="flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs mono-font">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>HWID Secured & Active</span>
+                </div>
+            </div>
+            <!-- App Simulation Body -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Control Panel Left -->
+                <div class="glass-card p-6 rounded-2xl space-y-4">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Execution Protocol</h3>
+                    <div class="space-y-2 text-xs mono-font">
+                        <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center text-white font-bold cursor-pointer">
+                            <span>[MODE] Combo Multi-Task</span>
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+                        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white">
+                            <span>[MODE] Traffic Hit Only</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white">
+                            <span>[MODE] Autonomous Scraping</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Center Telemetry Display -->
+                <div class="glass-card p-6 rounded-2xl md:col-span-2 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Active Worker Telemetry</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="p-4 rounded-xl bg-black/40 border border-white/5">
+                                <span class="text-xs text-neutral-500 block mb-1">PROXIES LOADED</span>
+                                <span class="text-xl font-bold mono-font text-white">1,420 Active</span>
+                            </div>
+                            <div class="p-4 rounded-xl bg-black/40 border border-white/5">
+                                <span class="text-xs text-neutral-500 block mb-1">SUCCESS HITS</span>
+                                <span class="text-xl font-bold mono-font text-emerald-400">98.4% Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="triggerModule('GUI Simulation', 'Manual override signal sent to core worker pool. Execution stable.')" class="w-full py-4 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition">
+                        Dispatch Worker Command
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid Section -->
     <section id="features" class="py-28 max-w-7xl mx-auto px-6">
         <div class="text-center mb-20 section-title">
             <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Interactive Module Registry</span>
@@ -119,121 +218,120 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Kartlar, data-log özelliğiyle terminale bağlanıyor -->
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Hardware-Locked Licensing', 'HWID Fingerprinting & SHA-256 Cryptographic License Verification executed successfully[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Hardware-Locked Licensing', 'HWID Fingerprinting & SHA-256 Cryptographic License Verification executed successfully.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-microchip"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Hardware-Locked Licensing</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">HWID Fingerprinting & SHA-256 Cryptographic License Verification[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">HWID Fingerprinting & SHA-256 Cryptographic License Verification.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Single-Instance Mutex', 'Windows Kernel Global Mutex Guard acquired. Concurrent conflict blocked[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Single-Instance Mutex', 'Windows Kernel Global Mutex Guard acquired. Concurrent conflict blocked.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-lock"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Single-Instance Mutex</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Process Guard & Mutex Protection preventing concurrent execution conflicts[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Process Guard & Mutex Protection preventing concurrent execution conflicts.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Lock File & Cleanup', 'Temporary Lock File generated in TEMP directory. Atexit cleanup hooks armed[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Lock File & Cleanup', 'Temporary Lock File generated in TEMP directory. Atexit cleanup hooks armed.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-file-shield"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Lock File & Cleanup</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Temporary Lock File management with automated atexit cleanup hooks[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Temporary Lock File management with automated atexit cleanup hooks.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Dynamic Obfuscation', 'Base64 strings decoded dynamically at runtime to prevent static analysis[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Dynamic Obfuscation', 'Base64 strings decoded dynamically at runtime to prevent static analysis.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-code"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Dynamic Obfuscation</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Base64 Dynamic Obfuscation & real-time runtime string decryption[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Base64 Dynamic Obfuscation & real-time runtime string decryption.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Cryptographic Verification', 'SHA-256 hash pool verified against pre-generated 52-character key matrix[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Cryptographic Verification', 'SHA-256 hash pool verified against pre-generated 52-character key matrix.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-key"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Cryptographic Verification</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">SHA-256 hash pool verification for pre-generated 52-character keys[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">SHA-256 hash pool verification for pre-generated 52-character keys.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Local License Caching', 'Persistent local session cache loaded. Skipping repetitive authentication[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Local License Caching', 'Persistent local session cache loaded. Skipping repetitive authentication.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-database"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Local License Caching</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Persistent local session caching for automated login validation[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Persistent local session caching for automated login validation.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Dual-Frame Architecture', 'CustomTkinter modular UI framework initialized (Login & Control layers active)[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Dual-Frame Architecture', 'CustomTkinter modular UI framework initialized (Login & Control layers active).')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-window-maximize"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Dual-Frame Architecture</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">CustomTkinter modular UI framework splitting login and control layers[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">CustomTkinter modular UI framework splitting login and control layers.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Automated DOM Scraping', 'Selenium WebDriver deployed. Target DOM analyzed and parameters extracted[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Automated DOM Scraping', 'Selenium WebDriver deployed. Target DOM analyzed and parameters extracted.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Automated DOM Scraping</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">RegEx parameter extraction and target DOM analysis via Selenium[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">RegEx parameter extraction and target DOM analysis via Selenium.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Multi-Mode Protocols', 'Execution protocol switched: Combo, Like-only, and Hit-only modes ready[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Multi-Mode Protocols', 'Execution protocol switched: Combo, Like-only, and Hit-only modes ready.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-sliders"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Multi-Mode Protocols</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Combo mode, like-only mode, and traffic hit-only execution options[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Combo mode, like-only mode, and traffic hit-only execution options.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Configurable Interval Sliders', 'Request interval speed slider adjusted. Delay parameters updated[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Configurable Interval Sliders', 'Request interval speed slider adjusted. Delay parameters updated.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-gauge-high"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Configurable Interval Sliders</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Dynamic request interval control sliders and speed optimization[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Dynamic request interval control sliders and speed optimization.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Asynchronous Multi-Threading', 'Concurrent worker threads spawned successfully for max performance[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Asynchronous Multi-Threading', 'Concurrent worker threads spawned successfully for max performance.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-network-wired"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Asynchronous Multi-Threading</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Concurrent worker thread execution for maximized performance[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Concurrent worker thread execution for maximized performance.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('IP Proxy Rotation', 'Proxy server list parsed. One IP per line mapping active[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('IP Proxy Rotation', 'Proxy server list parsed. One IP per line mapping active.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-server"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">IP Proxy Rotation</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Seamless proxy integration supporting one IP per line parsing[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Seamless proxy integration supporting one IP per line parsing.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Dynamic User-Agent Spoofer', 'Fingerprint rotation active. Mimicking diverse client environments[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Dynamic User-Agent Spoofer', 'Fingerprint rotation active. Mimicking diverse client environments.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-user-secret"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Dynamic User-Agent Spoofer</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Fingerprint rotation mimicking diverse client environments[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Fingerprint rotation mimicking diverse client environments.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Anti-Bot Jitter Algorithm', 'Randomized timing deviations injected to simulate human operation cadence[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Anti-Bot Jitter Algorithm', 'Randomized timing deviations injected to simulate human operation cadence.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-wave-square"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Anti-Bot Jitter Algorithm</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Randomized timing deviations mimicking human operational cadence[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Randomized timing deviations mimicking human operational cadence.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Anti-Lag Delay Balancer', 'Request delay balancer engaged to sustain stability under heavy load[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Anti-Lag Delay Balancer', 'Request delay balancer engaged to sustain stability under heavy load.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-virus"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Anti-Lag Delay Balancer</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Request delay balancer to sustain connection stability under heavy load[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Request delay balancer to sustain connection stability under heavy load.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Masked Key Toggle', 'Interactive license key mask toggled for cryptographic security[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Masked Key Toggle', 'Interactive license key mask toggled for cryptographic security.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-eye-slash"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Masked Key Toggle</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Interactive masked license key and HWID display with security toggle[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Interactive masked license key and HWID display with security toggle.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Live Theme Palette Switcher', 'UI theme palette adapted instantly to custom accent configurations[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Live Theme Palette Switcher', 'UI theme palette adapted instantly to custom accent configurations.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-palette"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Live Theme Palette Switcher</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Dynamic UI customization with instant color palette adaptation[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Dynamic UI customization with instant color palette adaptation.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Real-Time Console Logging', 'Timestamped secure console event logging active with auto-scroll telemetry[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Real-Time Console Logging', 'Timestamped secure console event logging active with auto-scroll telemetry.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-terminal"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Real-Time Console Logging</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Timestamped secure console event logging with auto-scroll features[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Timestamped secure console event logging with auto-scroll features.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Live Performance Counters', 'Real-time statistics tracking initialized for likes and traffic hits[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Live Performance Counters', 'Real-time statistics tracking initialized for likes and traffic hits.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Live Performance Counters</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Real-time statistics tracking for likes and traffic/hits generation[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Real-time statistics tracking for likes and traffic/hits generation.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Headless Chrome Driver', 'Headless Chrome driver spawned via WebDriver Manager integration[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Headless Chrome Driver', 'Headless Chrome driver spawned via WebDriver Manager integration.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-brands fa-chrome"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Headless Chrome Driver</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Automated driver management via WebDriver Manager integration[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Automated driver management via WebDriver Manager integration.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Safe Session Termination', 'Background worker threads protected. Guarded exit verification ready[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('Safe Session Termination', 'Background worker threads protected. Guarded exit verification ready.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-cat"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Safe Session Termination</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Background thread protection and guarded exit verification protocols[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Background thread protection and guarded exit verification protocols.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('System State Reset', 'Memory records wiped and performance counters restored to zero[cite: 1].')">
+            <div class="glass-card p-8 rounded-2xl feature-card" onclick="triggerModule('System State Reset', 'Memory records wiped and performance counters restored to zero.')">
                 <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-rotate"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">System State Reset</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Memory record cleaning and performance counter resetting capability[cite: 1].</p>
+                <p class="text-neutral-400 text-sm leading-relaxed">Memory record cleaning and performance counter resetting capability.</p>
             </div>
         </div>
     </section>
 
-    <!-- Terminal Console Section (İnteraktif Bağlantı Noktası) -->
+    <!-- Terminal Console Section -->
     <section id="terminal" class="py-28 max-w-5xl mx-auto px-6">
         <div class="glass-panel rounded-3xl p-8 md:p-12 border border-white/10 relative overflow-hidden terminal-box shadow-2xl">
             <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
@@ -244,9 +342,46 @@
                 </div>
                 <span class="text-xs mono-font text-neutral-400 uppercase tracking-widest">interactive_telemetry.log</span>
             </div>
-            <div id="terminal-content" class="mono-font text-xs md:text-sm text-neutral-300 space-y-3 leading-relaxed min-h-[120px]">
+            <div id="terminal-content" class="mono-font text-xs md:text-sm text-neutral-300 space-y-3 leading-relaxed min-h-[140px] max-h-[250px] overflow-y-auto">
                 <p class="text-neutral-500"># SYSTEM READY. CLICK ANY ARCHITECTURAL SPECIFICATION ABOVE TO TEST TELEMETRY...</p>
-                <p>[19:50:00] [CORE] Lacas Client v1.0 telemetry listener active[cite: 1].</p>
+                <p>[19:57:00] [CORE] Lacas Client v1.0 telemetry listener active.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="py-28 max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Frequently Asked Questions</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Technical Clarifications</h2>
+        </div>
+        <div class="space-y-4">
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)">
+                <div class="flex justify-between items-center font-bold text-white text-lg">
+                    <span>How does HWID hardware-locked licensing function?</span>
+                    <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
+                </div>
+                <div class="faq-content hidden pt-4 text-neutral-400 text-sm leading-relaxed border-t border-white/5 mt-4">
+                    Lacas Client calculates a secure cryptographic fingerprint based on core motherboard, CPU, and volume serial identifiers, matching them against an authenticated SHA-256 hash pool.
+                </div>
+            </div>
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)">
+                <div class="flex justify-between items-center font-bold text-white text-lg">
+                    <span>Can proxy rotation be configured per worker thread?</span>
+                    <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
+                </div>
+                <div class="faq-content hidden pt-4 text-neutral-400 text-sm leading-relaxed border-t border-white/5 mt-4">
+                    Yes, the internal proxy parser processes lists structured as one IP per line, seamlessly cycling endpoints across asynchronous multi-threaded workers.
+                </div>
+            </div>
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)">
+                <div class="flex justify-between items-center font-bold text-white text-lg">
+                    <span>What Python dependencies are required for deployment?</span>
+                    <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
+                </div>
+                <div class="faq-content hidden pt-4 text-neutral-400 text-sm leading-relaxed border-t border-white/5 mt-4">
+                    The core engine relies on CustomTkinter for GUI rendering, Selenium with WebDriver Manager for DOM parsing, and native OS libraries for mutex protection.
+                </div>
             </div>
         </div>
     </section>
@@ -283,7 +418,7 @@
             });
         });
 
-        // Dinamik Blur Arka Plan Kaydırma Efekti (Mesh Gradient Scroll)
+        // Dinamik Blur Arka Plan Kaydırma Efekti
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const blob1 = document.getElementById('blob-1');
@@ -298,19 +433,30 @@
             const terminal = document.getElementById('terminal-content');
             const timestamp = new Date().toLocaleTimeString();
             
-            // Terminale yeni log satırı ekle
             const newLog = document.createElement('p');
             newLog.innerHTML = `<span class="text-neutral-500">[${timestamp}]</span> <span class="text-white font-bold">[MODULE: ${moduleName}]</span> ${logMessage}`;
             terminal.appendChild(newLog);
             
-            // Otomatik en alta kaydır
             terminal.scrollTop = terminal.scrollHeight;
 
-            // Terminal kutusuna hafif animasyon ver
             gsap.fromTo(".terminal-box", { scale: 0.98 }, { scale: 1, duration: 0.3, ease: "power2.out" });
-            
-            // Kullanıcıyı terminale yönlendir
             document.getElementById('terminal').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // CLI Copy Function
+        function copyCLI(btn) {
+            navigator.clipboard.writeText("pip install lacas-client --secure");
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Copied</span>';
+            setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(element) {
+            const content = element.querySelector('.faq-content');
+            const icon = element.querySelector('fa-solid');
+            content.classList.toggle('hidden');
+            element.classList.toggle('border-white/40');
         }
     </script>
 </body>
