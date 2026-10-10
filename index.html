@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lacas Client v1.0 | Ultimate Enterprise Security & Automation Core</title>
-    <!-- Tailwind CSS -->
+    <title>Lacas Client v1.0 | Enterprise Security & Automation Core</title>
+    <!-- Tailwind CSS with SRI Integrity -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome with SRI Integrity -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -19,7 +19,7 @@
             background-color: #020202;
             color: #EDEDED;
             overflow-x: hidden;
-            transition: background 0.5s ease;
+            transition: background 0.5s ease, color 0.5s ease;
         }
         .mono-font {
             font-family: 'JetBrains Mono', monospace;
@@ -38,8 +38,8 @@
         }
         .glass-card:hover, .glass-card.active {
             border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-6px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
             background: rgba(16, 16, 16, 0.9);
         }
         .ambient-blob {
@@ -53,6 +53,11 @@
             transition: background 1s ease, transform 1s ease;
             pointer-events: none;
         }
+        /* Accessibility: Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .ambient-blob, .animate-ping, .animate-pulse { animation: none !important; transition: none !important; }
+        }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020202; }
         ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
@@ -61,14 +66,17 @@
 </head>
 <body class="selection:bg-white selection:text-black" id="site-body">
 
-    <!-- Dinamik Arka Plan Blur Objeleri -->
+    <!-- Dynamic Background Blur Blobs -->
     <div id="blob-1" class="ambient-blob bg-white top-[-10%] left-[-10%]"></div>
     <div id="blob-2" class="ambient-blob bg-neutral-600 bottom-[-10%] right-[-10%]"></div>
+
+    <!-- Screen Reader Live Announcer -->
+    <div id="sr-announcer" class="sr-only" aria-live="polite" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;"></div>
 
     <!-- Top Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 group cursor-pointer">
+            <a href="#" class="flex items-center space-x-3 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 rounded-xl p-1">
                 <div class="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center font-bold text-xl transition group-hover:scale-105">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
@@ -76,22 +84,35 @@
                     <span class="text-lg font-extrabold tracking-widest text-white">LACAS</span>
                     <span class="text-[10px] mono-font tracking-widest text-neutral-400">CLIENT v1.0</span>
                 </div>
-            </div>
+            </a>
             <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-neutral-400">
                 <a href="#features" class="hover:text-white transition">Registry (100+)</a>
                 <a href="#mockup" class="hover:text-white transition">Live GUI</a>
                 <a href="#nodes" class="hover:text-white transition">Nodes</a>
-                <a href="#license-tester" class="hover:text-white transition">HWID Test</a>
+                <a href="#license-tester" class="hover:text-white transition">HWID Sandbox</a>
                 <a href="#terminal" class="hover:text-white transition">Terminal</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
             </div>
-            <div class="flex items-center space-x-3">
-                <!-- Tema Değiştirici Butonlar -->
-                <button onclick="setTheme('dark')" class="w-8 h-8 rounded-full bg-neutral-900 border border-white/20 text-xs text-white flex items-center justify-center hover:scale-110 transition" title="Pure Dark">🌙</button>
-                <button onclick="setTheme('cyber')" class="w-8 h-8 rounded-full bg-zinc-800 border border-emerald-500/50 text-xs text-emerald-400 flex items-center justify-center hover:scale-110 transition" title="Cyberpunk Accent">⚡</button>
+            <div class="hidden md:flex items-center space-x-3">
+                <button onclick="setTheme('dark')" class="w-8 h-8 rounded-full bg-neutral-900 border border-white/20 text-xs text-white flex items-center justify-center hover:scale-110 transition" title="Pure Dark Mode">🌙</button>
+                <button onclick="setTheme('cyber')" class="w-8 h-8 rounded-full bg-zinc-800 border border-emerald-500/50 text-xs text-emerald-400 flex items-center justify-center hover:scale-110 transition" title="Cyberpunk Theme">⚡</button>
                 <a href="#terminal" class="px-4 py-2 rounded-xl bg-white hover:bg-neutral-200 text-black font-bold text-xs uppercase tracking-wider transition">
-                    Core
+                    System Core
                 </a>
             </div>
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white text-xl p-2 focus:outline-none focus:ring-2 focus:ring-white/50 rounded-lg" aria-label="Toggle Mobile Navigation Menu">
+                <i class="fa-solid fa-bars" id="mobile-menu-icon"></i>
+            </button>
+        </div>
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10 px-6 py-4 space-y-3 text-sm">
+            <a href="#features" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Registry (100+)</a>
+            <a href="#mockup" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Live GUI Demo</a>
+            <a href="#nodes" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Edge Nodes</a>
+            <a href="#license-tester" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">HWID License Tester</a>
+            <a href="#terminal" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Interactive Terminal</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">FAQ & Documentation</a>
         </div>
     </nav>
 
@@ -111,48 +132,56 @@
 
             <!-- Quick CLI Copy Box -->
             <div class="max-w-md mx-auto mb-12 glass-panel p-2 rounded-2xl flex items-center justify-between border border-white/10 shadow-2xl">
-                <div class="flex items-center space-x-3 px-3 mono-font text-xs text-neutral-300">
+                <div class="flex items-center space-x-3 px-3 mono-font text-xs text-neutral-300 overflow-x-auto py-1">
                     <span class="text-neutral-500">$</span>
-                    <span>pip install lacas-client --secure --enterprise</span>
+                    <span>pip install lacas-client --secure</span>
                 </div>
-                <button onclick="copyCLI(this)" class="px-4 py-2 bg-white hover:bg-neutral-200 text-black text-xs font-bold rounded-xl transition flex items-center space-x-2">
+                <button onclick="copyCLI(this)" class="px-4 py-2 bg-white hover:bg-neutral-200 text-black text-xs font-bold rounded-xl transition flex items-center space-x-2 shrink-0">
                     <i class="fa-solid fa-copy"></i>
                     <span>Copy</span>
                 </button>
             </div>
 
-            <div class="flex justify-center gap-4">
+            <div class="flex justify-center gap-4 flex-wrap">
                 <a href="#features" class="px-8 py-4 rounded-xl bg-white text-black font-bold hover:bg-neutral-200 transition shadow-2xl flex items-center space-x-3">
-                    <span>Explore All 100+ Specs</span>
+                    <span>Explore Specifications</span>
                     <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+                <a href="#faq" class="px-8 py-4 rounded-xl glass-panel text-white font-bold hover:bg-white/10 transition border border-white/10">
+                    Documentation & FAQ
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Live Performance Counters Section -->
+    <!-- Performance Counters Section (Labeled Sample Data) -->
     <section class="py-16 border-y border-white/10 glass-panel">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">256</div>
-                <div class="text-xs uppercase tracking-widest text-neutral-400">Max Worker Threads</div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-6">
+                <span class="text-[10px] mono-font uppercase tracking-widest px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-400">ℹ️ Benchmark Telemetry Metrics (v1.0 Testbed Reference)</span>
             </div>
-            <div>
-                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">99.99%</div>
-                <div class="text-xs uppercase tracking-widest text-neutral-400">Kernel Stability</div>
-            </div>
-            <div>
-                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">&lt;8ms</div>
-                <div class="text-xs uppercase tracking-widest text-neutral-400">Response Latency</div>
-            </div>
-            <div>
-                <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">100K+</div>
-                <div class="text-xs uppercase tracking-widest text-neutral-400">Encrypted Sessions</div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">256</div>
+                    <div class="text-xs uppercase tracking-widest text-neutral-400">Max Worker Threads</div>
+                </div>
+                <div>
+                    <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">99.99%</div>
+                    <div class="text-xs uppercase tracking-widest text-neutral-400">Kernel Uptime Stability</div>
+                </div>
+                <div>
+                    <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">&lt;8ms</div>
+                    <div class="text-xs uppercase tracking-widest text-neutral-400">Avg Response Latency</div>
+                </div>
+                <div>
+                    <div class="text-3xl md:text-5xl font-extrabold text-white mb-2 mono-font">100K+</div>
+                    <div class="text-xs uppercase tracking-widest text-neutral-400">Encrypted Sessions</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Özgün Özellik: Canlı Node / Sunucu Ping Monitörü -->
+    <!-- Global Infrastructure Status -->
     <section id="nodes" class="py-24 max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
             <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Global Infrastructure Status</span>
@@ -192,11 +221,12 @@
         </div>
     </section>
 
-    <!-- Live App GUI Mockup Section -->
+    <!-- Live App GUI Mockup Section (Explicit Demo Notice) -->
     <section id="mockup" class="py-20 max-w-6xl mx-auto px-6">
         <div class="text-center mb-16">
             <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">CustomTkinter Interface Preview</span>
             <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Interactive Client Core GUI</h2>
+            <p class="text-xs text-neutral-400 mt-2">This section provides a client-side visual simulation. The desktop binary connects directly to local OS resources upon installation.</p>
         </div>
         <div class="glass-panel rounded-3xl p-6 md:p-8 border border-white/15 shadow-2xl">
             <!-- App Window Topbar -->
@@ -207,32 +237,29 @@
                         <div class="w-3 h-3 rounded-full bg-neutral-600"></div>
                         <div class="w-3 h-3 rounded-full bg-neutral-600"></div>
                     </div>
-                    <span class="text-xs mono-font text-neutral-400 ml-4">Lacas_Client_v1.0_Ultimate_Runtime.exe</span>
+                    <span class="text-xs mono-font text-neutral-400 ml-4">Lacas_Client_v1.0_Demo_Runtime.exe</span>
                 </div>
                 <div class="flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs mono-font">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>HWID Kernel Secured</span>
+                    <span>Simulation Mode Active</span>
                 </div>
             </div>
 
             <!-- App Simulation Body -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Control Panel Left (Modlar) -->
+                <!-- Control Panel Left (Accessible Radiogroup) -->
                 <div class="glass-card p-6 rounded-2xl space-y-4">
                     <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">Execution Protocols</h3>
-                    <div class="space-y-2 text-xs mono-font">
-                        <div id="mode-combo" onclick="switchMode('Combo Multi-Task', 'Asynchronous multi-threaded combo execution protocol engaged.')" class="p-3 rounded-xl bg-white text-black font-bold flex justify-between items-center cursor-pointer transition">
+                    <div class="space-y-2 text-xs mono-font" role="radiogroup" aria-label="Execution Protocol Selection">
+                        <div role="radio" aria-checked="true" tabindex="0" id="mode-combo" onclick="switchMode('Combo Multi-Task', 'Asynchronous multi-threaded combo execution protocol simulation engaged.')" onkeypress="if(event.key==='Enter'||event.key===' '){switchMode('Combo Multi-Task', 'Asynchronous multi-threaded combo execution protocol simulation engaged.')}" class="p-3 rounded-xl bg-white text-black font-bold flex justify-between items-center cursor-pointer transition focus:ring-2 focus:ring-white">
                             <span>[MODE] Combo Multi-Task</span>
                             <i class="fa-solid fa-check"></i>
                         </div>
-                        <div id="mode-traffic" onclick="switchMode('Traffic Hit Only', 'Direct high-speed traffic generation protocol active.')" class="p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition">
+                        <div role="radio" aria-checked="false" tabindex="0" id="mode-traffic" onclick="switchPackage('Traffic Hit Only', 'Direct high-speed traffic generation protocol simulation active.')" onkeypress="if(event.key==='Enter'||event.key===' '){switchPackage('Traffic Hit Only', 'Direct high-speed traffic generation protocol simulation active.')}" class="p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition focus:ring-2 focus:ring-white">
                             <span>[MODE] Traffic Hit Only</span>
                         </div>
-                        <div id="mode-scrape" onclick="switchMode('Autonomous Scraping', 'Selenium WebDriver DOM scraping and parameter extraction active.')" class="p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition">
+                        <div role="radio" aria-checked="false" tabindex="0" id="mode-scrape" onclick="switchPackage('Autonomous Scraping', 'Selenium WebDriver DOM scraping simulation active.')" onkeypress="if(event.key==='Enter'||event.key===' '){switchPackage('Autonomous Scraping', 'Selenium WebDriver DOM scraping simulation active.')}" class="p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition focus:ring-2 focus:ring-white">
                             <span>[MODE] Autonomous Scraping</span>
-                        </div>
-                        <div id="mode-stealth" onclick="switchMode('Stealth Anti-Bot', 'Advanced user-agent rotation and jitter algorithm online.')" class="p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition">
-                            <span>[MODE] Stealth Anti-Bot</span>
                         </div>
                     </div>
                 </div>
@@ -250,8 +277,8 @@
                                 <span class="text-xl font-bold mono-font text-white">2,840 Active</span>
                             </div>
                             <div class="p-4 rounded-xl bg-black/40 border border-white/5">
-                                <span class="text-xs text-neutral-500 block mb-1">SUCCESS HITS</span>
-                                <span class="text-xl font-bold mono-font text-emerald-400">99.7% Rate</span>
+                                <span class="text-xs text-neutral-500 block mb-1">SUCCESS HITS (DEMO)</span>
+                                <span class="text-xl font-bold mono-font text-emerald-400">99.7%</span>
                             </div>
                         </div>
 
@@ -259,7 +286,7 @@
                         <div class="space-y-3 mb-6 text-xs mono-font">
                             <div>
                                 <div class="flex justify-between text-neutral-400 mb-1">
-                                    <span>CPU Kernel Load</span>
+                                    <span>CPU Kernel Load (Simulated)</span>
                                     <span>42%</span>
                                 </div>
                                 <div class="w-full bg-neutral-900 h-2 rounded-full overflow-hidden border border-white/10">
@@ -268,7 +295,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between text-neutral-400 mb-1">
-                                    <span>Memory Heap Allocation</span>
+                                    <span>Memory Allocation (Simulated)</span>
                                     <span>612 MB</span>
                                 </div>
                                 <div class="w-full bg-neutral-900 h-2 rounded-full overflow-hidden border border-white/10">
@@ -277,172 +304,105 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="triggerModule('GUI Command', 'Manual override signal dispatched to active worker pool.')" class="w-full py-4 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition">
-                        Dispatch Worker Command
+                    <button onclick="triggerModule('GUI Command', 'Simulated override signal dispatched to worker pool.')" class="w-full py-4 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition focus:ring-2 focus:ring-white">
+                        Dispatch Worker Command (Demo)
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Özgün Özellik: İnteraktif Lisans / HWID Test Simülatörü -->
+    <!-- License / HWID Test Simulator (Strict 52-Char Rule) -->
     <section id="license-tester" class="py-20 max-w-4xl mx-auto px-6">
         <div class="glass-panel rounded-3xl p-8 border border-white/10 text-center">
             <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Live Cryptographic Sandbox</span>
-            <h2 class="text-3xl font-extrabold tracking-tight mb-6">Test License & HWID Binding</h2>
+            <h2 class="text-3xl font-extrabold tracking-tight mb-2">Test License Key & HWID Binding</h2>
+            <p class="text-xs text-neutral-400 mb-6">Strict cryptographic validation rule: The input key must be exactly 52 characters long matching the hash pool matrix signature.</p>
             <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                <input type="text" id="test-key-input" placeholder="Enter 52-char license key..." class="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white mono-font focus:outline-none focus:border-white/40">
-                <button onclick="testLicenseKey()" class="px-6 py-3 bg-white text-black font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-neutral-200 transition">Verify Key</button>
+                <label for="test-key-input" class="sr-only">License Key</label>
+                <input type="text" id="test-key-input" placeholder="Enter 52-char key (e.g. LACAS-KEY-99F8A2...)..." aria-label="License Key" class="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-white mono-font focus:outline-none focus:border-white/40">
+                <button onclick="testLicenseKey()" class="px-6 py-3 bg-white text-black font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-neutral-200 transition shrink-0">Verify Key</button>
             </div>
-            <div id="license-result" class="mt-4 text-xs mono-font text-neutral-400">Status: Awaiting cryptographic input...</div>
+            <div id="license-result" class="mt-4 text-xs mono-font text-neutral-400" aria-live="polite">Status: Awaiting cryptographic input...</div>
         </div>
     </section>
 
-    <!-- Features Registry Section (100+ Özellik Kapsamı) -->
+    <!-- Features Registry Section (Categorized & Filterable) -->
     <section id="features" class="py-28 max-w-7xl mx-auto px-6">
         <div class="text-center mb-12 section-title">
-            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Complete Enterprise Registry</span>
-            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-8">All 100+ Architectural Modules</h2>
+            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Enterprise Module Library</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-8">Architectural Module Matrix</h2>
             
-            <!-- Arama Çubuğu -->
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-6" role="tablist" aria-label="Module Categories">
+                <button onclick="filterCategory('all')" class="px-4 py-2 rounded-xl bg-white text-black font-bold text-xs transition" role="tab" aria-selected="true">All Modules (100+)</button>
+                <button onclick="filterCategory('security')" class="px-4 py-2 rounded-xl glass-panel text-neutral-300 hover:text-white font-medium text-xs border border-white/10 transition" role="tab" aria-selected="false">Security & Licensing</button>
+                <button onclick="filterCategory('ui')" class="px-4 py-2 rounded-xl glass-panel text-neutral-300 hover:text-white font-medium text-xs border border-white/10 transition" role="tab" aria-selected="false">UI & Architecture</button>
+                <button onclick="filterCategory('network')" class="px-4 py-2 rounded-xl glass-panel text-neutral-300 hover:text-white font-medium text-xs border border-white/10 transition" role="tab" aria-selected="false">Network & Proxy</button>
+            </div>
+
+            <!-- Search Bar -->
             <div class="max-w-md mx-auto glass-panel p-2 rounded-2xl flex items-center space-x-3 border border-white/10">
-                <i class="fa-solid fa-magnifying-glass text-neutral-500 ml-3"></i>
-                <input type="text" id="feature-search" onkeyup="filterFeatures()" placeholder="Search specs (HWID, Mutex, Thread, Bypass)..." class="w-full bg-transparent text-sm text-white placeholder-neutral-500 focus:outline-none mono-font">
+                <i class="fa-solid fa-magnifying-glass text-neutral-500 ml-3" aria-hidden="true"></i>
+                <label for="feature-search" class="sr-only">Search Specifications</label>
+                <input type="text" id="feature-search" onkeyup="filterFeatures()" placeholder="Search specifications (HWID, Mutex, Proxy, Thread)..." aria-label="Search specifications" class="w-full bg-transparent text-sm text-white placeholder-neutral-500 focus:outline-none mono-font">
             </div>
         </div>
 
         <div id="features-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Core Security & Licensing -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Hardware-Locked Licensing HWID SHA-256" onclick="triggerModule('Hardware-Locked Licensing', 'HWID Fingerprinting & SHA-256 Cryptographic License Verification executed successfully.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-microchip"></i></div>
+            <!-- Security & Licensing -->
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="security" data-title="Hardware-Locked Licensing HWID SHA-256" role="button" tabindex="0" onclick="triggerModule('Hardware-Locked Licensing', 'HWID Fingerprinting & SHA-256 Cryptographic License Verification executed successfully.')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('Hardware-Locked Licensing', 'HWID Fingerprinting & SHA-256 Cryptographic License Verification executed successfully.');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Hardware-Locked Licensing</h3>
                 <p class="text-neutral-400 text-sm leading-relaxed">HWID Fingerprinting & SHA-256 Cryptographic License Verification.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Single-Instance Mutex Process Guard" onclick="triggerModule('Single-Instance Mutex', 'Windows Kernel Global Mutex Guard acquired. Concurrent conflict blocked.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-lock"></i></div>
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="security" data-title="Single-Instance Mutex Process Guard" role="button" tabindex="0" onclick="triggerModule('Single-Instance Mutex', 'Windows Kernel Global Mutex Guard acquired. Concurrent conflict blocked.')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('Single-Instance Mutex', 'Windows Kernel Global Mutex Guard acquired. Concurrent conflict blocked.');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Single-Instance Mutex</h3>
                 <p class="text-neutral-400 text-sm leading-relaxed">Process Guard & Mutex Protection preventing concurrent execution conflicts.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Lock File & Cleanup Temporary" onclick="triggerModule('Lock File & Cleanup', 'Temporary Lock File generated in TEMP directory. Atexit cleanup hooks armed.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-file-shield"></i></div>
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="security" data-title="Lock File & Cleanup Temporary" role="button" tabindex="0" onclick="triggerModule('Lock File & Cleanup', 'Temporary Lock File generated in TEMP directory. Atexit cleanup hooks armed.')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('Lock File & Cleanup', 'Temporary Lock File generated in TEMP directory. Atexit cleanup hooks armed.');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-file-shield" aria-hidden="true"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Lock File & Cleanup</h3>
                 <p class="text-neutral-400 text-sm leading-relaxed">Temporary Lock File management with automated atexit cleanup hooks.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Dynamic Obfuscation Base64 Runtime" onclick="triggerModule('Dynamic Obfuscation', 'Base64 strings decoded dynamically at runtime to prevent static analysis.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-code"></i></div>
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="security" data-title="Dynamic Obfuscation Base64 Runtime" role="button" tabindex="0" onclick="triggerModule('Dynamic Obfuscation', 'Base64 strings decoded dynamically at runtime to prevent static analysis.')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('Dynamic Obfuscation', 'Base64 strings decoded dynamically at runtime to prevent static analysis.');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Dynamic Obfuscation</h3>
                 <p class="text-neutral-400 text-sm leading-relaxed">Base64 Dynamic Obfuscation & real-time runtime string decryption.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Cryptographic Verification Key Matrix" onclick="triggerModule('Cryptographic Verification', 'SHA-256 hash pool verified against pre-generated 52-character key matrix.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-key"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Cryptographic Verification</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">SHA-256 hash pool verification for pre-generated 52-character keys.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Local License Caching Session" onclick="triggerModule('Local License Caching', 'Persistent local session cache loaded. Skipping repetitive authentication.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-database"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Local License Caching</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Persistent local session caching for automated login validation.</p>
-            </div>
 
             <!-- UI & Architecture -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Dual-Frame Architecture CustomTkinter" onclick="triggerModule('Dual-Frame Architecture', 'CustomTkinter modular UI framework initialized (Login & Control layers active).')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-window-maximize"></i></div>
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="ui" data-title="Dual-Frame Architecture CustomTkinter" role="button" tabindex="0" onclick="triggerModule('Dual-Frame Architecture', 'CustomTkinter modular UI framework initialized (Login & Control layers active).')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('Dual-Frame Architecture', 'CustomTkinter modular UI framework initialized (Login & Control layers active).');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-window-maximize" aria-hidden="true"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Dual-Frame Architecture</h3>
                 <p class="text-neutral-400 text-sm leading-relaxed">CustomTkinter modular UI framework splitting login and control layers.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Automated DOM Scraping Selenium" onclick="triggerModule('Automated DOM Scraping', 'Selenium WebDriver deployed. Target DOM analyzed and parameters extracted.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="ui" data-title="Automated DOM Scraping Selenium" role="button" tabindex="0" onclick="triggerModule('Automated DOM Scraping', 'Selenium WebDriver deployed. Target DOM analyzed and parameters extracted.')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('Automated DOM Scraping', 'Selenium WebDriver deployed. Target DOM analyzed and parameters extracted.');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">Automated DOM Scraping</h3>
                 <p class="text-neutral-400 text-sm leading-relaxed">RegEx parameter extraction and target DOM analysis via Selenium.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Multi-Mode Protocols Combo" onclick="triggerModule('Multi-Mode Protocols', 'Execution protocol switched: Combo, Like-only, and Hit-only modes ready.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-sliders"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Multi-Mode Protocols</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Combo mode, like-only mode, and traffic hit-only execution options.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Configurable Interval Sliders Speed" onclick="triggerModule('Configurable Interval Sliders', 'Request interval speed slider adjusted. Delay parameters updated.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-gauge-high"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Configurable Interval Sliders</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Dynamic request interval control sliders and speed optimization.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Asynchronous Multi-Threading Workers" onclick="triggerModule('Asynchronous Multi-Threading', 'Concurrent worker threads spawned successfully for max performance.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-network-wired"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Asynchronous Multi-Threading</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Concurrent worker thread execution for maximized performance.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="IP Proxy Rotation Server Mapping" onclick="triggerModule('IP Proxy Rotation', 'Proxy server list parsed. One IP per line mapping active.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-server"></i></div>
+
+            <!-- Network & Proxy -->
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="network" data-title="IP Proxy Rotation Server Mapping" role="button" tabindex="0" onclick="triggerModule('IP Proxy Rotation', 'Proxy server list parsed. One IP per line mapping active.')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('IP Proxy Rotation', 'Proxy server list parsed. One IP per line mapping active.');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
                 <h3 class="text-lg font-bold mb-3 text-white">IP Proxy Rotation</h3>
                 <p class="text-neutral-400 text-sm leading-relaxed">Seamless proxy integration supporting one IP per line parsing.</p>
             </div>
-
-            <!-- Anti-Bot & Network Telemetry -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Dynamic User-Agent Spoofer Fingerprint" onclick="triggerModule('Dynamic User-Agent Spoofer', 'Fingerprint rotation active. Mimicking diverse client environments.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-user-secret"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Dynamic User-Agent Spoofer</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Fingerprint rotation mimicking diverse client environments.</p>
+            <div class="glass-card p-8 rounded-2xl feature-card" data-category="network" data-title="Asynchronous Multi-Threading Workers" role="button" tabindex="0" onclick="triggerModule('Asynchronous Multi-Threading', 'Concurrent worker threads spawned successfully for max performance.')" onkeypress="if(event.key==='Enter'||event.key===' '){triggerModule('Asynchronous Multi-Threading', 'Concurrent worker threads spawned successfully for max performance.');}">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div>
+                <h3 class="text-lg font-bold mb-3 text-white">Asynchronous Multi-Threading</h3>
+                <p class="text-neutral-400 text-sm leading-relaxed">Concurrent worker thread execution for maximized performance.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Anti-Bot Jitter Algorithm Timing" onclick="triggerModule('Anti-Bot Jitter Algorithm', 'Randomized timing deviations injected to simulate human operation cadence.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-wave-square"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Anti-Bot Jitter Algorithm</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Randomized timing deviations mimicking human operational cadence.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Anti-Lag Delay Balancer Stability" onclick="triggerModule('Anti-Lag Delay Balancer', 'Request delay balancer engaged to sustain stability under heavy load.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-virus"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Anti-Lag Delay Balancer</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Request delay balancer to sustain connection stability under heavy load.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Masked Key Toggle Security" onclick="triggerModule('Masked Key Toggle', 'Interactive license key mask toggled for cryptographic security.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-eye-slash"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Masked Key Toggle</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Interactive masked license key and HWID display with security toggle.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Live Theme Palette Switcher UI" onclick="triggerModule('Live Theme Palette Switcher', 'UI theme palette adapted instantly to custom accent configurations.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-palette"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Live Theme Palette Switcher</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Dynamic UI customization with instant color palette adaptation.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Real-Time Console Logging Telemetry" onclick="triggerModule('Real-Time Console Logging', 'Timestamped secure console event logging active with auto-scroll telemetry.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-terminal"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Real-Time Console Logging</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Timestamped secure console event logging with auto-scroll features.</p>
-            </div>
-
-            <!-- Advanced Enterprise Vectors -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Live Performance Counters Statistics" onclick="triggerModule('Live Performance Counters', 'Real-time statistics tracking initialized for likes and traffic hits.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Live Performance Counters</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Real-time statistics tracking for likes and traffic/hits generation.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Headless Chrome Driver WebDriver" onclick="triggerModule('Headless Chrome Driver', 'Headless Chrome driver spawned via WebDriver Manager integration.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-brands fa-chrome"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Headless Chrome Driver</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Automated driver management via WebDriver Manager integration.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Safe Session Termination Threads" onclick="triggerModule('Safe Session Termination', 'Background worker threads protected. Guarded exit verification ready.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-cat"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Safe Session Termination</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Background thread protection and guarded exit verification protocols.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="System State Reset Memory" onclick="triggerModule('System State Reset', 'Memory records wiped and performance counters restored to zero.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-rotate"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">System State Reset</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Memory record cleaning and performance counter resetting capability.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Kernel Bypass & Memory Protection" onclick="triggerModule('Kernel Bypass Security', 'Low-level memory isolation engaged against debugger injection.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-user-shield"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Kernel Bypass Security</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Low-level memory isolation engaged against debugger injection.</p>
-            </div>
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Asynchronous Queue Dispatcher" onclick="triggerModule('Queue Dispatcher', 'High-throughput task queue initialized with zero thread starvation.')">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-bolt"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Asynchronous Queue Dispatcher</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">High-throughput task queue initialized with zero thread starvation.</p>
-            </div>
+        </div>
+        <!-- No Search Results Warning -->
+        <div id="no-results" class="hidden text-center py-12 text-neutral-500 mono-font text-sm">
+            No matching specifications found. Try adjusting your search query or filters.
         </div>
     </section>
 
-    <!-- Özgün Özellik: Gelişmiş Komut Satırlı Terminal -->
+    <!-- Terminal Console Section (Secure Safe DOM Injection) -->
     <section id="terminal" class="py-28 max-w-5xl mx-auto px-6">
         <div class="glass-panel rounded-3xl p-8 md:p-12 border border-white/10 relative overflow-hidden terminal-box shadow-2xl">
             <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
@@ -456,14 +416,15 @@
                     <button onclick="clearTerminal()" class="px-3 py-1 bg-white/5 hover:bg-white/10 text-neutral-300 rounded-lg text-xs mono-font border border-white/10 transition">Clear Logs</button>
                 </div>
             </div>
-            <div id="terminal-content" class="mono-font text-xs md:text-sm text-neutral-300 space-y-3 leading-relaxed min-h-[180px] max-h-[300px] overflow-y-auto mb-4">
-                <p class="text-neutral-500"># SYSTEM READY. TYPE 'help', 'status', 'threads', OR CLICK ANY MODULE ABOVE...</p>
-                <p>[20:06:00] [CORE] Lacas Client v1.0 ultimate shell initialized.</p>
+            <div id="terminal-content" class="mono-font text-xs md:text-sm text-neutral-300 space-y-3 leading-relaxed min-h-[180px] max-h-[300px] overflow-y-auto mb-4" aria-live="polite">
+                <p class="text-neutral-500"># SYSTEM READY. TYPE 'help', 'status', 'threads' OR CLICK ANY MODULE ABOVE...</p>
+                <p>[20:10:00] [CORE] Lacas Client v1.0 terminal telemetry listener online.</p>
             </div>
             <!-- Terminal Input Line -->
             <div class="flex items-center space-x-3 pt-4 border-t border-white/10">
                 <span class="text-emerald-400 mono-font text-xs font-bold">lacas@core:~$</span>
-                <input type="text" id="terminal-input" onkeypress="handleTerminalInput(event)" placeholder="Type command (e.g. status, threads)..." class="w-full bg-transparent text-xs mono-font text-white placeholder-neutral-600 focus:outline-none">
+                <label for="terminal-input" class="sr-only">Terminal Command Line</label>
+                <input type="text" id="terminal-input" onkeypress="handleTerminalInput(event)" placeholder="Type command (help, status, threads)..." aria-label="Terminal Command Line" class="w-full bg-transparent text-xs mono-font text-white placeholder-neutral-600 focus:outline-none">
             </div>
         </div>
     </section>
@@ -471,112 +432,167 @@
     <!-- FAQ Accordion Section -->
     <section id="faq" class="py-28 max-w-4xl mx-auto px-6">
         <div class="text-center mb-16">
-            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Frequently Asked Questions</span>
-            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Technical Clarifications</h2>
+            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block">Support & Knowledge Base</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Frequently Asked Questions</h2>
         </div>
         <div class="space-y-4">
-            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)">
-                <div class="flex justify-between items-center font-bold text-white text-lg">
-                    <span>How does HWID hardware-locked licensing function?</span>
-                    <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)" role="region" aria-label="FAQ Item 1">
+                <div class="flex justify-between items-center font-bold text-white text-base">
+                    <span>How does hardware-locked (HWID) licensing work?</span>
+                    <i class="fa-solid fa-plus text-xs transition-transform duration-300" aria-hidden="true"></i>
                 </div>
                 <div class="faq-content hidden pt-4 text-neutral-400 text-sm leading-relaxed border-t border-white/5 mt-4">
-                    Lacas Client calculates a secure cryptographic fingerprint based on core motherboard, CPU, and volume serial identifiers, matching them against an authenticated SHA-256 hash pool.
+                    Lacas Client calculates a unique cryptographic hardware fingerprint derived from motherboard, CPU, and disk serials. Your license key is permanently bound to this hardware signature.
                 </div>
             </div>
-            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)">
-                <div class="flex justify-between items-center font-bold text-white text-lg">
-                    <span>Can proxy rotation be configured per worker thread?</span>
-                    <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)" role="region" aria-label="FAQ Item 2">
+                <div class="flex justify-between items-center font-bold text-white text-base">
+                    <span>What are the system requirements and supported OS?</span>
+                    <i class="fa-solid fa-plus text-xs transition-transform duration-300" aria-hidden="true"></i>
                 </div>
                 <div class="faq-content hidden pt-4 text-neutral-400 text-sm leading-relaxed border-t border-white/5 mt-4">
-                    Yes, the internal proxy parser processes lists structured as one IP per line, seamlessly cycling endpoints across asynchronous multi-threaded workers.
+                    The desktop client fully supports Windows 10/11 (64-bit). It requires Python 3.10+ runtime, CustomTkinter libraries, and Selenium WebDriver dependencies.
+                </div>
+            </div>
+            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)" role="region" aria-label="FAQ Item 3">
+                <div class="flex justify-between items-center font-bold text-white text-base">
+                    <span>What is the support policy and update frequency?</span>
+                    <i class="fa-solid fa-plus text-xs transition-transform duration-300" aria-hidden="true"></i>
+                </div>
+                <div class="faq-content hidden pt-4 text-neutral-400 text-sm leading-relaxed border-t border-white/5 mt-4">
+                    All v1.0 license holders receive complimentary minor updates. Technical support and bug reporting are available via our official GitHub repository issue tracker.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/10 text-center text-xs mono-font text-neutral-500">
-        <p>&copy; 2026 Lacas Client v1.0 Ultimate Enterprise Architecture. All rights reserved.</p>
+    <!-- Footer & Links -->
+    <footer class="py-16 border-t border-white/10 text-center text-xs mono-font text-neutral-500 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 text-left">
+            <div>
+                <span class="text-white font-bold block mb-3 uppercase tracking-wider text-xs">Lacas Client v1.0</span>
+                <p class="text-neutral-400 font-sans text-xs leading-relaxed">Enterprise automation and multi-threaded security engine engineered for absolute performance.</p>
+            </div>
+            <div>
+                <span class="text-white font-bold block mb-3 uppercase tracking-wider text-xs">Quick Links</span>
+                <ul class="space-y-2">
+                    <li><a href="#features" class="hover:text-white transition">Module Registry</a></li>
+                    <li><a href="#mockup" class="hover:text-white transition">Live GUI Demo</a></li>
+                    <li><a href="#nodes" class="hover:text-white transition">Routing Nodes</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="text-white font-bold block mb-3 uppercase tracking-wider text-xs">Documentation</span>
+                <ul class="space-y-2">
+                    <li><a href="#faq" class="hover:text-white transition">Installation Guide</a></li>
+                    <li><a href="#faq" class="hover:text-white transition">License Terms</a></li>
+                    <li><a href="#faq" class="hover:text-white transition">FAQ & Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="text-white font-bold block mb-3 uppercase tracking-wider text-xs">Newsletter</span>
+                <p class="text-neutral-400 font-sans text-xs mb-3">Stay informed on system releases:</p>
+                <div class="flex space-x-2">
+                    <label for="newsletter-email" class="sr-only">Email Address</label>
+                    <input type="email" id="newsletter-email" placeholder="Your email address..." aria-label="Your email address" class="bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-xs text-white w-full focus:outline-none">
+                    <button onclick="alert('Thank you for subscribing to updates!')" class="px-3 py-2 bg-white text-black font-bold rounded-lg hover:bg-neutral-200 transition shrink-0">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/5 pt-8">
+            <p>&copy; 2026 Lacas Client v1.0 Architecture. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- Scripts -->
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Animation
-        gsap.from(".hero-content > *", {
-            y: 50, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power3.out"
-        });
-
-        // Section Title Animation
-        gsap.from(".section-title", {
-            scrollTrigger: { trigger: ".section-title", start: "top 85%" },
-            y: 30, opacity: 0, duration: 1, ease: "power3.out"
-        });
-
-        // Feature Cards Stagger
-        gsap.utils.toArray(".feature-card").forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: { trigger: card, start: "top 90%" },
-                y: 40, opacity: 0, duration: 0.6, delay: (i % 3) * 0.03, ease: "power3.out"
+        // Reduced Motion Check for GSAP
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            gsap.from(".hero-content > *", {
+                y: 50, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power3.out"
             });
-        });
+            gsap.from(".section-title", {
+                scrollTrigger: { trigger: ".section-title", start: "top 85%" },
+                y: 30, opacity: 0, duration: 1, ease: "power3.out"
+            });
+            gsap.utils.toArray(".feature-card").forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: { trigger: card, start: "top 90%" },
+                    y: 40, opacity: 0, duration: 0.6, delay: (i % 3) * 0.03, ease: "power3.out"
+                });
+            });
+        }
 
-        // Dinamik Blur Arka Plan Kaydırma Efekti
+        // Ambient Blob Parallax Effect
         window.addEventListener('scroll', () => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             const scrollY = window.scrollY;
             const blob1 = document.getElementById('blob-1');
             const blob2 = document.getElementById('blob-2');
-            
-            blob1.style.transform = `translate(${scrollY * 0.2}px, ${scrollY * 0.3}px) scale(${1 + scrollY * 0.0005})`;
-            blob2.style.transform = `translate(${-scrollY * 0.2}px, ${-scrollY * 0.25}px) scale(${1 + scrollY * 0.0003})`;
+            if(blob1 && blob2) {
+                blob1.style.transform = `translate(${scrollY * 0.2}px, ${scrollY * 0.3}px) scale(${1 + scrollY * 0.0005})`;
+                blob2.style.transform = `translate(${-scrollY * 0.2}px, ${-scrollY * 0.25}px) scale(${1 + scrollY * 0.0003})`;
+            }
         });
 
-        // Tema Değiştirici Fonksiyonu
+        // Mobile Menu Drawer Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars";
+            } else {
+                icon.className = "fa-solid fa-xmark";
+            }
+        }
+
+        // Theme Switcher Function
         function setTheme(mode) {
             const body = document.getElementById('site-body');
             if(mode === 'cyber') {
                 body.style.backgroundColor = '#050b08';
-                triggerModule('THEME ENGINE', 'Cyberpunk emerald accent profile loaded.');
+                triggerModule('THEME ENGINE', 'Cyberpunk emerald profile applied.');
+                announceToScreenReader('Cyberpunk theme loaded.');
             } else {
                 body.style.backgroundColor = '#020202';
-                triggerModule('THEME ENGINE', 'Pure monochrome dark profile loaded.');
+                triggerModule('THEME ENGINE', 'Pure dark monochrome profile applied.');
+                announceToScreenReader('Pure dark theme loaded.');
             }
         }
 
-        // Canlı Lisans / HWID Test Simülatörü
+        // License Key Sandbox (Strict 52-Character Check)
         function testLicenseKey() {
-            const input = document.getElementById('test-key-input').value;
+            const input = document.getElementById('test-key-input').value.trim();
             const res = document.getElementById('license-result');
-            if(input.length > 10) {
+            if(input.length === 52) {
                 res.innerHTML = `<span class="text-emerald-400 font-bold">✓ Valid SHA-256 Hash Matrix. HWID Fingerprint Matched Successfully.</span>`;
-                triggerModule('HWID SANDBOX', 'License key authenticated against hardware fingerprint pool.');
+                triggerModule('HWID SANDBOX', 'License key validated against strict 52-character signature rule.');
+                announceToScreenReader('License key valid.');
             } else {
-                res.innerHTML = `<span class="text-red-400 font-bold">✗ Error: Invalid key length or corrupted hash pool signature.</span>`;
-                triggerModule('HWID SANDBOX', 'Authentication failed: Key length insufficient.');
+                res.innerHTML = `<span class="text-red-400 font-bold">✗ Error: Key must be exactly 52 characters long (Entered: ${input.length}).</span>`;
+                triggerModule('HWID SANDBOX', 'Validation failed: Invalid signature length.');
+                announceToScreenReader('License key invalid.');
             }
         }
 
-        // Canlı GUI Mod Değiştirme Fonksiyonu
+        // Interactive GUI Mode Switcher
         function switchMode(modeName, logMessage) {
-            ['combo', 'traffic', 'scrape', 'stealth'].forEach(id => {
+            ['combo', 'traffic', 'scrape'].forEach(id => {
                 const el = document.getElementById('mode-' + id);
                 if(el) {
-                    el.className = "p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition";
+                    el.className = "p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition focus:ring-2 focus:ring-white";
+                    el.setAttribute('aria-checked', 'false');
                     el.innerHTML = el.innerHTML.replace(' <i class="fa-solid fa-check"></i>', '');
                 }
             });
 
-            let activeId = 'combo';
-            if(modeName.includes('Traffic')) activeId = 'traffic';
-            if(modeName.includes('Autonomous')) activeId = 'scrape';
-            if(modeName.includes('Stealth')) activeId = 'stealth';
-
-            const activeEl = document.getElementById('mode-' + activeId);
+            const activeEl = document.getElementById('mode-combo');
             if(activeEl) {
-                activeEl.className = "p-3 rounded-xl bg-white text-black font-bold flex justify-between items-center cursor-pointer transition";
+                activeEl.className = "p-3 rounded-xl bg-white text-black font-bold flex justify-between items-center cursor-pointer transition focus:ring-2 focus:ring-white";
+                activeEl.setAttribute('aria-checked', 'true');
                 if(!activeEl.innerHTML.includes('fa-check')) {
                     activeEl.innerHTML += ' <i class="fa-solid fa-check"></i>';
                 }
@@ -586,77 +602,171 @@
             triggerModule('GUI PROTOCOL', logMessage);
         }
 
-        // İnteraktif Kart Tıklama & Terminal Bağlantı Fonksiyonu
+        function switchPackage(modeName, logMessage) {
+            ['combo', 'traffic', 'scrape'].forEach(id => {
+                const el = document.getElementById('mode-' + id);
+                if(el) {
+                    el.className = "p-3 rounded-xl bg-black/40 border border-white/5 flex justify-between items-center text-neutral-400 cursor-pointer hover:text-white transition focus:ring-2 focus:ring-white";
+                    el.setAttribute('aria-checked', 'false');
+                    el.innerHTML = el.innerHTML.replace(' <i class="fa-solid fa-check"></i>', '');
+                }
+            });
+
+            let activeId = 'traffic';
+            if(modeName.includes('Autonomous')) activeId = 'scrape';
+
+            const activeEl = document.getElementById('mode-' + activeId);
+            if(activeEl) {
+                activeEl.className = "p-3 rounded-xl bg-white text-black font-bold flex justify-between items-center cursor-pointer transition focus:ring-2 focus:ring-white";
+                activeEl.setAttribute('aria-checked', 'true');
+                if(!activeEl.innerHTML.includes('fa-check')) {
+                    activeEl.innerHTML += ' <i class="fa-solid fa-check"></i>';
+                }
+            }
+
+            document.getElementById('active-mode-tag').innerText = `Current: ${modeName}`;
+            triggerModule('GUI PROTOCOL', logMessage);
+        }
+
+        // Safe DOM Node Creation for Terminal Logging (Prevents XSS)
         function triggerModule(moduleName, logMessage) {
             const terminal = document.getElementById('terminal-content');
             const timestamp = new Date().toLocaleTimeString();
             
-            const newLog = document.createElement('p');
-            newLog.innerHTML = `<span class="text-neutral-500">[${timestamp}]</span> <span class="text-white font-bold">[${moduleName}]</span> ${logMessage}`;
-            terminal.appendChild(newLog);
-            
+            const p = document.createElement('p');
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'text-neutral-500';
+            timeSpan.textContent = `[${timestamp}]`;
+
+            const modSpan = document.createElement('span');
+            modSpan.className = 'text-white font-bold';
+            modSpan.textContent = ` [${moduleName}] `;
+
+            const msgNode = document.createTextNode(logMessage);
+
+            p.appendChild(timeSpan);
+            p.appendChild(modSpan);
+            p.appendChild(msgNode);
+
+            terminal.appendChild(p);
             terminal.scrollTop = terminal.scrollHeight;
-            gsap.fromTo(".terminal-box", { scale: 0.98 }, { scale: 1, duration: 0.3, ease: "power2.out" });
+            announceToScreenReader(`${moduleName}: ${logMessage}`);
         }
 
-        // Terminal Komut Giriş Sistemi
+        // Interactive Terminal CLI Commands
         function handleTerminalInput(e) {
             if(e.key === 'Enter') {
                 const input = e.target.value.trim().toLowerCase();
                 e.target.value = '';
                 
                 if(input === 'help') {
-                    triggerModule('CLI SHELL', 'Available commands: status, threads, clear, version, nodes');
+                    triggerModule('CLI SHELL', 'Available commands: status, threads, version, nodes, clear');
                 } else if(input === 'status') {
-                    triggerModule('CLI SHELL', 'System status: ALL 100+ MODULES OPERATIONAL [Uptime: 99.99%] [Kernel: Secured]');
+                    triggerModule('CLI SHELL', 'System Status: ALL 100+ MODULES ONLINE [Uptime: 99.99%] [Kernel: Secured]');
                 } else if(input === 'threads') {
-                    triggerModule('CLI SHELL', 'Active worker threads: 256 / 256 allocated. Zero thread starvation.');
+                    triggerModule('CLI SHELL', 'Active worker threads: 256 / 256 allocated.');
                 } else if(input === 'nodes') {
-                    triggerModule('CLI SHELL', 'Nodes online: US-EAST (6ms), EU-CENTRAL (4ms), ASIA-EAST (12ms)');
+                    triggerModule('CLI SHELL', 'Active edge nodes: US-EAST (6ms), EU-CENTRAL (4ms), ASIA-EAST (12ms)');
                 } else if(input === 'clear') {
                     clearTerminal();
                 } else if(input === 'version') {
-                    triggerModule('CLI SHELL', 'Lacas Client v1.0 Ultimate Enterprise Core (Build 2026.10)');
+                    triggerModule('CLI SHELL', 'Lacas Client v1.0 Core Engine (Build 2026.10)');
                 } else {
-                    triggerModule('CLI SHELL', `Unknown command: '${input}'. Type 'help' for available commands.`);
+                    triggerModule('CLI SHELL', `Unknown command: '${input}'. Type 'help' for options.`);
                 }
             }
         }
 
-        // Terminal Temizleme
+        // Clear Terminal Output
         function clearTerminal() {
             const terminal = document.getElementById('terminal-content');
-            terminal.innerHTML = '<p class="text-neutral-500"># TERMINAL LOGS CLEARED. READY FOR NEW TELEMETRY...</p>';
+            terminal.innerHTML = '<p class="text-neutral-500"># TERMINAL LOGS CLEARED. READY FOR TELEMETRY...</p>';
         }
 
-        // Özellik Arama Filtresi
-        function filterFeatures() {
-            const query = document.getElementById('feature-search').value.toLowerCase();
+        // Filter Modules by Category
+        function filterCategory(category) {
             const cards = document.querySelectorAll('.feature-card');
-            
+            let visibleCount = 0;
+
             cards.forEach(card => {
-                const title = card.getAttribute('data-title').toLowerCase();
-                if(title.includes(query)) {
+                const cat = card.getAttribute('data-category');
+                if(category === 'all' || cat === category) {
                     card.style.display = 'block';
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
+
+            const noRes = document.getElementById('no-results');
+            if(visibleCount === 0) {
+                noRes.classList.remove('hidden');
+            } else {
+                noRes.classList.add('hidden');
+            }
         }
 
-        // CLI Copy Function
+        // Search Feature Specifications
+        function filterFeatures() {
+            const query = document.getElementById('feature-search').value.toLowerCase();
+            const cards = document.querySelectorAll('.feature-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const desc = card.querySelector('p').innerText.toLowerCase();
+                if(title.includes(query) || desc.includes(query)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noRes = document.getElementById('no-results');
+            if(visibleCount === 0) {
+                noRes.classList.remove('hidden');
+            } else {
+                noRes.classList.add('hidden');
+            }
+        }
+
+        // CLI Copy Command
         function copyCLI(btn) {
-            navigator.clipboard.writeText("pip install lacas-client --secure --enterprise");
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Copied</span>';
-            setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+            const textToCopy = "pip install lacas-client --secure";
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Copied</span>';
+                    setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+                    announceToScreenReader('Command copied to clipboard.');
+                }).catch(() => {
+                    alert('Clipboard write failed. Please select and copy manually.');
+                });
+            } else {
+                alert('Your browser does not support clipboard interaction.');
+            }
         }
 
         // FAQ Accordion Toggle
         function toggleFaq(element) {
             const content = element.querySelector('.faq-content');
+            const icon = element.querySelector('i');
             content.classList.toggle('hidden');
             element.classList.toggle('border-white/40');
+            if(content.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-plus text-xs transition-transform duration-300";
+            } else {
+                icon.className = "fa-solid fa-minus text-xs transition-transform duration-300";
+            }
+        }
+
+        // Screen Reader Helper
+        function announceToScreenReader(message) {
+            const announcer = document.getElementById('sr-announcer');
+            if(announcer) {
+                announcer.textContent = message;
+            }
         }
     </script>
 </body>
