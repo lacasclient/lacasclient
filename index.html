@@ -57,8 +57,8 @@
 
             <!-- Tab Switching Buttons -->
             <div class="flex items-center space-x-2 bg-dark-900 p-1 rounded-xl border border-dark-700">
-                <button onclick="switchTab('client')" id="tabBtnClient" class="px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-white text-black shadow-sm" data-en="LacasClient Engine" data-tr="LacasClient Motoru">LacasClient Engine</button>
-                <button onclick="switchTab('aegis')" id="tabBtnAegis" class="px-4 py-1.5 rounded-lg text-xs font-semibold transition text-zinc-400 hover:text-white" data-en="Aegis SOC Center" data-tr="Aegis SOC Merkezi">Aegis SOC Center</button>
+                <button onclick="switchTab('client')" id="tabBtnClient" class="px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-white text-black shadow-sm" data-en="LacasClient (Automation)" data-tr="LacasClient (Otomasyon)">LacasClient (Automation)</button>
+                <button onclick="switchTab('aegis')" id="tabBtnAegis" class="px-4 py-1.5 rounded-lg text-xs font-semibold transition text-zinc-400 hover:text-white" data-en="Aegis SOC (Security)" data-tr="Aegis SOC (Güvenlik)">Aegis SOC (Security)</button>
             </div>
 
             <div class="flex items-center space-x-3">
@@ -93,40 +93,37 @@
             <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight mb-6 uppercase">
                 <span class="bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-500">LACAS SUITE</span>
             </h1>
-            <p class="text-zinc-400 text-base md:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-8" data-en="Scroll down to unlock multi-threaded headless automation cores, SOC threat command modules, and live interactive simulators." data-tr="Çok iş parçacıklı headless otomasyon çekirdeklerini, SOC tehdit komuta modüllerini ve canlı interaktif simülatörleri keşfetmek için aşağı kaydırın.">
-                Scroll down to unlock multi-threaded headless automation cores, SOC threat command modules, and live interactive simulators.
+            <p class="text-zinc-400 text-base md:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-8" data-en="Scroll down to explore distinct features of LacasClient automation engine and Aegis SOC command center." data-tr="LacasClient otomasyon motoru ve Aegis SOC komuta merkezinin benzersiz özelliklerini keşfetmek için aşağı kaydırın.">
+                Scroll down to explore distinct features of LacasClient automation engine and Aegis SOC command center.
             </p>
             <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-dark-900 border border-dark-700 text-xs font-mono text-zinc-400 animate-bounce">
-                <span>↓ Scroll to Enter Command Center</span>
+                <span>↓ Scroll to Explore Programs</span>
             </div>
         </section>
 
-        <!-- ================= LACAS CLIENT TAB ================= -->
+        <!-- ================= LACAS CLIENT TAB (AUTOMATION & LIKES) ================= -->
         <div id="viewClient" class="max-w-7xl mx-auto px-6 animate-fade-in">
             <div class="mb-10 text-center max-w-2xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" data-en="LacasClient Automation Core" data-tr="LacasClient Otomasyon Çekirdeği">LacasClient Automation Core</h2>
-                <p class="text-zinc-400 text-sm md:text-base" data-en="Multi-threaded headless browser orchestration with advanced proxy integration, custom DOM binding, and memory garbage collection." data-tr="Gelişmiş proxy entegrasyonu, özel DOM bağlama ve bellek çöp toplama özellikli çok iş parçacıklı headless tarayıcı yönetimi.">Multi-threaded headless browser orchestration with advanced proxy integration, custom DOM binding, and memory garbage collection.</p>
+                <span class="text-xs font-mono px-3 py-1 rounded-full bg-dark-800 text-zinc-400 border border-dark-600 mb-3 inline-block">PROGRAM 1</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" data-en="LacasClient (Automation & Like Engine)" data-tr="LacasClient (Otomasyon & Beğeni Motoru)">LacasClient (Automation & Like Engine)</h2>
+                <p class="text-zinc-400 text-sm md:text-base" data-en="Selenium headless automation built for exact DOM element interaction, traffic hit generation, and multi-threaded background processing." data-tr="Tam DOM eleman etkileşimi, trafik hit üretimi ve çok iş parçacıklı arka plan işleme için oluşturulmuş Selenium headless otomasyonu.">Selenium headless automation built for exact DOM element interaction, traffic hit generation, and multi-threaded background processing.</p>
             </div>
 
             <!-- Interactive Sandbox Program Simulator (Client) -->
             <div class="p-6 md:p-8 rounded-2xl bg-dark-900 border border-dark-700 shadow-2xl mb-16 relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-                    <span class="text-7xl font-mono font-bold">CLIENT</span>
-                </div>
                 <div class="flex items-center justify-between mb-6 pb-4 border-b border-dark-700">
                     <div class="flex items-center space-x-3">
                         <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-                        <h3 class="font-mono text-sm font-bold tracking-wider" data-en="SANDBOX LIVE SIMULATOR (NON-ACTIVE DEMO)" data-tr="SANAL ALAN CANLI SİMÜLATÖRÜ (AKTİF DEĞİL DEMO)">SANDBOX LIVE SIMULATOR (NON-ACTIVE DEMO)</h3>
+                        <h3 class="font-mono text-sm font-bold tracking-wider" data-en="LACASCLIENT LIVE SIMULATOR (NON-ACTIVE DEMO)" data-tr="LACASCLIENT CANLI SİMÜLATÖRÜ (AKTİF DEĞİL DEMO)">LACASCLIENT LIVE SIMULATOR (NON-ACTIVE DEMO)</h3>
                     </div>
-                    <span class="text-xs font-mono text-zinc-500" data-en="Status: Simulation Mode Active" data-tr="Durum: Simülasyon Modu Aktif">Status: Simulation Mode Active</span>
+                    <span class="text-xs font-mono text-zinc-500" data-en="Status: CustomTkinter Core Simulation" data-tr="Durum: CustomTkinter Çekirdek Simülasyonu">Status: CustomTkinter Core Simulation</span>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Config Controls -->
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Target URL Endpoint" data-tr="Hedef URL Uç Noktası">Target URL Endpoint</label>
-                            <input type="text" id="simUrl" value="https://target-service.internal/api/v1" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
+                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Target URL" data-tr="Hedef URL">Target URL</label>
+                            <input type="text" id="simUrl" value="https://target-service.internal/page" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
                         </div>
                         <div>
                             <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Execution Mode" data-tr="Çalıştırma Modu">Execution Mode</label>
@@ -145,100 +142,96 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-xs font-mono text-zinc-400 mb-1">
-                                <span data-en="Worker Threads" data-tr="İşçi Süreçleri">Worker Threads</span>
+                                <span data-en="Worker Threads (Max 5)" data-tr="İşçi Süreçleri (Max 5)">Worker Threads (Max 5)</span>
                                 <span id="simThreadVal">3</span>
                             </div>
                             <input type="range" min="1" max="5" step="1" value="3" oninput="document.getElementById('simThreadVal').textContent = this.value" class="w-full accent-white cursor-pointer">
                         </div>
                         <div class="pt-2 flex space-x-2">
-                            <button onclick="triggerSimAction('start')" class="flex-1 py-2.5 rounded-xl bg-white text-black font-bold text-xs hover:bg-zinc-200 transition" data-en="START SIMULATION" data-tr="SİMÜLASYONU BAŞLAT">START SIMULATION</button>
-                            <button onclick="triggerSimAction('stop')" class="px-4 py-2.5 rounded-xl bg-dark-800 border border-dark-600 text-zinc-300 font-bold text-xs hover:bg-dark-700 transition" data-en="HALT" data-tr="DURDUR">HALT</button>
+                            <button onclick="triggerSimAction('start')" class="flex-1 py-2.5 rounded-xl bg-white text-black font-bold text-xs hover:bg-zinc-200 transition" data-en="START ENGINE" data-tr="MOTORU BAŞLAT">START ENGINE</button>
+                            <button onclick="triggerSimAction('stop')" class="px-4 py-2.5 rounded-xl bg-dark-800 border border-dark-600 text-zinc-300 font-bold text-xs hover:bg-dark-700 transition" data-en="STOP" data-tr="DURDUR">STOP</button>
                         </div>
                     </div>
 
-                    <!-- Live Log & Console Output -->
                     <div class="lg:col-span-2 flex flex-col">
                         <div class="flex justify-between items-center mb-1">
-                            <span class="text-xs font-mono text-zinc-400" data-en="Execution Telemetry Stream" data-tr="Yürütme Telemetri Akışı">Execution Telemetry Stream</span>
+                            <span class="text-xs font-mono text-zinc-400" data-en="Client Activity Console" data-tr="İstemci Aktivite Konsolu">Client Activity Console</span>
                             <span id="simStats" class="text-xs font-mono text-emerald-400 font-bold">LIKES: 0 | TRAFFIC: 0</span>
                         </div>
                         <div id="simLogBox" class="flex-grow h-56 bg-dark-950 border border-dark-700 rounded-xl p-4 font-mono text-xs text-emerald-400 overflow-y-auto space-y-1">
-                            <div>[SYSTEM] LacasClient Sandbox initialized. Ready for simulation command.</div>
+                            <div>[SYSTEM] LacasClient v1.0 ready. Log export & beep sounds active.</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Advanced Features Grid with Interactive Click/Hover Popover Simulation -->
+            <!-- LacasClient Specific Features Grid (Click to Inspect) -->
             <div class="mb-12">
-                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="Interactive Sub-Systems (Click to Inspect)" data-tr="İnteraktif Alt Sistemler (İncelemek İçin Tıklayın)">Interactive Sub-Systems (Click to Inspect)</h3>
+                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="LacasClient Program Features (Click to Inspect)" data-tr="LacasClient Program Özellikleri (İncelemek İçin Tıklayın)">LacasClient Program Features (Click to Inspect)</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div onclick="inspectFeature('HWID Hardware Lock', 'Validates motherboard serial numbers and CPU identifiers against local encrypted state files to prevent unauthorized replication.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">01 / SHIELD</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="HWID Hardware Lock" data-tr="HWID Donanım Kilidi">HWID Hardware Lock</h4>
-                        <p class="text-xs text-zinc-400" data-en="Motherboard serial and CPU hash validation bound to client instance." data-tr="İstemci örneğine bağlı anakart seri numarası ve CPU hash doğrulaması.">Motherboard serial and CPU hash validation bound to client instance.</p>
+                    <div onclick="inspectFeature('52-Char Key & HWID Validation', 'Validates 52-character unique keys against SHA-256 hashes combined with local motherboard and processor hardware IDs[cite: 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 01</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="52-Char Key & HWID Validation" data-tr="52 Karakter Anahtar & HWID Doğrulama">52-Char Key & HWID Validation</h4>
+                        <p class="text-xs text-zinc-400" data-en="Secure license entry bound strictly to machine hardware configuration[cite: 3, 4]." data-tr="Kesinlikle makine donanım yapılandırmasına bağlı güvenli lisans girişi[cite: 3, 4].">Secure license entry bound strictly to machine hardware configuration[cite: 3, 4].</p>
                     </div>
-                    <div onclick="inspectFeature('Organic Anti-Bot Noise', 'Injects human-like Gaussian delays and micro-scroll patterns to bypass aggressive bot detection algorithms.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">02 / BYPASS</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Organic Anti-Bot Noise" data-tr="Organik Anti-Bot Gürültüsü">Organic Anti-Bot Noise</h4>
-                        <p class="text-xs text-zinc-400" data-en="Gaussian distribution delays and random viewport micro-scrolls." data-tr="Gauss dağılım gecikmeleri ve rastgele görünüm alanı mikro kaydırmaları.">Gaussian distribution delays and random viewport micro-scrolls.</p>
-                    </div>
-                    <div onclick="inspectFeature('RAM Garbage Purge', 'Executes periodic forced garbage collection cycles and process recycling to maintain zero memory bloat during multi-day runs.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">03 / MEMORY</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="RAM Garbage Purge" data-tr="RAM Çöp Temizliği">RAM Garbage Purge</h4>
-                        <p class="text-xs text-zinc-400" data-en="Forced garbage collection cycles to prevent memory bloat during multi-day runs." data-tr="Çok günlük çalışmalarda bellek şişmesini önlemek için zorunlu çöp toplama döngüleri.">Forced garbage collection cycles to prevent memory bloat during multi-day runs.</p>
-                    </div>
-                    <div onclick="inspectFeature('Motherboard Beep Matrix', 'Triggers hardware-level Win32 acoustic frequency alerts to confirm state transitions without looking at monitor.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">04 / AUDIO</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Motherboard Beep Matrix" data-tr="Anakart Bip Matrisi">Motherboard Beep Matrix</h4>
-                        <p class="text-xs text-zinc-400" data-en="Acoustic frequency alerts for start, stop, and error states via Win32 API." data-tr="Win32 API ile başlangıç, durdurma ve hata durumları için akustik frekans uyarıları.">Acoustic frequency alerts for start, stop, and error states via Win32 API.</p>
-                    </div>
-                    <div onclick="inspectFeature('Auto DOM ID Harvester', 'Parses live target source code using precise regex patterns to capture internal cwRating objects automatically.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">05 / DOM</span>
+                    <div onclick="inspectFeature('Auto DOM ID Harvester', 'Scans page source using regex search patterns to automatically capture cwRating function parameters without manual input[cite: 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 02</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auto DOM ID Harvester" data-tr="Otomatik DOM Kimlik Avcısı">Auto DOM ID Harvester</h4>
-                        <p class="text-xs text-zinc-400" data-en="Regex pattern matching to extract cwRating parameters directly from target source." data-tr="Hedef kaynaktan cwRating parametrelerini doğrudan çıkarmak için regex desen eşleştirme.">Regex pattern matching to extract cwRating parameters directly from target source.</p>
+                        <p class="text-xs text-zinc-400" data-en="Automatically extracts cwRating parameters directly from target source[cite: 3, 4]." data-tr="Hedef kaynaktan cwRating parametrelerini otomatik olarak çıkarır[cite: 3, 4].">Automatically extracts cwRating parameters directly from target source[cite: 3, 4].</p>
                     </div>
-                    <div onclick="inspectFeature('Auto-Rest & Cycle Loop', 'Pauses execution after scheduled intervals, saves forensic reports, rests precisely for 1 minute, and restarts.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">06 / TIMER</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auto-Rest & Cycle Loop" data-tr="Otomatik Dinlenme Döngüsü">Auto-Rest & Cycle Loop</h4>
-                        <p class="text-xs text-zinc-400" data-en="Scheduled rests (15-120 min) with automatic session recycling." data-tr="Otomatik oturum geri dönüşümü ile zamanlanmış dinlenmeler (15-120 dk).">Scheduled rests (15-120 min) with automatic session recycling.</p>
+                    <div onclick="inspectFeature('Multi-Threaded Worker Pipelines', 'Runs up to 5 parallel headless Chrome instances simultaneously to execute automated engagement routines[cite: 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 03</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Multi-Threaded Pipelines" data-tr="Çok İş Parçacıklı Hatlar">Multi-Threaded Pipelines</h4>
+                        <p class="text-xs text-zinc-400" data-en="Up to 5 independent worker threads running in parallel[cite: 3, 4]." data-tr="Paralel olarak çalışan 5 adede kadar bağımsız işçi süreci[cite: 3, 4].">Up to 5 independent worker threads running in parallel[cite: 3, 4].</p>
                     </div>
-                    <div onclick="inspectFeature('Desktop Report Dumper', 'Compiles all activity logs and performance metrics into timestamped plaintext documents on your desktop.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">07 / EXPORT</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Desktop Report Dumper" data-tr="Masaüstü Rapor Dökümü">Desktop Report Dumper</h4>
-                        <p class="text-xs text-zinc-400" data-en="Timestamped .txt session log generator exported directly to desktop." data-tr="Doğrudan masaüstüne aktarılan zaman damgalı .txt oturum günlük üreteci.">Timestamped .txt session log generator exported directly to desktop.</p>
+                    <div onclick="inspectFeature('Auto-Rest & Cycle Loop', 'Pauses execution after selected timer duration (15 to 120 mins), saves session report, rests for 1 minute, and restarts[cite: 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 04</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Timer & Rest Protocol" data-tr="Zamanlayıcı & Dinlenme Protokolü">Timer & Rest Protocol</h4>
+                        <p class="text-xs text-zinc-400" data-en="Automated restart loops with designated rest intervals[cite: 3, 4]." data-tr="Belirlenen dinlenme aralıklarıyla otomatik yeniden başlatma döngüleri[cite: 3, 4].">Automated restart loops with designated rest intervals[cite: 3, 4].</p>
                     </div>
-                    <div onclick="inspectFeature('Mutex Single Instance', 'Enforces strict execution barriers ensuring only one instance runs at any given time via OS naming tables.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-zinc-500">08 / LOCK</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Mutex Single Instance" data-tr="Mutex Tekil Örnek Kilidi">Mutex Single Instance</h4>
-                        <p class="text-xs text-zinc-400" data-en="Prevents duplicate execution using Windows global named mutexes." data-tr="Windows global adlandırılmış mutex'leri kullanarak kopya yürütmeyi önler.">Prevents duplicate execution using Windows global named mutexes.</p>
+                    <div onclick="inspectFeature('Organic Anti-Bot Distribution', 'Scrolls viewports and randomizes request intervals to mimic human behavior and prevent blocking[cite: 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 05</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Organic Anti-Bot Distribution" data-tr="Organik Anti-Bot Dağılımı">Organic Anti-Bot Distribution</h4>
+                        <p class="text-xs text-zinc-400" data-en="Prevents mechanical pacing using Gaussian distributions[cite: 3, 4]." data-tr="Gauss dağılımlarını kullanarak mekanik tempoyu engeller[cite: 3, 4].">Prevents mechanical pacing using Gaussian distributions[cite: 3, 4].</p>
+                    </div>
+                    <div onclick="inspectFeature('Motherboard Beep Audio Feedback', 'Triggers Win32 kernel beep sound notifications during critical state switches like start, stop, and error[cite: 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 06</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="System Audio Beeps" data-tr="Sistem Ses Bildirimleri">System Audio Beeps</h4>
+                        <p class="text-xs text-zinc-400" data-en="Acoustic motherboard buzzer feedback for alerts[cite: 3, 4]." data-tr="Uyarılar için akustik anakart buzzer geri bildirimi[cite: 3, 4].">Acoustic motherboard buzzer feedback for alerts[cite: 3, 4].</p>
+                    </div>
+                    <div onclick="inspectFeature('Desktop Report Dumper', 'Saves a comprehensive text report containing active time, total likes, traffic hits, and all activity logs to Desktop[cite: 1, 2, 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 07</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Desktop Report Export" data-tr="Masaüstü Rapor Dışa Aktarımı">Desktop Report Export</h4>
+                        <p class="text-xs text-zinc-400" data-en="Exports timestamped session history to desktop .txt files[cite: 1, 2, 3, 4]." data-tr="Zaman damgalı oturum geçmişini masaüstü .txt dosyalarına aktarır[cite: 1, 2, 3, 4].">Exports timestamped session history to desktop .txt files[cite: 1, 2, 3, 4].</p>
+                    </div>
+                    <div onclick="inspectFeature('RAM Garbage Collection & Cleanup', 'Force-kills leftover chrome processes and triggers gc collection upon emergency kill or exit[cite: 3, 4].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">FEATURE 08</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Process Killer & RAM Purge" data-tr="İslem Katili & RAM Temizliği">Process Killer & RAM Purge</h4>
+                        <p class="text-xs text-zinc-400" data-en="Terminates orphaned chromedriver tasks and purges memory[cite: 3, 4]." data-tr="Artık chromedriver görevlerini sonlandırır ve belleği temizler[cite: 3, 4].">Terminates orphaned chromedriver tasks and purges memory[cite: 3, 4].</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= AEGIS SOC TAB ================= -->
+        <!-- ================= AEGIS SOC TAB (SECURITY & STRESS CENTER) ================= -->
         <div id="viewAegis" class="max-w-7xl mx-auto px-6 hidden animate-fade-in">
             <div class="mb-10 text-center max-w-2xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" data-en="Aegis SOC Command Center" data-tr="Aegis SOC Komuta Merkezi">Aegis SOC Command Center</h2>
-                <p class="text-zinc-400 text-sm md:text-base" data-en="Hardened security analysis, mandatory proxy enforcement, live telemetry HUD, and instant emergency killswitches." data-tr="Güçlendirilmiş güvenlik analizi, zorunlu proxy uygulaması, canlı telemetri HUD'u ve anlık acil durum killswitch'leri.">Hardened security analysis, mandatory proxy enforcement, live telemetry HUD, and instant emergency killswitches.</p>
+                <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800 mb-3 inline-block">PROGRAM 2</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" data-en="Lacas Client Aegis (SOC Command Center)" data-tr="Lacas Client Aegis (SOC Komuta Merkezi)">Lacas Client Aegis (SOC Command Center)</h2>
+                <p class="text-zinc-400 text-sm md:text-base" data-en="Hardened threat analysis, mandatory SOCKS5 proxy tunnel enforcement, live telemetry HUD, and cross-instance isolation." data-tr="Güçlendirilmiş tehdit analizi, zorunlu SOCKS5 proxy tüneli uygulaması, canlı telemetri HUD'u ve çapraz örnek yalıtımı.">Hardened threat analysis, mandatory SOCKS5 proxy tunnel enforcement, live telemetry HUD, and cross-instance isolation.</p>
             </div>
 
             <!-- Interactive Sandbox Program Simulator (Aegis SOC) -->
             <div class="p-6 md:p-8 rounded-2xl bg-dark-900 border border-dark-700 shadow-2xl mb-16 relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-                    <span class="text-7xl font-mono font-bold">AEGIS</span>
-                </div>
                 <div class="flex items-center justify-between mb-6 pb-4 border-b border-dark-700">
                     <div class="flex items-center space-x-3">
                         <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-                        <h3 class="font-mono text-sm font-bold tracking-wider" data-en="SOC HUD TELEMETRY SIMULATOR (NON-ACTIVE DEMO)" data-tr="SOC HUD TELEMETRİ SİMÜLATÖRÜ (AKTİF DEĞİL DEMO)">SOC HUD TELEMETRY SIMULATOR (NON-ACTIVE DEMO)</h3>
+                        <h3 class="font-mono text-sm font-bold tracking-wider" data-en="AEGIS SOC COMMAND CENTER SIMULATOR (NON-ACTIVE DEMO)" data-tr="AEGIS SOC KOMUTA MERKEZİ SİMÜLATÖRÜ (AKTİF DEĞİL DEMO)">AEGIS SOC COMMAND CENTER SIMULATOR (NON-ACTIVE DEMO)</h3>
                     </div>
                     <span id="socStatusBadge" class="text-xs font-mono text-cyan-400 font-bold" data-en="Armor: Ready for Tunnel" data-tr="Zırh: Tünel İçin Hazır">Armor: Ready for Tunnel</span>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Config Controls -->
                     <div class="space-y-4">
                         <div>
                             <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Target Endpoint URL" data-tr="Hedef Uç Nokta URL">Target Endpoint URL</label>
@@ -249,7 +242,7 @@
                             <textarea id="socProxy" rows="2" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-cyan-400 focus:outline-none focus:border-white transition">socks5://user:pass@127.0.0.1:1080</textarea>
                         </div>
                         <div>
-                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Operation Strategy" data-tr="Çalıştırma Stratejisi">Operation Strategy</label>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Operation Strategy" data-tr="Çalışma Stratejisi">Operation Strategy</label>
                             <select id="socMode" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
                                 <option>Autonomous Secure Mode</option>
                                 <option>Deep Calm Mode</option>
@@ -262,12 +255,10 @@
                         </div>
                     </div>
 
-                    <!-- HUD Telemetry Matrix & Logs -->
                     <div class="lg:col-span-2 flex flex-col space-y-4">
-                        <!-- HUD Cards -->
                         <div class="grid grid-cols-4 gap-3">
                             <div class="p-3 bg-dark-950 rounded-xl border border-dark-700 text-center">
-                                <div class="text-[10px] font-mono text-zinc-400" data-en="RPS" data-tr="RPS">RPS</div>
+                                <div class="text-[10px] font-mono text-zinc-400">RPS</div>
                                 <div id="socRps" class="text-sm font-mono font-bold text-cyan-400">0 req/s</div>
                             </div>
                             <div class="p-3 bg-dark-950 rounded-xl border border-dark-700 text-center">
@@ -284,7 +275,6 @@
                             </div>
                         </div>
 
-                        <!-- Terminal Output -->
                         <div id="socLogBox" class="flex-grow h-36 bg-dark-950 border border-dark-700 rounded-xl p-3 font-mono text-xs text-cyan-400 overflow-y-auto space-y-1">
                             <div>[SOC] Aegis Sentinel initialized. Awaiting proxy tunnel verification...</div>
                         </div>
@@ -292,29 +282,49 @@
                 </div>
             </div>
 
-            <!-- Aegis Advanced Features Grid -->
+            <!-- Aegis SOC Specific Features Grid (Click to Inspect) -->
             <div class="mb-12">
-                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="Advanced SOC Sub-Systems (Click to Inspect)" data-tr="Gelişmiş SOC Alt Sistemleri (İncelemek İçin Tıklayın)">Advanced SOC Sub-Systems (Click to Inspect)</h3>
+                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="Aegis SOC Program Features (Click to Inspect)" data-tr="Aegis SOC Program Özellikleri (İncelemek İçin Tıklayın)">Aegis SOC Program Features (Click to Inspect)</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div onclick="inspectFeature('Strict Proxy Validation', 'Tests all entry points against public IP reflection servers before launching asynchronous stress loops.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-cyan-500">09 / TUNNEL</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Strict Proxy Validation" data-tr="Sıkı Proxy Doğrulama">Strict Proxy Validation</h4>
-                        <p class="text-xs text-zinc-400" data-en="Validates external proxy responsiveness prior to releasing traffic." data-tr="Trafik bırakılmadan önce dış proxy yanıt verebilirliğini doğrular.">Validates external proxy responsiveness prior to releasing traffic.</p>
+                    <div onclick="inspectFeature('Mandatory Encrypted Proxy Enforcement', 'Aegis refuses to launch unless a valid SOCKS5/HTTP proxy tunnel is provided and verified via api.ipify.org[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 01</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Mandatory Proxy Enforcement" data-tr="Zorunlu Proxy Uygulaması">Mandatory Proxy Enforcement</h4>
+                        <p class="text-xs text-zinc-400" data-en="Blocks operation instantly if proxy tunnels fail validation tests[cite: 5, 6]." data-tr="Proxy tünelleri doğrulama testlerinden geçemezse işlemi anında engeller[cite: 5, 6].">Blocks operation instantly if proxy tunnels fail validation tests[cite: 5, 6].</p>
                     </div>
-                    <div onclick="inspectFeature('Intelligent WAF Profiler', 'Identifies remote protection gateways including Cloudflare, Akamai, and Fastly prior to packet delivery.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-cyan-500">10 / RECON</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Intelligent WAF Profiler" data-tr="Akıllı WAF Profili Oluşturucu">Intelligent WAF Profiler</h4>
-                        <p class="text-xs text-zinc-400" data-en="Detects Cloudflare, Akamai, and server signatures instantly." data-tr="Cloudflare, Akamai ve sunucu imza izlerini anında algılar.">Detects Cloudflare, Akamai, and server signatures instantly.</p>
+                    <div onclick="inspectFeature('Cross-Instance Port Conflict Lock', 'Binds to TCP port 59237 to ensure TR and EN editions cannot run simultaneously, preventing instance collision[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 02</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Cross-Instance Port Lock" data-tr="Çapraz Örnek Port Kilidi">Cross-Instance Port Lock</h4>
+                        <p class="text-xs text-zinc-400" data-en="Prevents TR and EN editions from running concurrently[cite: 5, 6]." data-tr="TR ve EN sürümlerinin aynı anda çalışmasını önler[cite: 5, 6].">Prevents TR and EN editions from running concurrently[cite: 5, 6].</p>
                     </div>
-                    <div onclick="inspectFeature('Emergency Killswitch', 'Instantly severs all socket connections and purges runtime memory blocks upon operator override.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-cyan-500">11 / KILLSWITCH</span>
+                    <div onclick="inspectFeature('Intelligent Recon & WAF Profiler', 'Scans target servers prior to stress testing, extracting Server headers and detecting WAF firewalls like Cloudflare or Akamai[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 03</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Intelligent Target Recon" data-tr="Akıllı Hedef Keşfi">Intelligent Target Recon</h4>
+                        <p class="text-xs text-zinc-400" data-en="Identifies Cloudflare, Akamai, and server signatures[cite: 5, 6]." data-tr="Cloudflare, Akamai ve sunucu imzalarını tanımlar[cite: 5, 6].">Identifies Cloudflare, Akamai, and server signatures[cite: 5, 6].</p>
+                    </div>
+                    <div onclick="inspectFeature('Live Telemetry HUD Matrix', 'Displays real-time RPS counters, success percentages, error tallies, and network armor status[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 04</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Live Telemetry HUD" data-tr="Canlı Telemetri HUD">Live Telemetry HUD</h4>
+                        <p class="text-xs text-zinc-400" data-en="Real-time performance and request metrics matrix[cite: 5, 6]." data-tr="Gerçek zamanlı performans ve istek metrikleri matrisi[cite: 5, 6].">Real-time performance and request metrics matrix[cite: 5, 6].</p>
+                    </div>
+                    <div onclick="inspectFeature('Network Interface VPN Monitor', 'Background daemon using psutil to scan active network interfaces for tun, tap, wireguard, and VPN adapters[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 05</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="VPN & Interface Monitor" data-tr="VPN & Arayüz Monitörü">VPN & Interface Monitor</h4>
+                        <p class="text-xs text-zinc-400" data-en="Tracks system VPN and tunnel interface states[cite: 5, 6]." data-tr="Sistem VPN ve tünel arayüz durumlarını takip eder[cite: 5, 6].">Tracks system VPN and tunnel interface states[cite: 5, 6].</p>
+                    </div>
+                    <div onclick="inspectFeature('Silent Lockdown Zero-Trace Cloak', 'Automatically hides logs and drops connections into cloaked safe mode if WAF rate limits or errors are encountered[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 06</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Silent Lockdown Mode" data-tr="Sessiz Kilit Modu">Silent Lockdown Mode</h4>
+                        <p class="text-xs text-zinc-400" data-en="Zero-trace protection upon hitting rate limits[cite: 5, 6]." data-tr="Oran sınırlarına çarpıldığında sıfır izli koruma[cite: 5, 6].">Zero-trace protection upon hitting rate limits[cite: 5, 6].</p>
+                    </div>
+                    <div onclick="inspectFeature('Emergency Hard Killswitch', 'Instantly severs all socket pipelines, triggers warning beep tones, and secures the operating system upon user trigger[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 07</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Emergency Killswitch" data-tr="Acil Durum Killswitch">Emergency Killswitch</h4>
-                        <p class="text-xs text-zinc-400" data-en="Instant socket severance and memory wipe upon user trigger." data-tr="Kullanıcı tetiklemesinde anında soket kesmesi ve bellek silme.">Instant socket severance and memory wipe upon user trigger.</p>
+                        <p class="text-xs text-zinc-400" data-en="Instant socket severance and system lockdown[cite: 5, 6]." data-tr="Anında soket kesmesi ve sistem kilitlemesi[cite: 5, 6].">Instant socket severance and system lockdown[cite: 5, 6].</p>
                     </div>
-                    <div onclick="inspectFeature('Silent Lockdown Cloak', 'Enters zero-trace cloaked state automatically if high error thresholds or rate limiters are tripped.')" class="p-5 rounded-xl glass-card cursor-pointer">
-                        <span class="text-xs font-mono text-cyan-500">12 / CLOAK</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Silent Lockdown Cloak" data-tr="Sessiz Kilit Maskelemesi">Silent Lockdown Cloak</h4>
-                        <p class="text-xs text-zinc-400" data-en="Zero-trace shutdown mode upon encountering aggressive rate limits." data-tr="Agresif oran sınırlarıyla karşılaşırken sıfır izli kapanma modu.">Zero-trace shutdown mode upon encountering aggressive rate limits.</p>
+                    <div onclick="inspectFeature('Asynchronous ThreadPoolExecutor Scaling', 'Scales worker threads dynamically based on CPU core counts for high-speed stress analysis[cite: 5, 6].')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">FEATURE 08</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Async ThreadPool Scaling" data-tr="Asenkron ThreadPool Ölçer">Async ThreadPool Scaling</h4>
+                        <p class="text-xs text-zinc-400" data-en="Dynamic CPU-bound worker thread allocation[cite: 5, 6]." data-tr="Dinamik CPU tabanlı işçi parçacığı tahsisi[cite: 5, 6].">Dynamic CPU-bound worker thread allocation[cite: 5, 6].</p>
                     </div>
                 </div>
             </div>
@@ -340,8 +350,8 @@
                 </div>
 
                 <ul class="space-y-3 mb-8 text-xs font-mono text-zinc-300">
-                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Full LacasClient (EN & TR editions)" data-tr="Tam LacasClient (EN & TR sürümleri)">Full LacasClient (EN & TR editions)</span></li>
-                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Full Aegis SOC Command Center" data-tr="Tam Aegis SOC Komuta Merkezi">Full Aegis SOC Command Center</span></li>
+                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Full LacasClient (EN & TR automation suites)" data-tr="Tam LacasClient (EN & TR otomasyon paketleri)">Full LacasClient (EN & TR automation suites)</span></li>
+                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Full Aegis SOC Command Center (Security suite)" data-tr="Tam Aegis SOC Komuta Merkezi (Güvenlik paketi)">Full Aegis SOC Command Center (Security suite)</span></li>
                     <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Hardware HWID Binding & Protection" data-tr="Donanım HWID Bağlama & Koruma">Hardware HWID Binding & Protection</span></li>
                     <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Lifetime Updates & Priority Support" data-tr="Ömür Boyu Güncellemeler & Öncelikli Destek">Lifetime Updates & Priority Support</span></li>
                 </ul>
