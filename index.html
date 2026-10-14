@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LacasClient & Aegis | Security & Automation Suite</title>
+    <title>Lacas Client & Aegis | Enterprise Command Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,246 +20,460 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        code, pre { font-family: 'JetBrains Mono', monospace; }
-        ::-webkit-scrollbar { width: 8px; }
+        code, pre, .mono-font { font-family: 'JetBrains Mono', monospace; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0a0a0c; }
-        ::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #3a3a45; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        /* Hero Scroll Fade Effect */
+        #heroSection {
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
     </style>
 </head>
-<body class="bg-dark-950 text-zinc-100 antialiased selection:bg-white selection:text-black">
+<body class="bg-dark-950 text-zinc-100 antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-    <!-- Top Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-950/80 backdrop-blur-md border-b border-dark-700">
+    <!-- Top Navigation & Tab Controller -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-950/90 backdrop-blur-xl border-b border-dark-700">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <span class="text-xl font-bold tracking-wider">▪ LACAS</span>
-                <span class="text-xs px-2 py-0.5 rounded bg-dark-700 text-zinc-400 font-mono">v21.0 Suite</span>
-            </div>
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-400">
-                <a href="#overview" class="hover:text-white transition" data-en="Overview" data-tr="Genel Bakış">Overview</a>
-                <a href="#client" class="hover:text-white transition" data-en="LacasClient" data-tr="LacasClient">LacasClient</a>
-                <a href="#aegis" class="hover:text-white transition" data-en="Aegis SOC" data-tr="Aegis SOC">Aegis SOC</a>
-                <a href="#features" class="hover:text-white transition" data-en="Architecture" data-tr="Mimari">Architecture</a>
-                <a href="#docs" class="hover:text-white transition" data-en="Documentation" data-tr="Dokümantasyon">Documentation</a>
-            </nav>
             <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-white animate-pulse"></span>
+                    <span class="text-sm font-bold tracking-widest font-mono">LACAS SUITE</span>
+                </div>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-dark-800 border border-dark-600 text-zinc-400 font-mono">v21.0-SECURE</span>
+            </div>
+
+            <!-- Tab Switching Buttons -->
+            <div class="flex items-center space-x-2 bg-dark-900 p-1 rounded-xl border border-dark-700">
+                <button onclick="switchTab('client')" id="tabBtnClient" class="px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-white text-black shadow-sm" data-en="LacasClient Engine" data-tr="LacasClient Motoru">LacasClient Engine</button>
+                <button onclick="switchTab('aegis')" id="tabBtnAegis" class="px-4 py-1.5 rounded-lg text-xs font-semibold transition text-zinc-400 hover:text-white" data-en="Aegis SOC Center" data-tr="Aegis SOC Merkezi">Aegis SOC Center</button>
+            </div>
+
+            <div class="flex items-center space-x-3">
                 <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-lg bg-dark-800 border border-dark-600 text-xs font-mono font-semibold hover:bg-dark-700 transition">
                     TR / EN
                 </button>
-                <a href="https://github.com" target="_blank" class="px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition" data-en="GitHub Repository" data-tr="GitHub Deposu">
-                    GitHub Repository
+                <a href="https://github.com" target="_blank" class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition" data-en="GitHub Repository" data-tr="GitHub Deposu">
+                    GitHub
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 border-b border-dark-700 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.08),rgba(255,255,255,0))]"></div>
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-dark-800 border border-dark-600 text-xs text-zinc-400 mb-6">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span data-en="Next-Gen Automation & Hardened Security Infrastructure" data-tr="Yeni Nesil Otomasyon & Güçlendirilmiş Güvenlik Altyapısı">Next-Gen Automation & Hardened Security Infrastructure</span>
+    <!-- Main Container -->
+    <main class="pt-24 pb-16 flex-grow">
+        
+        <!-- ================= HERO SECTION (SCROLL FADE ANIMATION) ================= -->
+        <section id="heroSection" class="max-w-6xl mx-auto px-6 pt-12 pb-20 text-center relative">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.06),rgba(255,255,255,0))] pointer-events-none"></div>
+            
+            <!-- Devasa Program Logoları (Yan Yana / Ortalanmış) -->
+            <div class="flex items-center justify-center space-x-6 md:space-x-12 mb-10">
+                <div class="p-4 rounded-3xl bg-dark-900/80 border border-dark-700 shadow-[0_0_30px_rgba(255,255,255,0.05)] transform hover:scale-105 transition duration-500">
+                    <img src="LacasClient.png" alt="Client Emblem" class="w-28 h-28 md:w-40 md:h-40 object-contain filter drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                </div>
+                <div class="p-4 rounded-3xl bg-dark-900/80 border border-dark-700 shadow-[0_0_30px_rgba(255,255,255,0.05)] transform hover:scale-105 transition duration-500">
+                    <img src="LacasClientAegis.png" alt="Aegis Emblem" class="w-28 h-28 md:w-40 md:h-40 object-contain filter drop-shadow-[0_0_20px_rgba(0,229,255,0.2)]">
+                </div>
             </div>
-            <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight mb-8">
-                <span data-en="Lacas Client & Aegis" data-tr="Lacas Client & Aegis">Lacas Client & Aegis</span><br>
-                <span class="text-zinc-500 text-3xl md:text-5xl font-semibold mt-2 block" data-en="Command Center & Dual-Engine Architecture" data-tr="Komuta Merkezi & Çift Motorlu Mimari">Command Center & Dual-Engine Architecture</span>
+
+            <!-- Devasa Başlıklar -->
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight mb-6 uppercase">
+                <span class="bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-500">LACAS SUITE</span>
             </h1>
-            <p class="text-zinc-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed" data-en="Advanced multi-threaded browser automation, mandatory proxy tunnels, real-time SOC telemetry, and bulletproof multi-language ecosystem designed for elite operations." data-tr="Elit operasyonlar için tasarlanmış gelişmiş çoklu iş parçacıklı tarayıcı otomasyonu, zorunlu proxy tünelleri, gerçek zamanlı SOC telemetrisi ve kurşun geçirmez çok dilli ekosistem.">
-                Advanced multi-threaded browser automation, mandatory proxy tunnels, real-time SOC telemetry, and bulletproof multi-language ecosystem designed for elite operations.
+            <p class="text-zinc-400 text-base md:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-8" data-en="Scroll down to unlock multi-threaded headless automation cores, SOC threat command modules, and live interactive simulators." data-tr="Çok iş parçacıklı headless otomasyon çekirdeklerini, SOC tehdit komuta modüllerini ve canlı interaktif simülatörleri keşfetmek için aşağı kaydırın.">
+                Scroll down to unlock multi-threaded headless automation cores, SOC threat command modules, and live interactive simulators.
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#client" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-black font-bold text-sm hover:bg-zinc-200 transition shadow-lg shadow-white/5" data-en="Explore LacasClient" data-tr="LacasClient İncele">
-                    Explore LacasClient
-                </a>
-                <a href="#aegis" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-dark-800 border border-dark-600 text-white font-bold text-sm hover:bg-dark-700 transition" data-en="Explore Aegis SOC" data-tr="Aegis SOC İncele">
-                    Explore Aegis SOC
-                </a>
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-dark-900 border border-dark-700 text-xs font-mono text-zinc-400 animate-bounce">
+                <span>↓ Scroll to Enter Command Center</span>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Overview / Brand Logos Section -->
-    <section id="overview" class="py-24 border-b border-dark-700 bg-dark-900/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3" data-en="Visual Identity" data-tr="Görsel Kimlik">Visual Identity</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold tracking-tight mb-6" data-en="Hardened Aesthetics & Precision Engineering" data-tr="Güçlendirilmiş Estetik & Hassas Mühendislik">Hardened Aesthetics & Precision Engineering</h3>
-                    <p class="text-zinc-400 leading-relaxed mb-6" data-en="Representing absolute control, the system is backed by custom high-contrast monochrome insignia symbolizing global reach, secure proxy routing, and real-time execution dominance." data-tr="Mutlak kontrolü temsil eden sistem; küresel erişimi, güvenli proxy yönlendirmesini ve gerçek zamanlı yürütme üstünlüğünü simgeleyen özel yüksek kontrastlı monokrom amblemlerle desteklenmektedir.">
-                        Representing absolute control, the system is backed by custom high-contrast monochrome insignia symbolizing global reach, secure proxy routing, and real-time execution dominance.
-                    </p>
-                    <div class="flex items-center space-x-6 text-sm font-mono text-zinc-400">
-                        <div class="flex items-center space-x-2">
-                            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
-                            <span>CustomTkinter GUI</span>
+        <!-- ================= LACAS CLIENT TAB ================= -->
+        <div id="viewClient" class="max-w-7xl mx-auto px-6 animate-fade-in">
+            <div class="mb-10 text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" data-en="LacasClient Automation Core" data-tr="LacasClient Otomasyon Çekirdeği">LacasClient Automation Core</h2>
+                <p class="text-zinc-400 text-sm md:text-base" data-en="Multi-threaded headless browser orchestration with advanced proxy integration, custom DOM binding, and memory garbage collection." data-tr="Gelişmiş proxy entegrasyonu, özel DOM bağlama ve bellek çöp toplama özellikli çok iş parçacıklı headless tarayıcı yönetimi.">Multi-threaded headless browser orchestration with advanced proxy integration, custom DOM binding, and memory garbage collection.</p>
+            </div>
+
+            <!-- Interactive Sandbox Program Simulator (Client) -->
+            <div class="p-6 md:p-8 rounded-2xl bg-dark-900 border border-dark-700 shadow-2xl mb-16 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                    <span class="text-7xl font-mono font-bold">CLIENT</span>
+                </div>
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-dark-700">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
+                        <h3 class="font-mono text-sm font-bold tracking-wider" data-en="SANDBOX LIVE SIMULATOR (NON-ACTIVE DEMO)" data-tr="SANAL ALAN CANLI SİMÜLATÖRÜ (AKTİF DEĞİL DEMO)">SANDBOX LIVE SIMULATOR (NON-ACTIVE DEMO)</h3>
+                    </div>
+                    <span class="text-xs font-mono text-zinc-500" data-en="Status: Simulation Mode Active" data-tr="Durum: Simülasyon Modu Aktif">Status: Simulation Mode Active</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Config Controls -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Target URL Endpoint" data-tr="Hedef URL Uç Noktası">Target URL Endpoint</label>
+                            <input type="text" id="simUrl" value="https://target-service.internal/api/v1" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
-                            <span>Curl-Cffi / Selenium</span>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Execution Mode" data-tr="Çalıştırma Modu">Execution Mode</label>
+                            <select id="simMode" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
+                                <option>Combo Mode (Like + Traffic)</option>
+                                <option>Only Like Mode</option>
+                                <option>Only Traffic (Hit) Mode</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-zinc-400 mb-1">
+                                <span data-en="Request Interval" data-tr="İstek Aralığı">Request Interval</span>
+                                <span id="simIntervalVal">1.5s</span>
+                            </div>
+                            <input type="range" min="0.5" max="10.0" step="0.1" value="1.5" oninput="document.getElementById('simIntervalVal').textContent = this.value + 's'" class="w-full accent-white cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-zinc-400 mb-1">
+                                <span data-en="Worker Threads" data-tr="İşçi Süreçleri">Worker Threads</span>
+                                <span id="simThreadVal">3</span>
+                            </div>
+                            <input type="range" min="1" max="5" step="1" value="3" oninput="document.getElementById('simThreadVal').textContent = this.value" class="w-full accent-white cursor-pointer">
+                        </div>
+                        <div class="pt-2 flex space-x-2">
+                            <button onclick="triggerSimAction('start')" class="flex-1 py-2.5 rounded-xl bg-white text-black font-bold text-xs hover:bg-zinc-200 transition" data-en="START SIMULATION" data-tr="SİMÜLASYONU BAŞLAT">START SIMULATION</button>
+                            <button onclick="triggerSimAction('stop')" class="px-4 py-2.5 rounded-xl bg-dark-800 border border-dark-600 text-zinc-300 font-bold text-xs hover:bg-dark-700 transition" data-en="HALT" data-tr="DURDUR">HALT</button>
+                        </div>
+                    </div>
+
+                    <!-- Live Log & Console Output -->
+                    <div class="lg:col-span-2 flex flex-col">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs font-mono text-zinc-400" data-en="Execution Telemetry Stream" data-tr="Yürütme Telemetri Akışı">Execution Telemetry Stream</span>
+                            <span id="simStats" class="text-xs font-mono text-emerald-400 font-bold">LIKES: 0 | TRAFFIC: 0</span>
+                        </div>
+                        <div id="simLogBox" class="flex-grow h-56 bg-dark-950 border border-dark-700 rounded-xl p-4 font-mono text-xs text-emerald-400 overflow-y-auto space-y-1">
+                            <div>[SYSTEM] LacasClient Sandbox initialized. Ready for simulation command.</div>
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div class="p-6 rounded-2xl bg-dark-800 border border-dark-600 flex flex-col items-center justify-center text-center">
-                        <img src="LacasClient.png" alt="LacasClient Logo" class="w-32 h-32 object-contain mb-4 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                        <span class="text-xs font-mono font-bold text-zinc-300">LacasClient.png</span>
+            </div>
+
+            <!-- 20+ Advanced Features Expanded Grid -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="20+ Integrated Enterprise Sub-Systems" data-tr="20+ Entegre Kurumsal Alt Sistem">20+ Integrated Enterprise Sub-Systems</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">01 / SHIELD</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="HWID Hardware Lock" data-tr="HWID Donanım Kilidi">HWID Hardware Lock</h4>
+                        <p class="text-xs text-zinc-400" data-en="Motherboard serial and CPU hash validation bound to client instance." data-tr="İstemci örneğine bağlı anakart seri numarası ve CPU hash doğrulaması.">Motherboard serial and CPU hash validation bound to client instance.</p>
                     </div>
-                    <div class="p-6 rounded-2xl bg-dark-800 border border-dark-600 flex flex-col items-center justify-center text-center">
-                        <img src="LacasClientAegis.png" alt="LacasClientAegis Logo" class="w-32 h-32 object-contain mb-4 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                        <span class="text-xs font-mono font-bold text-zinc-300">LacasClientAegis.png</span>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">02 / PROXY</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auth Proxy Generator" data-tr="Auth Proxy Üretici">Auth Proxy Generator</h4>
+                        <p class="text-xs text-zinc-400" data-en="Creates temporary Chrome extension zip packages for authenticated proxy gateways." data-tr="Kimlik doğrulamalı proxy ağ geçitleri için geçici Chrome uzantısı zip paketleri oluşturur.">Creates temporary Chrome extension zip packages for authenticated proxy gateways.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">03 / BYPASS</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Organic Anti-Bot Noise" data-tr="Organik Anti-Bot Gürültüsü">Organic Anti-Bot Noise</h4>
+                        <p class="text-xs text-zinc-400" data-en="Gaussian distribution delays and random viewport micro-scrolls." data-tr="Gauss dağılım gecikmeleri ve rastgele görünüm alanı mikro kaydırmaları.">Gaussian distribution delays and random viewport micro-scrolls.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">04 / MEMORY</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="RAM Garbage Purge" data-tr="RAM Çöp Temizliği">RAM Garbage Purge</h4>
+                        <p class="text-xs text-zinc-400" data-en="Forced garbage collection cycles to prevent memory bloat during multi-day runs." data-tr="Çok günlük çalışmalarda bellek şişmesini önlemek için zorunlu çöp toplama döngüleri.">Forced garbage collection cycles to prevent memory bloat during multi-day runs.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">05 / AUDIO</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Motherboard Beep Matrix" data-tr="Anakart Bip Matrisi">Motherboard Beep Matrix</h4>
+                        <p class="text-xs text-zinc-400" data-en="Acoustic frequency alerts for start, stop, and error states via Win32 API." data-tr="Win32 API ile başlangıç, durdurma ve hata durumları için akustik frekans uyarıları.">Acoustic frequency alerts for start, stop, and error states via Win32 API.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">06 / DOM</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auto DOM ID Harvester" data-tr="Otomatik DOM Kimlik Avcısı">Auto DOM ID Harvester</h4>
+                        <p class="text-xs text-zinc-400" data-en="Regex pattern matching to extract cwRating parameters directly from target source." data-tr="Hedef kaynaktan cwRating parametrelerini doğrudan çıkarmak için regex desen eşleştirme.">Regex pattern matching to extract cwRating parameters directly from target source.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">07 / TIMER</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auto-Rest & Cycle Loop" data-tr="Otomatik Dinlenme Döngüsü">Auto-Rest & Cycle Loop</h4>
+                        <p class="text-xs text-zinc-400" data-en="Scheduled rests (15-120 min) with automatic session recycling." data-tr="Otomatik oturum geri dönüşümü ile zamanlanmış dinlenmeler (15-120 dk).">Scheduled rests (15-120 min) with automatic session recycling.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">08 / EXPORT</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Desktop Report Dumper" data-tr="Masaüstü Rapor Dökümü">Desktop Report Dumper</h4>
+                        <p class="text-xs text-zinc-400" data-en="Timestamped .txt session log generator exported directly to desktop." data-tr="Doğrudan masaüstüne aktarılan zaman damgalı .txt oturum günlük üreteci.">Timestamped .txt session log generator exported directly to desktop.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">09 / THREAD</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Parallel Worker Pools" data-tr="Paralel İşçi Havuzları">Parallel Worker Pools</h4>
+                        <p class="text-xs text-zinc-400" data-en="Independent multi-threaded execution channels for high throughput." data-tr="Yüksek verim için bağımsız çok iş parçacıklı yürütme kanalları.">Independent multi-threaded execution channels for high throughput.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">10 / LOCK</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Mutex Single Instance" data-tr="Mutex Tekil Örnek Kilidi">Mutex Single Instance</h4>
+                        <p class="text-xs text-zinc-400" data-en="Prevents duplicate execution using Windows global named mutexes." data-tr="Windows global adlandırılmış mutex'leri kullanarak kopya yürütmeyi önler.">Prevents duplicate execution using Windows global named mutexes.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">11 / LATENCY</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Jitter Balancer" data-tr="Gecikme Dengeleyici">Jitter Balancer</h4>
+                        <p class="text-xs text-zinc-400" data-en="Smooths out network variance to maintain stable polling rates." data-tr="Kararlı yoklama oranlarını korumak için ağ varyansını yumuşatır.">Smooths out network variance to maintain stable polling rates.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                        <span class="text-xs font-mono text-zinc-500">12 / TLS</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Cipher Suite Shield" data-tr="Şifre Paketi Kalkanı">Cipher Suite Shield</h4>
+                        <p class="text-xs text-zinc-400" data-en="Obfuscates encrypted TLS handshakes against deep packet inspection." data-tr="Derin paket incelemesine karşı şifreli TLS el sıkışmalarını gizler.">Obfuscates encrypted TLS handshakes against deep packet inspection.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- LacasClient Deep Dive Section -->
-    <section id="client" class="py-24 border-b border-dark-700">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-3xl mb-16">
-                <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3" data-en="Automation Engine" data-tr="Otomasyon Motoru">Automation Engine</h2>
-                <h3 class="text-3xl md:text-5xl font-bold tracking-tight mb-6" data-en="LacasClient (EN & TR Editions)" data-tr="LacasClient (EN & TR Sürümleri)">LacasClient (EN & TR Editions)</h3>
-                <p class="text-zinc-400 text-lg" data-en="Engineered for high-efficiency headless browser management, robust anti-bot bypass mechanisms, and automated metric scaling." data-tr="Yüksek verimli de-cap headless tarayıcı yönetimi, sağlam anti-bot atlatma mekanizmaları ve otomatik metrik ölçeklendirme için tasarlandı.">
-                    Engineered for high-efficiency headless browser management, robust anti-bot bypass mechanisms, and automated metric scaling.
-                </p>
+        <!-- ================= AEGIS SOC TAB ================= -->
+        <div id="viewAegis" class="max-w-7xl mx-auto px-6 hidden animate-fade-in">
+            <div class="mb-10 text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" data-en="Aegis SOC Command Center" data-tr="Aegis SOC Komuta Merkezi">Aegis SOC Command Center</h2>
+                <p class="text-zinc-400 text-sm md:text-base" data-en="Hardened security analysis, mandatory proxy enforcement, live telemetry HUD, and instant emergency killswitches." data-tr="Güçlendirilmiş güvenlik analizi, zorunlu proxy uygulaması, canlı telemetri HUD'u ve anlık acil durum killswitch'leri.">Hardened security analysis, mandatory proxy enforcement, live telemetry HUD, and instant emergency killswitches.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-dark-800 border border-dark-600">
-                    <div class="w-10 h-10 rounded-xl bg-dark-700 flex items-center justify-center text-white font-mono font-bold mb-6">01</div>
-                    <h4 class="text-lg font-bold mb-3" data-en="License & HWID Guard" data-tr="Lisans & HWID Koruması">License & HWID Guard</h4>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-en="52-character secure keys validated against SHA-256 hashes combined with motherboard and processor hardware fingerprinting." data-tr="Anakart ve işlemci donanım parmak iziyle birleştirilmiş SHA-256 hash'lerine karşı doğrulanan 52 karakterli güvenli anahtarlar.">
-                        52-character secure keys validated against SHA-256 hashes combined with motherboard and processor hardware fingerprinting.
-                    </p>
+            <!-- Interactive Sandbox Program Simulator (Aegis SOC) -->
+            <div class="p-6 md:p-8 rounded-2xl bg-dark-900 border border-dark-700 shadow-2xl mb-16 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                    <span class="text-7xl font-mono font-bold">AEGIS</span>
                 </div>
-                <div class="p-8 rounded-2xl bg-dark-800 border border-dark-600">
-                    <div class="w-10 h-10 rounded-xl bg-dark-700 flex items-center justify-center text-white font-mono font-bold mb-6">02</div>
-                    <h4 class="text-lg font-bold mb-3" data-en="Multi-Threaded Pipelines" data-tr="Çok İş Parçacıklı Hatlar">Multi-Threaded Pipelines</h4>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-en="Up to 5 simultaneous worker threads executing headless Chrome instances with proxy extension packaging and automated recovery." data-tr="Proxy eklenti paketleme ve otomatik kurtarma özellikleri ile headless Chrome örneklerini çalıştıran 5 adede kadar eşzamanlı işçi süreci.">
-                        Up to 5 simultaneous worker threads executing headless Chrome instances with proxy extension packaging and automated recovery.
-                    </p>
-                </div>
-                <div class="p-8 rounded-2xl bg-dark-800 border border-dark-600">
-                    <div class="w-10 h-10 rounded-xl bg-dark-700 flex items-center justify-center text-white font-mono font-bold mb-6">03</div>
-                    <h4 class="text-lg font-bold mb-3" data-en="Timer & Auto-Rest Loop" data-tr="Zamanlayıcı & Dinlenme Döngüsü">Timer & Auto-Rest Loop</h4>
-                    <p class="text-zinc-400 text-sm leading-relaxed" data-en="Configurable session limits (15-120 mins) that automatically save desktop reports, purge RAM, rest for 1 min, and restart seamlessly." data-tr="Masaüstü raporlarını otomatik kaydeden, RAM'i temizleyen, 1 dk dinlenen ve sorunsuz yeniden başlayan ayarlanabilir oturum sınırları (15-120 dk).">
-                        Configurable session limits (15-120 mins) that automatically save desktop reports, purge RAM, rest for 1 min, and restart seamlessly.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Aegis SOC Deep Dive Section -->
-    <section id="aegis" class="py-24 border-b border-dark-700 bg-dark-900/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-3xl mb-16">
-                <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3" data-en="Security Operations Center" data-tr="Güvenlik Operasyon Merkezi">Security Operations Center</h2>
-                <h3 class="text-3xl md:text-5xl font-bold tracking-tight mb-6" data-en="Lacas Client Aegis (SOC Command Center)" data-tr="Lacas Client Aegis (SOC Komuta Merkezi)">Lacas Client Aegis (SOC Command Center)</h3>
-                <p class="text-zinc-400 text-lg" data-en="Hardened threat analysis, mandatory encrypted proxy enforcement, cross-instance isolation, and live telemetry HUD." data-tr="Güçlendirilmiş tehdit analizi, zorunlu şifreli proxy uygulaması, çapraz örnek yalıtımı ve canlı telemetri HUD'u.">
-                    Hardened threat analysis, mandatory encrypted proxy enforcement, cross-instance isolation, and live telemetry HUD.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="p-8 rounded-2xl bg-dark-800 border border-dark-600">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                        <h4 class="text-xl font-bold" data-en="Mandatory Proxy Tunnel Enforcement" data-tr="Zorunlu Proxy Tüneli Uygulaması">Mandatory Proxy Tunnel Enforcement</h4>
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-dark-700">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <h3 class="font-mono text-sm font-bold tracking-wider" data-en="SOC HUD TELEMETRY SIMULATOR (NON-ACTIVE DEMO)" data-tr="SOC HUD TELEMETRİ SİMÜLATÖRÜ (AKTİF DEĞİL DEMO)">SOC HUD TELEMETRY SIMULATOR (NON-ACTIVE DEMO)</h3>
                     </div>
-                    <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-en="Aegis refuses to launch without verified proxy tunnels. It automatically filters dead endpoints using concurrent multi-threaded validation against public IP verification servers." data-tr="Aegis, doğrulanmış proxy tünelleri olmadan başlatmayı reddeder. Genel IP doğrulama sunucularına karşı eşzamanlı çok iş parçacıklı doğrulama kullanarak ölü uç noktaları otomatik olarak filtreler.">
-                        Aegis refuses to launch without verified proxy tunnels. It automatically filters dead endpoints using concurrent multi-threaded validation against public IP verification servers.
-                    </p>
-                    <ul class="space-y-2 text-xs font-mono text-zinc-400">
-                        <li>✦ SOCKS5 / SOCKS4 / HTTP / HTTPS support</li>
-                        <li>✦ Live latency & response testing</li>
-                        <li>✦ Strict IP Leak protection killswitch</li>
-                    </ul>
+                    <span id="socStatusBadge" class="text-xs font-mono text-cyan-400 font-bold" data-en="Armor: Ready for Tunnel" data-tr="Zırh: Tünel İçin Hazır">Armor: Ready for Tunnel</span>
                 </div>
-                <div class="p-8 rounded-2xl bg-dark-800 border border-dark-600">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
-                        <h4 class="text-xl font-bold" data-en="Live Telemetry & Recon Intelligence" data-tr="Canlı Telemetri & Keşif İstihbaratı">Live Telemetry & Recon Intelligence</h4>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Config Controls -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Target Endpoint URL" data-tr="Hedef Uç Nokta URL">Target Endpoint URL</label>
+                            <input type="text" id="socUrl" value="https://httpbin.org/headers" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1 text-rose-400" data-en="Mandatory SOCKS5 Proxy Pool" data-tr="Zorunlu SOCKS5 Proxy Havuzu">Mandatory SOCKS5 Proxy Pool</label>
+                            <textarea id="socProxy" rows="2" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-cyan-400 focus:outline-none focus:border-white transition">socks5://user:pass@127.0.0.1:1080</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Operation Strategy" data-tr="Çalışma Stratejisi">Operation Strategy</label>
+                            <select id="socMode" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
+                                <option>Autonomous Secure Mode</option>
+                                <option>Deep Calm Mode</option>
+                                <option>High-Speed Stress Analysis</option>
+                            </select>
+                        </div>
+                        <div class="pt-2 flex space-x-2">
+                            <button onclick="triggerSocAction('launch')" class="flex-1 py-2.5 rounded-xl bg-white text-black font-bold text-xs hover:bg-zinc-200 transition" data-en="LAUNCH SENTINEL" data-tr="SENTINEL'I BAŞLAT">LAUNCH SENTINEL</button>
+                            <button onclick="triggerSocAction('kill')" class="px-4 py-2.5 rounded-xl bg-rose-600 text-white font-bold text-xs hover:bg-rose-700 transition" data-en="KILLSWITCH" data-tr="ACİL KİLİT">KILLSWITCH</button>
+                        </div>
                     </div>
-                    <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-en="Performs intelligent target reconnaissance prior to stress execution, detecting server headers, WAF firewalls (Cloudflare, Akamai), and precise millisecond round-trip latencies." data-tr="Stres yürütmesinden önce akıllı hedef keşfi gerçekleştirerek sunucu başlıklarını, WAF güvenlik duvarlarını (Cloudflare, Akamai) ve milisaniyelik gidiş-dönüş gecikmelerini algılar.">
-                        Performs intelligent target reconnaissance prior to stress execution, detecting server headers, WAF firewalls (Cloudflare, Akamai), and precise millisecond round-trip latencies.
-                    </p>
-                    <ul class="space-y-2 text-xs font-mono text-zinc-400">
-                        <li>✦ Real-time RPS and Success Rate HUD</li>
-                        <li>✦ Zero-trace Silent Lockdown mode</li>
-                        <li>✦ Automated desktop report exporter</li>
-                    </ul>
+
+                    <!-- HUD Telemetry Matrix & Logs -->
+                    <div class="lg:col-span-2 flex flex-col space-y-4">
+                        <!-- HUD Cards -->
+                        <div class="grid grid-cols-4 gap-3">
+                            <div class="p-3 bg-dark-950 rounded-xl border border-dark-700 text-center">
+                                <div class="text-[10px] font-mono text-zinc-400" data-en="RPS" data-tr="RPS">RPS</div>
+                                <div id="socRps" class="text-sm font-mono font-bold text-cyan-400">0 req/s</div>
+                            </div>
+                            <div class="p-3 bg-dark-950 rounded-xl border border-dark-700 text-center">
+                                <div class="text-[10px] font-mono text-zinc-400" data-en="SUCCESS" data-tr="BAŞARI">SUCCESS</div>
+                                <div id="socSuccess" class="text-sm font-mono font-bold text-emerald-400">%0</div>
+                            </div>
+                            <div class="p-3 bg-dark-950 rounded-xl border border-dark-700 text-center">
+                                <div class="text-[10px] font-mono text-zinc-400" data-en="ERRORS" data-tr="HATALAR">ERRORS</div>
+                                <div id="socErrors" class="text-sm font-mono font-bold text-rose-500">0</div>
+                            </div>
+                            <div class="p-3 bg-dark-950 rounded-xl border border-dark-700 text-center">
+                                <div class="text-[10px] font-mono text-zinc-400" data-en="TOTAL" data-tr="TOPLAM">TOTAL</div>
+                                <div id="socTotal" class="text-sm font-mono font-bold text-amber-400">0</div>
+                            </div>
+                        </div>
+
+                        <!-- Terminal Output -->
+                        <div id="socLogBox" class="flex-grow h-36 bg-dark-950 border border-dark-700 rounded-xl p-3 font-mono text-xs text-cyan-400 overflow-y-auto space-y-1">
+                            <div>[SOC] Aegis Sentinel initialized. Awaiting proxy tunnel verification...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 20+ Aegis Advanced Features Grid -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="Advanced SOC & Defensive Sub-Systems" data-tr="Gelişmiş SOC & Savunma Alt Sistemleri">Advanced SOC & Defensive Sub-Systems</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">13 / TUNNEL</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Strict Proxy Validation" data-tr="Sıkı Proxy Doğrulama">Strict Proxy Validation</h4>
+                        <p class="text-xs text-zinc-400" data-en="Validates external proxy responsiveness prior to releasing traffic." data-tr="Trafik bırakılmadan önce dış proxy yanıt verebilirliğini doğrular.">Validates external proxy responsiveness prior to releasing traffic.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">14 / RECON</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Intelligent WAF Profiler" data-tr="Akıllı WAF Profili Oluşturucu">Intelligent WAF Profiler</h4>
+                        <p class="text-xs text-zinc-400" data-en="Detects Cloudflare, Akamai, and server signatures instantly." data-tr="Cloudflare, Akamai ve sunucu imza izlerini anında algılar.">Detects Cloudflare, Akamai, and server signatures instantly.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">15 / KILLSWITCH</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Emergency Killswitch" data-tr="Acil Durum Killswitch">Emergency Killswitch</h4>
+                        <p class="text-xs text-zinc-400" data-en="Instant socket severance and memory wipe upon user trigger." data-tr="Kullanıcı tetiklemesinde anında soket kesmesi ve bellek silme.">Instant socket severance and memory wipe upon user trigger.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">16 / ISOLATION</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Cross-Instance Port Lock" data-tr="Çapraz Örnek Port Kilidi">Cross-Instance Port Lock</h4>
+                        <p class="text-xs text-zinc-400" data-en="Port 59237 binding prevents EN and TR editions from running together." data-tr="Port 59237 bağı, EN ve TR sürümlerinin birlikte çalışmasını engeller.">Port 59237 binding prevents EN and TR editions from running together.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">17 / CLOAK</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Silent Lockdown Cloak" data-tr="Sessiz Kilit Maskelemesi">Silent Lockdown Cloak</h4>
+                        <p class="text-xs text-zinc-400" data-en="Zero-trace shutdown mode upon encountering aggressive rate limits." data-tr="Agresif oran sınırlarıyla karşılaşırken sıfır izli kapanma modu.">Zero-trace shutdown mode upon encountering aggressive rate limits.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">18 / THREADPOOL</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Asynchronous Workers" data-tr="Asenkron İşçiler">Asynchronous Workers</h4>
+                        <p class="text-xs text-zinc-400" data-en="ThreadPoolExecutor pipeline scaling dynamically based on CPU core count." data-tr="CPU çekirdek sayısına göre dinamik olarak ölçeklenen ThreadPoolExecutor hattı.">ThreadPoolExecutor pipeline scaling dynamically based on CPU core count.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">19 / VPNCHECK</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Network Interface Monitor" data-tr="Ağ Arayüz Monitörü">Network Interface Monitor</h4>
+                        <p class="text-xs text-zinc-400" data-en="Background daemon tracking tun, tap, wireguard, and VPN adapter states." data-tr="tun, tap, wireguard ve VPN bağdaştırıcı durumlarını takip eden arka plan programı.">Background daemon tracking tun, tap, wireguard, and VPN adapter states.</p>
+                    </div>
+                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
+                        <span class="text-xs font-mono text-cyan-500">20 / EXPORTER</span>
+                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="SOC Intelligence Report" data-tr="SOC İstihbarat Raporu">SOC Intelligence Report</h4>
+                        <p class="text-xs text-zinc-400" data-en="Comprehensive forensic reports exported to desktop after each operation." data-tr="Her operasyondan sonra masaüstüne aktarılan kapsamlı adli raporlar.">Comprehensive forensic reports exported to desktop after each operation.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Endless Architecture / Features Section -->
-    <section id="features" class="py-24 border-b border-dark-700">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-3xl mb-16">
-                <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3" data-en="Endless Capabilities" data-tr="Sınırsız Yetenekler">Endless Capabilities</h2>
-                <h3 class="text-3xl md:text-5xl font-bold tracking-tight mb-6" data-en="Extensive Feature Matrix" data-tr="Kapsamlı Özellik Matrisi">Extensive Feature Matrix</h3>
-                <p class="text-zinc-400 text-lg" data-en="Explore the exhaustive breakdown of underlying protocols and defensive layers built into the Lacas ecosystem." data-tr="Lacas ekosisteminde yer alan temel protokollerin ve savunma katmanlarının ayrıntılı dökümünü inceleyin.">
-                    Explore the exhaustive breakdown of underlying protocols and defensive layers built into the Lacas ecosystem.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="p-6 rounded-xl bg-dark-800 border border-dark-600">
-                    <h5 class="font-bold text-sm mb-2" data-en="Cross-Instance Lock" data-tr="Çapraz Örnek Kilidi">Cross-Instance Lock</h5>
-                    <p class="text-zinc-400 text-xs leading-relaxed" data-en="Port 59237 binding prevents TR and EN Aegis editions from running simultaneously." data-tr="Port 59237 bağı, TR ve EN Aegis sürümlerinin aynı anda çalışmasını engeller.">Port 59237 binding prevents TR and EN Aegis editions from running simultaneously.</p>
-                </div>
-                <div class="p-6 rounded-xl bg-dark-800 border border-dark-600">
-                    <h5 class="font-bold text-sm mb-2" data-en="Acoustic Feedback" data-tr="Akustik Geri Bildirim">Acoustic Feedback</h5>
-                    <p class="text-zinc-400 text-xs leading-relaxed" data-en="Motherboard beep signals confirm successful startups, session resets, and critical errors." data-tr="Anakart bip sinyalleri başarılı başlangıçları, oturum sıfırlamalarını ve kritik hataları onaylar.">Motherboard beep signals confirm successful startups, session resets, and critical errors.</p>
-                </div>
-                <div class="p-6 rounded-xl bg-dark-800 border border-dark-600">
-                    <h5 class="font-bold text-sm mb-2" data-en="Browser Impersonation" data-tr="Tarayıcı Taklidi">Browser Impersonation</h5>
-                    <p class="text-zinc-400 text-xs leading-relaxed" data-en="Utilizes curl_cffi with Chrome120, Safari17, and Edge TLS fingerprint profiles." data-tr="Chrome120, Safari17 ve Edge TLS parmak izi profilleriyle curl_cffi kullanır.">Utilizes curl_cffi with Chrome120, Safari17, and Edge TLS fingerprint profiles.</p>
-                </div>
-                <div class="p-6 rounded-xl bg-dark-800 border border-dark-600">
-                    <h5 class="font-bold text-sm mb-2" data-en="RAM Garbage Collection" data-tr="RAM Çöp Temizliği">RAM Garbage Collection</h5>
-                    <p class="text-zinc-400 text-xs leading-relaxed" data-en="Aggressive garbage collection and process termination purge memory after runs." data-tr="Agresif çöp toplama ve süreç sonlandırma işlemleri çalışmalardan sonra belleği temizler.">Aggressive garbage collection and process termination purge memory after runs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="py-12 bg-dark-900 border-t border-dark-700 text-center text-xs text-zinc-500">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <p>© 2026 LacasClient & Aegis Security Suite. All rights reserved.</p>
-            <div class="flex space-x-6 font-mono">
-                <span class="text-emerald-500">Status: Operational</span>
-                <span>EN / TR Integrated</span>
-            </div>
+    <footer class="py-8 bg-dark-900 border-t border-dark-700 text-center text-xs text-zinc-500 font-mono">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
+            <span>LACAS CLIENT & AEGIS COMMAND SUITE</span>
+            <span class="text-emerald-400">STATUS: ALL PROTOCOLS SECURE</span>
         </div>
     </footer>
 
-    <!-- JavaScript for Instant Bilingual Translation (EN / TR) -->
+    <!-- Scripts for Scroll Fade, Tab Switching, Translation & Simulation -->
     <script>
+        // Scroll Fade Effect for Hero Section
+        window.addEventListener('scroll', () => {
+            const hero = document.getElementById('heroSection');
+            const scrollY = window.scrollY;
+            const fadeLimit = 350; // Kaydırma mesafesi
+            
+            if (scrollY <= fadeLimit) {
+                const opacity = 1 - (scrollY / fadeLimit);
+                const translateY = scrollY * 0.3;
+                hero.style.opacity = opacity;
+                hero.style.transform = `translateY(${translateY}px)`;
+                hero.style.pointerEvents = opacity > 0.1 ? 'auto' : 'none';
+            } else {
+                hero.style.opacity = 0;
+                hero.style.pointerEvents = 'none';
+            }
+        });
+
         let currentLang = 'en';
+        let currentTab = 'client';
+        let simInterval = null;
+        let socInterval = null;
+
+        function switchTab(tab) {
+            currentTab = tab;
+            const viewClient = document.getElementById('viewClient');
+            const viewAegis = document.getElementById('viewAegis');
+            const tabBtnClient = document.getElementById('tabBtnClient');
+            const tabBtnAegis = document.getElementById('tabBtnAegis');
+
+            if (tab === 'client') {
+                viewClient.classList.remove('hidden');
+                viewAegis.classList.add('hidden');
+                tabBtnClient.className = "px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-white text-black shadow-sm";
+                tabBtnAegis.className = "px-4 py-1.5 rounded-lg text-xs font-semibold transition text-zinc-400 hover:text-white";
+            } else {
+                viewClient.classList.add('hidden');
+                viewAegis.classList.remove('hidden');
+                tabBtnAegis.className = "px-4 py-1.5 rounded-lg text-xs font-semibold transition bg-white text-black shadow-sm";
+                tabBtnClient.className = "px-4 py-1.5 rounded-lg text-xs font-semibold transition text-zinc-400 hover:text-white";
+            }
+        }
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'tr' : 'en';
-            const elements = document.querySelectorAll('[data-en]');
-            
-            elements.forEach(el => {
-                const translation = el.getAttribute(`data-${currentLang}`);
-                if (translation) {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute(`data-${currentLang}`);
+                if (text) {
                     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translation;
+                        el.placeholder = text;
                     } else {
-                        el.textContent = translation;
+                        el.textContent = text;
                     }
                 }
             });
-
             document.getElementById('langBtn').textContent = currentLang === 'en' ? 'TR / EN' : 'EN / TR';
-            document.documentElement.setAttribute('lang', currentLang);
+        }
+
+        // Sandbox Simulator for LacasClient
+        let simLikes = 0;
+        let simTraffic = 0;
+        function triggerSimAction(action) {
+            const logBox = document.getElementById('simLogBox');
+            const stats = document.getElementById('simStats');
+            if (action === 'start') {
+                if (simInterval) clearInterval(simInterval);
+                logBox.innerHTML += `<div>[SYSTEM] Engine initialized. Locking target parameters...</div>`;
+                simInterval = setInterval(() => {
+                    simLikes += Math.floor(Math.random() * 2) + 1;
+                    simTraffic += Math.floor(Math.random() * 4) + 2;
+                    stats.textContent = `LIKES: ${simLikes} | TRAFFIC: ${simTraffic}`;
+                    const timeStr = new Date().toLocaleTimeString();
+                    logBox.innerHTML += `<div>[${timeStr}] 🟢 Worker pipeline dispatched request. Response: 200 OK</div>`;
+                    logBox.scrollTop = logBox.scrollHeight;
+                }, 1000);
+            } else {
+                if (simInterval) clearInterval(simInterval);
+                logBox.innerHTML += `<div>[SYSTEM] Engine halted by operator. RAM purged.</div>`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }
+        }
+
+        // Sandbox Simulator for Aegis SOC
+        let socTotalReq = 0;
+        let socErrCount = 0;
+        function triggerSocAction(action) {
+            const logBox = document.getElementById('socLogBox');
+            const badge = document.getElementById('socStatusBadge');
+            if (action === 'launch') {
+                if (socInterval) clearInterval(socInterval);
+                badge.textContent = currentLang === 'en' ? 'Armor: Tunnel Active 🟢' : 'Zırh: Tünel Aktif 🟢';
+                logBox.innerHTML += `<div>[SOC] Validating proxy tunnel... OK. Recon target initialized.</div>`;
+                socInterval = setInterval(() => {
+                    socTotalReq += 12;
+                    if (Math.random() > 0.85) socErrCount++;
+                    document.getElementById('socRps').textContent = `${Math.floor(Math.random() * 15) + 35} req/s`;
+                    document.getElementById('socSuccess').textContent = `%${Math.max(90, 100 - socErrCount)}` ;
+                    document.getElementById('socErrors').textContent = socErrCount;
+                    document.getElementById('socTotal').textContent = socTotalReq;
+                    const timeStr = new Date().toLocaleTimeString();
+                    logBox.innerHTML += `<div>[${timeStr}] 🛡️ Sentinel batch dispatched via secure proxy. Latency: ${Math.floor(Math.random()*40)+30}ms</div>`;
+                    logBox.scrollTop = logBox.scrollHeight;
+                }, 1000);
+            } else {
+                if (socInterval) clearInterval(socInterval);
+                badge.textContent = currentLang === 'en' ? 'Armor: LOCKED 🚨' : 'Zırh: KİLİTLİ 🚨';
+                badge.className = "text-xs font-mono text-rose-500 font-bold";
+                logBox.innerHTML += `<div>[EMERGENCY] Killswitch triggered! All sockets severed.</div>`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }
         }
     </script>
 </body>
