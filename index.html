@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth" id="htmlRoot">
+<html lang="en" class="scroll-smooth" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lacas Client v1.0 | Enterprise Security & Automation Core</title>
-    <!-- Tailwind CSS with SRI Integrity -->
+    <title>Lacas Client v1.0 | Enterprise Security & Automation Core Suite</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome with SRI Integrity -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- GSAP & ScrollTrigger -->
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Advanced Real-time Telemetry Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- GSAP Animation Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -16,245 +18,237 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #020202;
+            background-color: #010103;
             color: #EDEDED;
             overflow-x: hidden;
-            transition: background 0.5s ease, color 0.5s ease;
+            transition: background 0.5s ease;
         }
         .mono-font {
             font-family: 'JetBrains Mono', monospace;
         }
         .glass-panel {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(28px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(12, 12, 18, 0.85);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
         .glass-card {
-            background: rgba(6, 6, 6, 0.7);
+            background: rgba(8, 8, 12, 0.75);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
         }
-        .glass-card:hover, .glass-card.active {
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-            background: rgba(16, 16, 16, 0.9);
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+            background: rgba(16, 16, 24, 0.9);
         }
-        .ambient-blob {
+        .ambient-glow {
             position: fixed;
-            width: 800px;
-            height: 800px;
+            width: 700px;
+            height: 700px;
             border-radius: 50%;
-            filter: blur(170px);
+            filter: blur(180px);
             z-index: -1;
             opacity: 0.12;
-            transition: background 1s ease, transform 1s ease;
             pointer-events: none;
         }
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .ambient-blob, .animate-ping, .animate-pulse { animation: none !important; transition: none !important; }
+        @media (max-width: 768px) {
+            .ambient-glow { display: none; }
         }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020202; }
-        ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #010103; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #444; }
     </style>
 </head>
-<body class="selection:bg-white selection:text-black" id="site-body">
+<body class="selection:bg-white selection:text-black">
 
-    <!-- Dynamic Background Blur Blobs -->
-    <div id="blob-1" class="ambient-blob bg-white top-[-10%] left-[-10%]"></div>
-    <div id="blob-2" class="ambient-blob bg-neutral-600 bottom-[-10%] right-[-10%]"></div>
+    <!-- Ambient Background Effects -->
+    <div class="ambient-glow bg-emerald-500 top-[-10%] left-[-10%]"></div>
+    <div class="ambient-glow bg-indigo-600 bottom-[-10%] right-[-10%]"></div>
 
-    <!-- Top Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 rounded-xl p-1">
-                <div class="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center font-bold text-xl transition group-hover:scale-105">
+    <!-- Navigation Bar (Enterprise SaaS Style) -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 group cursor-pointer">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-white to-neutral-400 text-black flex items-center justify-center font-extrabold text-xl shadow-lg transition group-hover:scale-105">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-lg font-extrabold tracking-widest text-white">LACAS</span>
-                    <span class="text-[10px] mono-font tracking-widest text-neutral-400">CLIENT v1.0</span>
+                    <span class="text-base sm:text-lg font-extrabold tracking-widest text-white">LACAS</span>
+                    <span class="text-[9px] sm:text-[10px] mono-font tracking-widest text-emerald-400 font-bold">ENTERPRISE v1.0</span>
                 </div>
-            </a>
-            <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-neutral-400">
-                <a href="#controlpanel" class="hover:text-white transition" data-tr="Canlı Kontrol Paneli" data-en="Live Control Panel">Canlı Kontrol Paneli</a>
-                <a href="#features" class="hover:text-white transition" data-tr="22 Özellik Kaydı" data-en="Core Registry (22)">22 Özellik Kaydı</a>
-                <a href="#terminal" class="hover:text-white transition" data-tr="Terminal Logları" data-en="Terminal Logs">Terminal Logları</a>
-                <a href="#faq" class="hover:text-white transition" data-tr="SSS & Dokümantasyon" data-en="FAQ & Docs">SSS & Dokümantasyon</a>
             </div>
-            <div class="hidden md:flex items-center space-x-4">
-                <!-- Dil Seçici (TR / EN) -->
-                <div class="flex items-center bg-neutral-900 border border-white/10 rounded-xl p-1">
-                    <button onclick="setLanguage('tr')" id="btn-tr" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-black shadow">TR</button>
-                    <button onclick="setLanguage('en')" id="btn-en" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-neutral-400 hover:text-white">EN</button>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-400">
+                <a href="#controlpanel" class="hover:text-white transition" data-tr="Canlı Kontrol" data-en="Cloud Core">Cloud Core</a>
+                <a href="#telemetry" class="hover:text-white transition" data-tr="Telemetri" data-en="Telemetry">Telemetry</a>
+                <a href="#pricing" class="hover:text-white transition" data-tr="Lisans Katmanları" data-en="Pricing">Pricing Tiers</a>
+                <a href="#features" class="hover:text-white transition" data-tr="Özellikler" data-en="Registry (22)">Registry (22)</a>
+                <a href="#terminal" class="hover:text-white transition" data-tr="Canlı Konsol" data-en="Live Shell">Live Shell</a>
+            </div>
+
+            <!-- Right Actions & Language -->
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center bg-neutral-900/90 border border-white/10 rounded-xl p-1 shadow-inner">
+                    <button onclick="setLanguage('tr')" id="btn-tr" class="px-2.5 py-1 rounded-lg text-xs font-bold transition text-neutral-400 hover:text-white">TR</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white text-black shadow">EN</button>
                 </div>
-                <button onclick="setTheme('dark')" class="w-8 h-8 rounded-full bg-neutral-900 border border-white/20 text-xs text-white flex items-center justify-center hover:scale-110 transition" title="Pure Dark Mode">🌙</button>
-                <button onclick="setTheme('cyber')" class="w-8 h-8 rounded-full bg-zinc-800 border border-emerald-500/50 text-xs text-emerald-400 flex items-center justify-center hover:scale-110 transition" title="Cyberpunk Theme">⚡</button>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white text-lg p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars" id="mobile-icon"></i>
+                </button>
             </div>
-            <!-- Mobile Menu Toggle -->
-            <button onclick="toggleMobileMenu()" class="md:hidden text-white text-xl p-2 focus:outline-none" aria-label="Toggle Menu">
-                <i class="fa-solid fa-bars" id="mobile-menu-icon"></i>
-            </button>
         </div>
         <!-- Mobile Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10 px-6 py-4 space-y-3 text-sm">
-            <a href="#controlpanel" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white" data-tr="Canlı Kontrol Paneli" data-en="Live Control Panel">Canlı Kontrol Paneli</a>
-            <a href="#features" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white" data-tr="22 Özellik Kaydı" data-en="Core Registry (22)">22 Özellik Kaydı</a>
-            <a href="#terminal" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white" data-tr="Terminal Logları" data-en="Terminal Logs">Terminal Logları</a>
-            <a href="#faq" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white" data-tr="SSS" data-en="FAQ">SSS</a>
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10 px-6 py-5 space-y-3 text-sm">
+            <a href="#controlpanel" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Cloud Core Dashboard</a>
+            <a href="#telemetry" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Live Telemetry Graphs</a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Enterprise Pricing</a>
+            <a href="#features" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">22 Core Registry</a>
+            <a href="#terminal" onclick="toggleMobileMenu()" class="block text-neutral-300 hover:text-white">Secure Shell Console</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative pt-40 pb-20 md:pt-48 md:pb-28 flex items-center justify-center overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10 hero-content">
-            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel mb-6 border border-white/10">
+    <header class="relative pt-40 pb-20 sm:pt-48 sm:pb-28 flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel border border-emerald-500/30 text-xs mono-font text-emerald-400 shadow-xl">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span class="text-xs mono-font uppercase tracking-widest text-neutral-300" data-tr="Multi-Threaded Python Otomasyon Çekirdeği Aktif" data-en="Multi-Threaded Python Automation Core Active">Multi-Threaded Python Otomasyon Çekirdeği Aktif</span>
+                <span data-tr="Askeri Düzeyde Şifrelenmiş Bulut Otomasyon Çekirdeği" data-en="Military-Grade Encrypted Cloud Automation Core">Military-Grade Encrypted Cloud Automation Core</span>
             </div>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                <span data-tr="Gelişmiş Otonom DOM &amp; Trafik" data-en="Advanced Autonomous DOM &amp; Traffic">Gelişmiş Otonom DOM &amp; Trafik</span> <br><span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-300 to-neutral-600" data-tr="Yönetim Sistemi" data-en="Management System">Yönetim Sistemi</span>
+            <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                <span data-tr="Sınırsız Ölçeklenebilir Otonom" data-en="Infinitely Scalable Autonomous">Infinitely Scalable Autonomous</span> <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-300 to-neutral-500" data-tr="Trafik ve DOM Yönetim Ekosistemi" data-en="Traffic & DOM Management Ecosystem">Traffic & DOM Management Ecosystem</span>
             </h1>
-            <p class="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-8 font-light leading-relaxed" data-tr="Proksi rotasyonu, anti-bot gecikme saptırıcıları, çoklu işçi thread mimarisi ve otomatik masaüstü raporlama özellikleriyle tam donanımlı web kontrol merkezi." data-en="Fully equipped web control center featuring proxy rotation, anti-bot jitter balancers, multi-worker thread architecture, and automated desktop reporting.">
-                Proksi rotasyonu, anti-bot gecikme saptırıcıları, çoklu işçi thread mimarisi ve otomatik masaüstü raporlama özellikleriyle tam donanımlı web kontrol merkezi.
+            <p class="text-neutral-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed" data-tr="Mükemmel donanım bağımlı HWID lisanslaması, proxy havuzu yönetimi ve yapay zeka destekli anti-bot atlatma motoru." data-en="Advanced hardware-bound HWID licensing, proxy pool orchestration, and AI-powered anti-bot evasion engine.">
+                Advanced hardware-bound HWID licensing, proxy pool orchestration, and AI-powered anti-bot evasion engine.
             </p>
         </div>
     </header>
 
-    <!-- Interactive Live Control Center (Python Core Integrated GUI) -->
-    <section id="controlpanel" class="py-12 max-w-7xl mx-auto px-6">
-        <div class="text-center mb-12 section-title">
-            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-2 block" data-tr="Python Core Entegre Arayüz" data-en="Python Core Integrated Interface">Python Core Entegre Arayüz</span>
-            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight" data-tr="Canlı Kontrol &amp; Sayaç Merkezi" data-en="Live Control &amp; Counters Center">Canlı Kontrol &amp; Sayaç Merkezi</h2>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Sol 2 Sütun: Ayarlar, Protokoller ve Güvenlik Şalterleri -->
-            <div class="lg:col-span-2 glass-panel p-8 rounded-3xl border border-white/10 space-y-6 shadow-2xl">
-                <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                    <h3 class="text-base font-bold text-white flex items-center space-x-2">
-                        <i class="fa-solid fa-sliders text-neutral-400"></i>
-                        <span data-tr="Hedef ve Çalışma Parametreleri" data-en="Target &amp; Operational Parameters">Hedef ve Çalışma Parametreleri</span>
-                    </h3>
-                    <span id="engineStatusBadge" class="text-xs mono-font px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold" data-tr="[DURUM: HAZIR]" data-en="[STATUS: READY]">[DURUM: HAZIR]</span>
+    <!-- Live Cloud Control Core (Enterprise SaaS GUI) -->
+    <section id="controlpanel" class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Sol 2 Sütun: Gelişmiş Parametreler & Kalkanlar -->
+            <div class="lg:col-span-2 glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 space-y-6 shadow-2xl">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10 pb-4 gap-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-microchip"></i></div>
+                        <h3 class="text-base font-bold text-white" data-tr="Bulut İşçi Konfigürasyon Merkezi" data-en="Cloud Worker Configuration Hub">Cloud Worker Configuration Hub</h3>
+                    </div>
+                    <span id="cloudStatusBadge" class="text-xs mono-font px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold">[CLUSTER: ONLINE]</span>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Hedef URL Adresi" data-en="Target URL Address">Hedef URL Adresi</label>
-                        <input type="text" id="targetUrl" value="https://example.com/target" class="w-full bg-[#141419] border border-[#33333D] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-white transition mono-font">
+                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Hedef Uç Nokta URL" data-en="Target Endpoint URL">Target Endpoint URL</label>
+                        <input type="text" id="targetUrl" value="https://api.enterprise-target.io/v1/stream" class="w-full bg-[#0d0d12] border border-[#2a2a35] rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-white transition mono-font">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Manuel Tanımlayıcı ID (Opsiyonel)" data-en="Manual Identifier ID (Optional)">Manuel Tanımlayıcı ID (Opsiyonel)</label>
-                        <input type="text" id="manualId" placeholder="Örn: 48921" class="w-full bg-[#141419] border border-[#33333D] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-white transition mono-font">
+                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Manuel Nesne Kimliği (ID)" data-en="Manual Object ID Override">Manual Object ID Override</label>
+                        <input type="text" id="manualId" placeholder="Optional object hash..." class="w-full bg-[#0d0d12] border border-[#2a2a35] rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-white transition mono-font">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Çalıştırma Modu" data-en="Execution Mode">Çalıştırma Modu</label>
-                        <select id="execMode" class="w-full bg-[#141419] border border-[#33333D] rounded-xl px-3 py-3 text-xs text-white focus:outline-none focus:border-white transition">
-                            <option>Combo Mode (Like + Traffic)</option>
-                            <option>Only Like Mode</option>
-                            <option>Only Traffic (Hit) Mode</option>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="İşlem Protokolü" data-en="Operation Protocol">Operation Protocol</label>
+                        <select id="execMode" class="w-full bg-[#0d0d12] border border-[#2a2a35] rounded-xl px-3 py-3 text-xs text-white focus:outline-none focus:border-white transition">
+                            <option>Combo Matrix (Like + Traffic)</option>
+                            <option>Strict Like Vector Only</option>
+                            <option>High-Speed Traffic Hit Stream</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-neutral-400 mb-2" id="labelInterval">İstek Aralığı: 1.5s</label>
-                        <input type="range" min="0.5" max="10.0" step="0.5" value="1.5" id="sliderInterval" class="w-full accent-white cursor-pointer mt-2" oninput="updateIntervalText(this.value)">
+                        <label class="block text-xs font-semibold text-neutral-400 mb-2" id="labelInterval">Polling Interval: 1.0s</label>
+                        <input type="range" min="0.1" max="5.0" step="0.1" value="1.0" id="sliderInterval" class="w-full accent-white cursor-pointer mt-2" oninput="updateIntervalText(this.value)">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-neutral-400 mb-2" id="labelThreads">İşçi Süreçleri (Threads): 3 (Max 5)</label>
-                        <input type="range" min="1" max="5" step="1" value="3" id="sliderThreads" class="w-full accent-white cursor-pointer mt-2" oninput="updateThreadText(this.value)">
+                        <label class="block text-xs font-semibold text-neutral-400 mb-2" id="labelThreads">Active Worker Pods: 5 (Max 10)</label>
+                        <input type="range" min="1" max="10" step="1" value="5" id="sliderThreads" class="w-full accent-white cursor-pointer mt-2" oninput="updateThreadText(this.value)">
                     </div>
                 </div>
 
-                <!-- Python Kodlarındaki 10+ Güvenlik Kalkanı Şalteri -->
+                <!-- 10+ Kurumsal Güvenlik Şalteri -->
                 <div class="pt-2">
-                    <span class="block text-xs font-semibold text-neutral-400 mb-3" data-tr="Gelişmiş Güvenlik ve Bellek Kalkanları" data-en="Advanced Security &amp; Memory Shields">Gelişmiş Güvenlik ve Bellek Kalkanları</span>
+                    <span class="block text-xs font-semibold text-neutral-400 mb-3" data-tr="Kurumsal Savunma Kalkanları" data-en="Enterprise Defense Shields">Enterprise Defense Shields</span>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs">
-                        <label class="flex items-center space-x-2 bg-[#141419] p-2.5 rounded-xl border border-[#33333D] cursor-pointer hover:border-neutral-500 transition">
-                            <input type="checkbox" checked class="accent-white"> <span data-tr="Gecikme Dengeleyici" data-en="Latency Balancer">Gecikme Dengeleyici</span>
+                        <label class="flex items-center space-x-2 bg-[#0d0d12] p-2.5 rounded-xl border border-[#2a2a35] cursor-pointer hover:border-neutral-500 transition">
+                            <input type="checkbox" checked class="accent-white"> <span data-tr="Gecikme Dengeleyici" data-en="Latency Balancer">Latency Balancer</span>
                         </label>
-                        <label class="flex items-center space-x-2 bg-[#141419] p-2.5 rounded-xl border border-[#33333D] cursor-pointer hover:border-neutral-500 transition">
-                            <input type="checkbox" checked class="accent-white"> <span data-tr="Dinamik Kimlik Rotasyonu" data-en="Identity Rotation">Dinamik Kimlik Rotasyonu</span>
+                        <label class="flex items-center space-x-2 bg-[#0d0d12] p-2.5 rounded-xl border border-[#2a2a35] cursor-pointer hover:border-neutral-500 transition">
+                            <input type="checkbox" checked class="accent-white"> <span data-tr="TLS Parmak İzi Gizleme" data-en="TLS Fingerprint Mask">TLS Fingerprint Mask</span>
                         </label>
-                        <label class="flex items-center space-x-2 bg-[#141419] p-2.5 rounded-xl border border-[#33333D] cursor-pointer hover:border-neutral-500 transition">
-                            <input type="checkbox" checked class="accent-white"> <span data-tr="Donanım Maskeleme" data-en="Hardware Masking">Donanım Maskeleme</span>
+                        <label class="flex items-center space-x-2 bg-[#0d0d12] p-2.5 rounded-xl border border-[#2a2a35] cursor-pointer hover:border-neutral-500 transition">
+                            <input type="checkbox" checked class="accent-white"> <span data-tr="Canvas Donanım Maskeleme" data-en="Canvas Hardware Mask">Canvas Hardware Mask</span>
                         </label>
-                        <label class="flex items-center space-x-2 bg-[#141419] p-2.5 rounded-xl border border-[#33333D] cursor-pointer hover:border-neutral-500 transition">
-                            <input type="checkbox" checked class="accent-white"> <span data-tr="Anti-Bot Jitter" data-en="Anti-Bot Jitter">Anti-Bot Jitter</span>
+                        <label class="flex items-center space-x-2 bg-[#0d0d12] p-2.5 rounded-xl border border-[#2a2a35] cursor-pointer hover:border-neutral-500 transition">
+                            <input type="checkbox" checked class="accent-white"> <span data-tr="Anti-Bot Jitter V2" data-en="Anti-Bot Jitter V2">Anti-Bot Jitter V2</span>
                         </label>
-                        <label class="flex items-center space-x-2 bg-[#141419] p-2.5 rounded-xl border border-[#33333D] cursor-pointer hover:border-neutral-500 transition">
-                            <input type="checkbox" checked class="accent-white"> <span data-tr="Sesli Bildirim Bip" data-en="Acoustic Beeps">Sesli Bildirim Bip</span>
+                        <label class="flex items-center space-x-2 bg-[#0d0d12] p-2.5 rounded-xl border border-[#2a2a35] cursor-pointer hover:border-neutral-500 transition">
+                            <input type="checkbox" checked class="accent-white"> <span data-tr="Akustik Kernel Bip" data-en="Acoustic Kernel Beep">Acoustic Kernel Beep</span>
                         </label>
-                        <label class="flex items-center space-x-2 bg-[#141419] p-2.5 rounded-xl border border-[#33333D] cursor-pointer hover:border-neutral-500 transition">
-                            <input type="checkbox" checked class="accent-white"> <span data-tr="Auth Proxy Modu" data-en="Auth Proxy Mode">Auth Proxy Modu</span>
+                        <label class="flex items-center space-x-2 bg-[#0d0d12] p-2.5 rounded-xl border border-[#2a2a35] cursor-pointer hover:border-neutral-500 transition">
+                            <input type="checkbox" checked class="accent-white"> <span data-tr="Proxifier Auth Bridge" data-en="Proxifier Auth Bridge">Proxifier Auth Bridge</span>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Proxy Havuzu (IP:Port:KAdı:Şifre - Her satıra bir adet)" data-en="Proxy Pool (IP:Port:User:Pass - One per line)">Proxy Havuzu (Her satıra bir adet IP:Port)</label>
-                    <textarea id="proxyPool" rows="2" placeholder="192.168.1.150:8080&#10;10.0.0.42:3128:user:pass" class="w-full bg-[#141419] border border-[#33333D] rounded-xl p-3 text-xs mono-font text-white focus:outline-none focus:border-white transition"></textarea>
+                    <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Yüksek Hızlı Proxy Havuzu (IP:Port)" data-en="High-Speed Proxy Pool (IP:Port)">High-Speed Proxy Pool (IP:Port)</label>
+                    <textarea id="proxyPool" rows="2" placeholder="185.220.101.5:8080&#10;45.33.32.156:3128" class="w-full bg-[#0d0d12] border border-[#2a2a35] rounded-xl p-3 text-xs mono-font text-white focus:outline-none focus:border-white transition"></textarea>
                 </div>
             </div>
 
-            <!-- Sağ Sütun: Canlı Sayaçlar, Kronometre ve Kontrol Butonları -->
-            <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between shadow-2xl">
+            <!-- Sağ Sütun: Canlı Sayaçlar, Süre ve Dağıtım Butonları -->
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between shadow-2xl">
                 <div class="space-y-6">
-                    <h3 class="text-base font-bold text-white border-b border-white/10 pb-4 flex items-center space-x-2">
-                        <i class="fa-solid fa-chart-line text-neutral-400"></i>
-                        <span data-tr="Canlı Performans &amp; Sayaçlar" data-en="Live Performance &amp; Counters">Canlı Performans &amp; Sayaçlar</span>
-                    </h3>
+                    <div class="flex items-center space-x-3 border-b border-white/10 pb-4">
+                        <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-chart-pie"></i></div>
+                        <h3 class="text-base font-bold text-white" data-tr="Canlı Telemetri Paneli" data-en="Live Telemetry Dashboard">Live Telemetry Dashboard</h3>
+                    </div>
 
-                    <!-- Kronometre ve Sayaç Ekranı -->
-                    <div class="bg-[#141419] border border-[#33333D] rounded-2xl p-6 text-center space-y-4 shadow-inner">
+                    <div class="bg-[#0d0d12] border border-[#2a2a35] rounded-2xl p-5 text-center space-y-4 shadow-inner">
                         <div>
-                            <span class="text-[10px] mono-font uppercase tracking-widest text-neutral-400 block mb-1" data-tr="Çalışma Süresi" data-en="Active Uptime">Çalışma Süresi</span>
+                            <span class="text-[10px] mono-font uppercase tracking-widest text-neutral-400 block mb-1" data-tr="Cluster Çalışma Süresi" data-en="Cluster Uptime">Cluster Uptime</span>
                             <div id="displayTime" class="text-2xl mono-font font-extrabold text-white">00:00:00</div>
                         </div>
                         <div class="grid grid-cols-2 gap-4 pt-3 border-t border-white/10">
                             <div>
-                                <span class="text-[10px] mono-font uppercase tracking-widest text-neutral-400 block mb-1" data-tr="Toplam Beğeni" data-en="Total Likes">Toplam Beğeni</span>
+                                <span class="text-[10px] mono-font uppercase tracking-widest text-neutral-400 block mb-1" data-tr="Dağıtılan Beğeni" data-en="Dispatched Likes">Dispatched Likes</span>
                                 <div id="displayLikes" class="text-xl mono-font font-bold text-emerald-400">0</div>
                             </div>
                             <div>
-                                <span class="text-[10px] mono-font uppercase tracking-widest text-neutral-400 block mb-1" data-tr="Toplam Trafik (Hit)" data-en="Total Traffic">Toplam Trafik (Hit)</span>
+                                <span class="text-[10px] mono-font uppercase tracking-widest text-neutral-400 block mb-1" data-tr="Toplam Trafik Hiti" data-en="Total Traffic Hits">Total Traffic Hits</span>
                                 <div id="displayHits" class="text-xl mono-font font-bold text-sky-400">0</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Zamanlanmış Dinlenme Protokolü (15, 30, 60 dk) -->
                     <div>
-                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Zamanlanmış Dinlenme Protokolü" data-en="Scheduled Rest Protocol">Zamanlanmış Dinlenme Protokolü</label>
-                        <select id="timerMode" class="w-full bg-[#141419] border border-[#33333D] rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-white transition">
-                            <option data-tr="Devre Dışı" data-en="Disabled">Devre Dışı</option>
-                            <option>15 Dakika</option>
-                            <option>30 Dakika</option>
-                            <option>60 Dakika</option>
+                        <label class="block text-xs font-semibold text-neutral-400 mb-2" data-tr="Otomatik Raporlama &amp; Dinlenme" data-en="Auto Reporting &amp; Rest Protocol">Auto Reporting & Rest Protocol</label>
+                        <select id="timerMode" class="w-full bg-[#0d0d12] border border-[#2a2a35] rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-white transition">
+                            <option data-tr="Devre Dışı (Sürekli Akış)" data-en="Disabled (Continuous Stream)">Disabled (Continuous Stream)</option>
+                            <option>15 Minutes Cluster Rest</option>
+                            <option>30 Minutes Cluster Rest</option>
+                            <option>60 Minutes Cluster Rest</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Aksiyon Butonları -->
                 <div class="space-y-3 pt-6">
-                    <button onclick="toggleEngine()" id="btnStart" class="w-full py-4 rounded-xl bg-white hover:bg-neutral-200 text-black font-bold text-xs uppercase tracking-widest transition shadow-xl flex items-center justify-center space-x-2">
+                    <button onclick="toggleEngine()" id="btnStart" class="w-full py-4 rounded-xl bg-white hover:bg-neutral-200 text-black font-bold text-xs uppercase tracking-widest transition shadow-2xl flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-play text-xs"></i>
-                        <span data-tr="MOTORU BAŞLAT" data-en="START ENGINE">MOTORU BAŞLAT</span>
+                        <span data-tr="CLUSTER AKIŞINI BAŞLAT" data-en="DEPLOY CLUSTER STREAM">DEPLOY CLUSTER STREAM</span>
                     </button>
                     <div class="grid grid-cols-2 gap-3">
-                        <button onclick="resetCounters()" class="py-3 rounded-xl bg-[#26262B] hover:bg-[#3B3B45] text-white font-bold text-xs uppercase tracking-wider transition" data-tr="Sistemi Sıfırla" data-en="Reset System">
-                            Sistemi Sıfırla
+                        <button onclick="resetCounters()" class="py-3 rounded-xl bg-[#1c1c24] hover:bg-[#282833] text-white font-bold text-xs uppercase tracking-wider transition" data-tr="Önbelleği Temizle" data-en="Purge Cache">
+                            Purge Cache
                         </button>
-                        <button onclick="emergencyStop()" class="py-3 rounded-xl bg-red-600/80 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-wider transition" data-tr="ACİL (KILL)" data-en="EMERGENCY">
-                            ACİL (KILL)
+                        <button onclick="emergencyStop()" class="py-3 rounded-xl bg-red-600/80 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-wider transition" data-tr="ACİL KESİCİ (KILL)" data-en="EMERGENCY KILL">
+                            EMERGENCY KILL
                         </button>
                     </div>
                 </div>
@@ -262,9 +256,27 @@
         </div>
     </section>
 
-    <!-- Terminal Console Section -->
-    <section id="terminal" class="py-16 max-w-7xl mx-auto px-6">
-        <div class="glass-panel rounded-3xl p-8 border border-white/10 relative overflow-hidden shadow-2xl">
+    <!-- Real-Time Chart.js Telemetry Graph Section -->
+    <section id="telemetry" class="py-12 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 pb-4 border-b border-white/10 gap-2">
+                <div>
+                    <h3 class="text-base font-bold text-white" data-tr="Canlı Bant Genişliği &amp; Paket Akış Grafiği" data-en="Live Bandwidth &amp; Packet Flow Telemetry">Live Bandwidth & Packet Flow Telemetry</h3>
+                    <p class="text-xs text-neutral-400" data-tr="Saniyede işlenen istek ve eşzamanlı worker yük analizi." data-en="Requests processed per second and concurrent worker load analysis.">Requests processed per second and concurrent worker load analysis.</p>
+                </div>
+                <div class="text-xs mono-font text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-1"></span> Live Data Feed
+                </div>
+            </div>
+            <div class="relative h-64 sm:h-80 w-full">
+                <canvas id="telemetryChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Live Shell / Terminal Console -->
+    <section id="terminal" class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 relative overflow-hidden shadow-2xl">
             <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                 <div class="flex items-center space-x-2">
                     <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
@@ -272,215 +284,257 @@
                     <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <span class="text-xs mono-font text-neutral-400 uppercase tracking-widest">secure_runtime_v1.0.log</span>
-                    <button onclick="clearTerminalLogs()" class="text-xs text-neutral-400 hover:text-white transition underline" data-tr="Logları Temizle" data-en="Clear Logs">Logları Temizle</button>
+                    <span class="text-xs mono-font text-neutral-400 uppercase tracking-widest">enterprise_cluster_daemon.log</span>
+                    <button onclick="clearTerminalLogs()" class="text-xs text-neutral-400 hover:text-white transition underline" data-tr="Logları Temizle" data-en="Clear Stream">Clear Stream</button>
                 </div>
             </div>
-            <div id="terminal-content" class="mono-font text-xs text-neutral-300 space-y-2 h-60 overflow-y-auto pr-2 leading-relaxed" aria-live="polite">
-                <p class="text-neutral-500">[SYSTEM] Initializing LacasClient Core Environment...</p>
-                <p>[19:32:01] [SYSTEM] Secure memory allocated. All thread worker channels ready.</p>
-                <p>[19:32:02] [SECURITY] Anti-bot jitter modules and proxy rotation layers loaded.</p>
-                <p class="text-emerald-400 font-bold">[+] Status: Operational &amp; Awaiting Execution Command.</p>
+            <div id="terminal-content" class="mono-font text-xs text-neutral-300 space-y-2 h-56 overflow-y-auto pr-2 leading-relaxed" aria-live="polite">
+                <p class="text-neutral-500">[DAEMON] Initializing Lacas Enterprise Cluster Daemon v1.0...</p>
+                <p>[20:42:01] [KERNEL] Secured memory space allocated. Mutex execution guard armed.</p>
+                <p>[20:42:02] [CLUSTER] 5 distributed worker nodes online and synchronized.</p>
+                <p class="text-emerald-400 font-bold">[+] Status: Ready for High-Performance Packet Dispatching.</p>
             </div>
         </div>
     </section>
 
-    <!-- Features Registry Section (22 Core Modules) -->
-    <section id="features" class="py-28 max-w-7xl mx-auto px-6">
-        <div class="text-center mb-12 section-title">
-            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block" data-tr="Çekirdek Sistem Özellikleri" data-en="Core Engineering Registry">Çekirdek Sistem Özellikleri</span>
-            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-8" data-tr="22 Adet Gelişmiş Mimari Özellik" data-en="The 22 Architectural Specifications">22 Adet Gelişmiş Mimari Özellik</h2>
+    <!-- Enterprise Pricing / License Tiers (Paralı Yazılım Havası) -->
+    <section id="pricing" class="py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs mono-font uppercase tracking-widest text-emerald-400 mb-3 block" data-tr="Kurumsal Lisanslama Modeli" data-en="Enterprise Licensing Matrix">Enterprise Licensing Matrix</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight" data-tr="Yazılım Paketleri &amp; Fiyatlandırma" data-en="Access Tiers &amp; Subscription Plans">Access Tiers & Subscription Plans</h2>
+            <p class="text-neutral-400 text-sm mt-3 max-w-xl mx-auto" data-tr="Donanımsal HWID bağlama koruması ve öncelikli edge proxy yönlendirmesi içeren profesyonel lisanslar." data-en="Professional licenses featuring hardware-bound HWID protection and priority edge proxy routing.">Professional licenses featuring hardware-bound HWID protection and priority edge proxy routing.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Tier 1 -->
+            <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between relative">
+                <div>
+                    <span class="text-xs mono-font text-neutral-400 uppercase tracking-wider block mb-2">Standard Core</span>
+                    <div class="text-3xl font-extrabold text-white mb-4">$49 <span class="text-xs text-neutral-500 font-normal">/ month</span></div>
+                    <p class="text-xs text-neutral-400 mb-6" data-tr="Bireysel geliştiriciler ve küçük ölçekli otomasyon testleri için ideal." data-en="Ideal for individual developers and small-scale automation testing.">Ideal for individual developers and small-scale automation testing.</p>
+                    <ul class="space-y-3 text-xs text-neutral-300 mb-8">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>1 HWID Hardware Binding</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Up to 5 Worker Threads</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Standard Proxy Rotation</span></li>
+                        <li class="flex items-center space-x-2 text-neutral-600"><i class="fa-solid fa-xmark"></i> <span>Priority Enterprise Support</span></li>
+                    </ul>
+                </div>
+                <button onclick="alert('Redirecting to secure Enterprise License Checkout...')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white text-white hover:text-black font-bold text-xs uppercase tracking-wider transition">
+                    Select Standard
+                </button>
+            </div>
+
+            <!-- Tier 2 (Featured) -->
+            <div class="glass-panel p-8 rounded-3xl border border-emerald-500/50 flex flex-col justify-between relative shadow-2xl bg-gradient-to-b from-neutral-900/90 to-black">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-black text-[10px] mono-font uppercase font-extrabold px-3 py-1 rounded-full shadow">
+                    Most Popular
+                </div>
+                <div>
+                    <span class="text-xs mono-font text-emerald-400 uppercase tracking-wider block mb-2">Professional Suite</span>
+                    <div class="text-3xl font-extrabold text-white mb-4">$149 <span class="text-xs text-neutral-500 font-normal">/ month</span></div>
+                    <p class="text-xs text-neutral-400 mb-6" data-tr="Yoğun trafik yönetimi ve kurumsal otonom DOM tarama operasyonları." data-en="High-volume traffic management and enterprise autonomous DOM scraping operations.">High-volume traffic management and enterprise autonomous DOM scraping operations.</p>
+                    <ul class="space-y-3 text-xs text-neutral-300 mb-8">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>3 HWID Hardware Bindings</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Up to 50 Worker Threads</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Advanced Anti-Bot Jitter V2</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Priority Edge Relay Nodes</span></li>
+                    </ul>
+                </div>
+                <button onclick="alert('Redirecting to secure Enterprise License Checkout...')" class="w-full py-3 rounded-xl bg-white text-black hover:bg-neutral-200 font-bold text-xs uppercase tracking-wider transition shadow-lg">
+                    Deploy Professional
+                </button>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="glass-panel p-8 rounded-3xl border border-white/10 flex flex-col justify-between relative">
+                <div>
+                    <span class="text-xs mono-font text-neutral-400 uppercase tracking-wider block mb-2">Infinite Cluster</span>
+                    <div class="text-3xl font-extrabold text-white mb-4">$399 <span class="text-xs text-neutral-500 font-normal">/ month</span></div>
+                    <p class="text-xs text-neutral-400 mb-6" data-tr="Kurumsal yapılar için sınırsız thread ve özel proxy altyapısı." data-en="Unlimited threads and dedicated proxy infrastructure for large enterprises.">Unlimited threads and dedicated proxy infrastructure for large enterprises.</p>
+                    <ul class="space-y-3 text-xs text-neutral-300 mb-8">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Unlimited HWID Pool</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>256+ Concurrent Workers</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Dedicated Account Manager</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i> <span>Custom Source Code Access</span></li>
+                    </ul>
+                </div>
+                <button onclick="alert('Redirecting to secure Enterprise License Checkout...')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white text-white hover:text-black font-bold text-xs uppercase tracking-wider transition">
+                    Contact Sales
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 22 Core Features Registry Section -->
+    <section id="features" class="py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block" data-tr="Mühendislik Standartları" data-en="Engineering Specifications">Engineering Specifications</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-8" data-tr="22 Adet Tam Entegre Mimari Modül" data-en="The 22 Architectural Modules">The 22 Architectural Modules</h2>
             
-            <!-- Search Bar -->
             <div class="max-w-md mx-auto glass-panel p-2 rounded-2xl flex items-center space-x-3 border border-white/10">
-                <i class="fa-solid fa-magnifying-glass text-neutral-500 ml-3" aria-hidden="true"></i>
-                <label for="feature-search" class="sr-only">Search Specifications</label>
-                <input type="text" id="feature-search" onkeyup="filterFeatures()" placeholder="Özellik ara (Mutex, Proxy, Thread, DOM)..." aria-label="Search specifications" class="w-full bg-transparent text-sm text-white placeholder-neutral-500 focus:outline-none mono-font">
+                <i class="fa-solid fa-magnifying-glass text-neutral-500 ml-3"></i>
+                <input type="text" id="feature-search" onkeyup="filterFeatures()" placeholder="Search registry (HWID, Mutex, Proxy)..." class="w-full bg-transparent text-sm text-white placeholder-neutral-500 focus:outline-none mono-font">
             </div>
         </div>
 
         <div id="features-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- 1 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Hardware-Locked Licensing HWID Fingerprinting">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Hardware-Locked Licensing</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">HWID Parmak İzi Tespiti ve SHA-256 Kriptografik Lisans Doğrulama[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Hardware-Locked Licensing HWID Fingerprinting">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-microchip"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Hardware-Locked Licensing</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">HWID Fingerprinting & SHA-256 Cryptographic License Verification[cite: 1].</p>
             </div>
-            <!-- 2 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Single-Instance Mutex Process Guard">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Single-Instance Mutex</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Process Guard & Mutex Koruması ile aynı anda çakışmayı önleme[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Single-Instance Mutex Process Guard">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-lock"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Single-Instance Mutex</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Process Guard & Mutex Protection preventing concurrent execution conflicts[cite: 1].</p>
             </div>
-            <!-- 3 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Lock File Atexit Cleanup">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-file-shield" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Lock File & Cleanup</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Geçici Kilit Dosyası yönetimi ve atexit temizlik kancaları[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Lock File Atexit Cleanup">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-file-shield"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Lock File & Cleanup</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Temporary Lock File management with automated atexit cleanup hooks[cite: 1].</p>
             </div>
-            <!-- 4 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Dynamic Obfuscation Base64">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Dynamic Obfuscation</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Base64 Dinamik Kodlama & çalışma anında şifre çözme[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Dynamic Obfuscation Base64">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-code"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Dynamic Obfuscation</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Base64 Dynamic Obfuscation & real-time runtime string decryption[cite: 1].</p>
             </div>
-            <!-- 5 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Cryptographic Verification SHA-256">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-key" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Cryptographic Verification</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">SHA-256 hash havuzu doğrulaması ve 52 karakter anahtar desteği[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Cryptographic Verification SHA-256">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-key"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Cryptographic Verification</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">SHA-256 hash pool verification for pre-generated 52-character keys[cite: 1].</p>
             </div>
-            <!-- 6 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Local License Caching Persistence">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-database" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Local License Caching</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Otomatik giriş doğrulama için kalıcı yerel önbellek kaydı[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Local License Caching Persistence">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-database"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Local License Caching</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Persistent local session caching for automated login validation[cite: 1].</p>
             </div>
-            <!-- 7 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Dual-Frame Architecture CustomTkinter">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-window-maximize" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Dual-Frame Architecture</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Giriş ve kontrol katmanlarını ayıran modüler arayüz yapısı[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Dual-Frame Architecture CustomTkinter">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-window-maximize"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Dual-Frame Architecture</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">CustomTkinter modular UI framework splitting login and control layers[cite: 1].</p>
             </div>
-            <!-- 8 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Automated DOM Scraping Selenium">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Automated DOM Scraping</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">RegEx parametre çıkarımı ve Selenium ile hedef DOM analizi[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Automated DOM Scraping Selenium">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Automated DOM Scraping</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">RegEx parameter extraction and target DOM analysis via Selenium[cite: 1].</p>
             </div>
-            <!-- 9 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Multi-Mode Protocols Combo Like Hit">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Multi-Mode Protocols</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Combo, yalnızca beğeni ve yalnızca trafik (hit) çalışma seçenekleri[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Multi-Mode Protocols Combo Like Hit">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-sliders"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Multi-Mode Protocols</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Combo mode, like-only mode, and traffic hit-only execution options[cite: 1].</p>
             </div>
-            <!-- 10 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Configurable Interval Sliders">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Configurable Interval Sliders</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Dinamik istek aralığı kontrolü ve hız optimizasyonu kaydırıcıları[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Configurable Interval Sliders">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-gauge-high"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Configurable Interval Sliders</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Dynamic request interval control sliders and speed optimization[cite: 1].</p>
             </div>
-            <!-- 11 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Asynchronous Multi-Threading Workers">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Asynchronous Multi-Threading</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Maksimum performans için eşzamanlı çalışan işçi thread hatları[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Asynchronous Multi-Threading Workers">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-network-wired"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Asynchronous Multi-Threading</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Concurrent worker thread execution for maximized performance[cite: 1].</p>
             </div>
-            <!-- 12 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="IP Proxy Rotation Integration">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">IP Proxy Rotation</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Satır bazlı proxy ayrıştırma ve yönlendirme entegrasyonu[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="IP Proxy Rotation Integration">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-server"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">IP Proxy Rotation</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Seamless proxy integration supporting one IP per line parsing[cite: 1].</p>
             </div>
-            <!-- 13 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Dynamic User-Agent Spoofer">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-user-secret" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Dynamic User-Agent Spoofer</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Çeşitli istemci ortamlarını taklit eden parmak izi rotasyonu[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Dynamic User-Agent Spoofer">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-user-secret"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Dynamic User-Agent Spoofer</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Fingerprint rotation mimicking diverse client environments[cite: 1].</p>
             </div>
-            <!-- 14 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Anti-Bot Jitter Algorithm">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Anti-Bot Jitter Algorithm</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">İnsani operasyonel tempoyu taklit eden rastgele zamanlama sapmaları[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Anti-Bot Jitter Algorithm">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-wave-square"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Anti-Bot Jitter Algorithm</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Randomized timing deviations mimicking human operational cadence[cite: 1].</p>
             </div>
-            <!-- 15 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Anti-Lag Delay Balancer">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Anti-Lag Delay Balancer</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Ağ yükü altında kararlılığı korumak için istek gecikme dengeleyicisi[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Anti-Lag Delay Balancer">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-virus"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Anti-Lag Delay Balancer</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Request delay balancer to sustain connection stability under heavy load[cite: 1].</p>
             </div>
-            <!-- 16 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Masked Key Toggle Security">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-eye-slash" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Masked Key Toggle</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Etkileşimli güvenlik bilgisi ve yardım pencereleri[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Masked Key Toggle Security">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-eye-slash"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Masked Key Toggle</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Interactive masked license key and HWID display with security toggle[cite: 1].</p>
             </div>
-            <!-- 17 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Live Theme Palette Switcher">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-palette" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Live Theme Palette Switcher</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Anlık dil ve tema adaptasyonu sağlayan dinamik arayüz[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Live Theme Palette Switcher">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-palette"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Live Theme Palette Switcher</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Dynamic UI customization with instant color palette adaptation[cite: 1].</p>
             </div>
-            <!-- 18 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Real-Time Console Logging">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Real-Time Console Logging</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Zaman damgalı güvenli konsol olay kayıtları ve otomatik kaydırma[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Real-Time Console Logging">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-terminal"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Real-Time Console Logging</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Timestamped secure console event logging with auto-scroll features[cite: 1].</p>
             </div>
-            <!-- 19 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Live Performance Counters Stats">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Live Performance Counters</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Beğeni ve trafik üretim istatistikleri için anlık sayaç takibi[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Live Performance Counters Stats">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-chart-line"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Live Performance Counters</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Real-time statistics tracking for likes and traffic/hits generation[cite: 1].</p>
             </div>
-            <!-- 20 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Headless Chrome Driver Manager">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-brands fa-chrome" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Headless Chrome Driver</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">WebDriver Manager ile otomatik sürücü yönetimi[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Headless Chrome Driver Manager">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-brands fa-chrome"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Headless Chrome Driver</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Automated driver management via WebDriver Manager integration[cite: 1].</p>
             </div>
-            <!-- 21 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="Safe Session Termination Guard">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-cat" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">Safe Session Termination</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Arka plan thread koruması ve acil çıkış doğrulama protokolleri[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="Safe Session Termination Guard">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-shield-cat"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">Safe Session Termination</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Background thread protection and guarded exit verification protocols[cite: 1].</p>
             </div>
-            <!-- 22 -->
-            <div class="glass-card p-8 rounded-2xl feature-card" data-title="System State Reset Memory Clean">
-                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-rotate" aria-hidden="true"></i></div>
-                <h3 class="text-lg font-bold mb-3 text-white">System State Reset</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">Bellek kayıtlarını temizleme ve sayaçları sıfırlama kabiliyeti[cite: 1].</p>
+            <div class="glass-card p-6 sm:p-8 rounded-2xl feature-card" data-title="System State Reset Memory Clean">
+                <div class="w-12 h-12 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white text-xl mb-6"><i class="fa-solid fa-rotate"></i></div>
+                <h3 class="text-base sm:text-lg font-bold mb-3 text-white">System State Reset</h3>
+                <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed">Memory record cleaning and performance counter resetting capability[cite: 1].</p>
             </div>
         </div>
-        <!-- No Search Results Warning -->
-        <div id="no-results" class="hidden text-center py-12 text-neutral-500 mono-font text-sm" data-tr="Eşleşen özellik bulunamadı." data-en="No matching specifications found.">
-            Eşleşen özellik bulunamadı.
-        </div>
-    </section>
-
-    <!-- FAQ Accordion Section -->
-    <section id="faq" class="py-20 max-w-4xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <span class="text-xs mono-font uppercase tracking-widest text-neutral-500 mb-3 block" data-tr="Destek &amp; Bilgi Bankası" data-en="Support &amp; Knowledge Base">Destek &amp; Bilgi Bankası</span>
-            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight" data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions">Sıkça Sorulan Sorular</h2>
-        </div>
-        <div class="space-y-4">
-            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)">
-                <div class="flex justify-between items-center font-bold text-white text-sm md:text-base">
-                    <span data-tr="Python çekirdeğinde hangi kütüphaneler ve özellikler kullanılıyor?" data-en="Which libraries and features are used in the Python core?">Python çekirdeğinde hangi kütüphaneler ve özellikler kullanılıyor?</span>
-                    <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
-                </div>
-                <div class="faq-content hidden pt-4 text-neutral-400 text-xs md:text-sm leading-relaxed border-t border-white/5 mt-4" data-tr="CustomTkinter, Selenium WebDriver, WebDriver Manager, multi-threading, proxy eklenti paketleme ve atexit otomatik bellek temizleme mekanizmaları tam entegre çalışır." data-en="CustomTkinter, Selenium WebDriver, WebDriver Manager, multi-threading, proxy extension packaging, and atexit automatic memory cleanup mechanisms work fully integrated.">
-                    CustomTkinter, Selenium WebDriver, WebDriver Manager, multi-threading, proxy eklenti paketleme ve atexit otomatik bellek temizleme mekanizmaları tam entegre çalışır.
-                </div>
-            </div>
-            <div class="glass-panel rounded-2xl p-6 border border-white/10 cursor-pointer" onclick="toggleFaq(this)">
-                <div class="flex justify-between items-center font-bold text-white text-sm md:text-base">
-                    <span data-tr="Zamanlanmış dinlenme protokolü nasıl çalışır?" data-en="How does the scheduled rest protocol work?">Zamanlanmış dinlenme protokolü nasıl çalışır?</span>
-                    <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
-                </div>
-                <div class="faq-content hidden pt-4 text-neutral-400 text-xs md:text-sm leading-relaxed border-t border-white/5 mt-4" data-tr="Seçilen süre (15, 30 veya 60 dk) dolduğunda motor otomatik olarak durur, masaüstüne txt raporu kaydeder, 1 dakika dinlenip sistemi sabit ayarlarla yeniden başlatır." data-en="When the selected duration (15, 30 or 60 mins) is reached, the engine automatically stops, saves a txt report to the desktop, rests for 1 minute, and restarts the system with fixed settings.">
-                    Seçilen süre (15, 30 veya 60 dk) dolduğunda motor otomatik olarak durur, masaüstüne txt raporu kaydeder, 1 dakika dinlenip sistemi sabit ayarlarla yeniden başlatır.
-                </div>
-            </div>
+        <div id="no-results" class="hidden text-center py-12 text-neutral-500 mono-font text-sm">
+            No matching specifications found.
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-12 border-t border-white/10 text-center text-xs mono-font text-neutral-500 glass-panel">
-        <p>&copy; 2026 Lacas Client v1.0 Architecture. All rights reserved.</p>
+        <p>&copy; 2026 Lacas Client Enterprise Core. All rights reserved. Secured by SHA-256 Matrix.</p>
     </footer>
 
-    <!-- Scripts: Canlı Dil, Sayaçlar ve Simülasyon Motoru -->
+    <!-- Script Engine: Chart.js Telemetry + Live Streaming + Localization -->
     <script>
-        let currentLang = 'tr';
+        let currentLang = 'en';
         let isEngineRunning = false;
         let timerInterval = null;
         let counterInterval = null;
         let totalSeconds = 0;
         let likesCount = 0;
         let hitsCount = 0;
+
+        // Chart.js Initialization
+        const ctx = document.getElementById('telemetryChart').getContext('2d');
+        const telemetryChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['10s ago', '8s ago', '6s ago', '4s ago', '2s ago', 'Now'],
+                datasets: [{
+                    label: 'Requests / Sec',
+                    data: [12, 19, 15, 28, 22, 35],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#737373', font: { family: 'JetBrains Mono', size: 10 } } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#737373', font: { family: 'JetBrains Mono', size: 10 } } }
+                }
+            }
+        });
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -489,11 +543,11 @@
             const btnTr = document.getElementById('btn-tr');
             const btnEn = document.getElementById('btn-en');
             if (lang === 'tr') {
-                btnTr.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-black shadow";
-                btnEn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition text-neutral-400 hover:text-white";
+                btnTr.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white text-black shadow";
+                btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition text-neutral-400 hover:text-white";
             } else {
-                btnEn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-white text-black shadow";
-                btnTr.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition text-neutral-400 hover:text-white";
+                btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition bg-white text-black shadow";
+                btnTr.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition text-neutral-400 hover:text-white";
             }
 
             document.querySelectorAll('[data-tr]').forEach(el => {
@@ -509,13 +563,11 @@
         }
 
         function updateIntervalText(val) {
-            const lbl = document.getElementById('labelInterval');
-            lbl.innerText = currentLang === 'tr' ? `İstek Aralığı: ${val}s` : `Request Interval: ${val}s`;
+            document.getElementById('labelInterval').innerText = currentLang === 'tr' ? `İstek Aralığı: ${val}s` : `Polling Interval: ${val}s`;
         }
 
         function updateThreadText(val) {
-            const lbl = document.getElementById('labelThreads');
-            lbl.innerText = currentLang === 'tr' ? `İşçi Süreçleri (Threads): ${val} (Max 5)` : `Worker Processes (Threads): ${val} (Max 5)`;
+            document.getElementById('labelThreads').innerText = currentLang === 'tr' ? `Aktif Worker: ${val} (Max 10)` : `Active Worker Pods: ${val} (Max 10)`;
         }
 
         function formatTime(sec) {
@@ -534,16 +586,16 @@
 
         function toggleEngine() {
             const btn = document.getElementById('btnStart');
-            const statusBadge = document.getElementById('engineStatusBadge');
+            const statusBadge = document.getElementById('cloudStatusBadge');
             isEngineRunning = !isEngineRunning;
 
             if (isEngineRunning) {
-                btn.innerHTML = `<i class="fa-solid fa-stop text-xs"></i> <span>${currentLang === 'tr' ? 'MOTORU DURDUR' : 'STOP ENGINE'}</span>`;
-                btn.className = "w-full py-4 rounded-xl bg-[#26262B] hover:bg-[#3B3B45] text-white font-bold text-xs uppercase tracking-widest transition shadow-xl flex items-center justify-center space-x-2";
+                btn.innerHTML = `<i class="fa-solid fa-stop text-xs"></i> <span>${currentLang === 'tr' ? 'CLUSTER AKIŞINI DURDUR' : 'HALT CLUSTER STREAM'}</span>`;
+                btn.className = "w-full py-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-widest transition shadow-2xl flex items-center justify-center space-x-2";
                 statusBadge.className = "text-xs mono-font px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-bold animate-pulse";
-                statusBadge.innerText = currentLang === 'tr' ? '[DURUM: ÇALIŞIYOR]' : '[STATUS: RUNNING]';
+                statusBadge.innerText = currentLang === 'tr' ? '[CLUSTER: AKTİF AKIŞ]' : '[CLUSTER: STREAMING ACTIVE]';
                 
-                addLog("[SYSTEM] Motor başlatıldı, ayarlar kilitlendi. Çoklu işçi thread'leri aktif.");
+                addLog(currentLang === 'tr' ? "[CLUSTER] Küme akışı başlatıldı. Dağıtık işçi podları devrede." : "[CLUSTER] Cluster stream initialized. Distributed worker pods deployed.");
 
                 timerInterval = setInterval(() => {
                     totalSeconds++;
@@ -551,19 +603,27 @@
                 }, 1000);
 
                 counterInterval = setInterval(() => {
-                    likesCount += Math.floor(Math.random() * 2) + 1;
-                    hitsCount += Math.floor(Math.random() * 4) + 2;
+                    likesCount += Math.floor(Math.random() * 4) + 1;
+                    hitsCount += Math.floor(Math.random() * 8) + 3;
                     document.getElementById('displayLikes').innerText = likesCount;
                     document.getElementById('displayHits').innerText = hitsCount;
 
-                    if (Math.random() > 0.6) {
-                        addLog(`[İŞÇİ] Başarılı etkileşim gönderildi. Beğeni: ${likesCount} | Trafik: ${hitsCount}`);
+                    // Update Chart Data Live
+                    const randomVal = Math.floor(Math.random() * 25) + 20;
+                    telemetryChart.data.labels.shift();
+                    telemetryChart.data.labels.push(new Date().toLocaleTimeString());
+                    telemetryChart.data.datasets[0].data.shift();
+                    telemetryChart.data.datasets[0].data.push(randomVal);
+                    telemetryChart.update('none');
+
+                    if (Math.random() > 0.4) {
+                        addLog(`[DISPATCH] Node-US-VA | HTTP 200 OK | Likes: +${likesCount} | Bandwidth: 14.2 MB/s`);
                     }
-                }, 1500);
+                }, 1000);
 
             } else {
                 stopEngineState();
-                addLog("[SYSTEM] Motor durduruldu. Masaüstüne oturum raporu (.txt) kaydedildi.");
+                addLog(currentLang === 'tr' ? "[CLUSTER] Akış durduruldu. Oturum raporu güvenli belleğe kaydedildi." : "[CLUSTER] Stream halted. Session telemetry report committed to secure storage.");
             }
         }
 
@@ -572,16 +632,16 @@
             clearInterval(timerInterval);
             clearInterval(counterInterval);
             const btn = document.getElementById('btnStart');
-            const statusBadge = document.getElementById('engineStatusBadge');
-            btn.innerHTML = `<i class="fa-solid fa-play text-xs"></i> <span>${currentLang === 'tr' ? 'MOTORU BAŞLAT' : 'START ENGINE'}</span>`;
-            btn.className = "w-full py-4 rounded-xl bg-white hover:bg-neutral-200 text-black font-bold text-xs uppercase tracking-widest transition shadow-xl flex items-center justify-center space-x-2";
+            const statusBadge = document.getElementById('cloudStatusBadge');
+            btn.innerHTML = `<i class="fa-solid fa-play text-xs"></i> <span>${currentLang === 'tr' ? 'CLUSTER AKIŞINI BAŞLAT' : 'DEPLOY CLUSTER STREAM'}</span>`;
+            btn.className = "w-full py-4 rounded-xl bg-white hover:bg-neutral-200 text-black font-bold text-xs uppercase tracking-widest transition shadow-2xl flex items-center justify-center space-x-2";
             statusBadge.className = "text-xs mono-font px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold";
-            statusBadge.innerText = currentLang === 'tr' ? '[DURUM: HAZIR]' : '[STATUS: READY]';
+            statusBadge.innerText = "[CLUSTER: ONLINE]";
         }
 
         function resetCounters() {
             if (isEngineRunning) {
-                alert(currentLang === 'tr' ? 'Motor çalışırken sayaçlar sıfırlanamaz! Önce durdurun.' : 'Cannot reset while engine is running! Stop it first.');
+                alert(currentLang === 'tr' ? 'Akış aktifken önbellek temizlenemez! Önce durdurun.' : 'Cannot purge cache while stream is active! Halt first.');
                 return;
             }
             totalSeconds = 0;
@@ -590,35 +650,24 @@
             document.getElementById('displayTime').innerText = "00:00:00";
             document.getElementById('displayLikes').innerText = "0";
             document.getElementById('displayHits').innerText = "0";
-            addLog("[SİSTEM] Sayaçlar sıfırlandı ve RAM tamamen temizlendi.");
+            addLog(currentLang === 'tr' ? "[SYSTEM] Önbellek ve RAM sayaçları sıfırlandı." : "[SYSTEM] Cache and RAM telemetry counters purged.");
         }
 
         function emergencyStop() {
             stopEngineState();
-            addLog("[ACİL DURUM] Kullanıcı acil durum tuşuna bastı! Tüm süreçler sonlandırıldı ve rapor kaydedildi.");
-            alert(currentLang === 'tr' ? 'Acil durum protokolü uygulandı! Tüm süreçler durduruldu.' : 'Emergency protocol applied! All processes terminated.');
+            addLog(currentLang === 'tr' ? "[EMERGENCY] ACİL KESİCİ tetiklendi! Tüm bulut düğümleri izole edildi." : "[EMERGENCY] EMERGENCY KILL triggered! All cloud nodes isolated.");
+            alert(currentLang === 'tr' ? 'Acil kesici protokolü başarıyla uygulandı.' : 'Emergency kill protocol successfully executed.');
         }
 
         function clearTerminalLogs() {
-            document.getElementById('terminal-content').innerHTML = `<p class="text-neutral-500">[SYSTEM] Konsol temizlendi.</p>`;
+            document.getElementById('terminal-content').innerHTML = `<p class="text-neutral-500">[SYSTEM] Terminal stream cleared.</p>`;
         }
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('mobile-menu-icon');
+            const icon = document.getElementById('mobile-icon');
             menu.classList.toggle('hidden');
             icon.className = menu.classList.contains('hidden') ? "fa-solid fa-bars" : "fa-solid fa-xmark";
-        }
-
-        function setTheme(mode) {
-            const body = document.getElementById('site-body');
-            if(mode === 'cyber') {
-                body.style.backgroundColor = '#050b08';
-                addLog("[THEME] Cyberpunk profil uygulandı.");
-            } else {
-                body.style.backgroundColor = '#020202';
-                addLog("[THEME] Saf koyu siyah profil uygulandı.");
-            }
         }
 
         function filterFeatures() {
@@ -636,24 +685,12 @@
                     card.style.display = 'none';
                 }
             });
-
-            const noRes = document.getElementById('no-results');
-            noRes.classList.toggle('hidden', visibleCount !== 0);
+            document.getElementById('no-results').classList.toggle('hidden', visibleCount !== 0);
         }
 
-        function toggleFaq(element) {
-            const content = element.querySelector('.faq-content');
-            const icon = element.querySelector('i');
-            content.classList.toggle('hidden');
-            icon.className = content.classList.contains('hidden') ? "fa-solid fa-plus text-xs transition-transform duration-300" : "fa-solid fa-minus text-xs transition-transform duration-300";
-        }
-
-        // GSAP Animasyonları
-        gsap.registerPlugin(ScrollTrigger);
-        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-            gsap.from(".hero-content > *", { y: 50, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power3.out" });
-            gsap.from(".section-title", { scrollTrigger: { trigger: ".section-title", start: "top 85%" }, y: 30, opacity: 0, duration: 1, ease: "power3.out" });
-        }
+        window.addEventListener('DOMContentLoaded', () => {
+            setLanguage('en');
+        });
     </script>
 </body>
 </html>
