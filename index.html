@@ -28,9 +28,20 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        /* Hero Scroll Fade Effect */
         #heroSection {
             transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+
+        .glass-card {
+            background: rgba(14, 14, 18, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
@@ -39,12 +50,9 @@
     <!-- Top Navigation & Tab Controller -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-dark-950/90 backdrop-blur-xl border-b border-dark-700">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                    <span class="w-3 h-3 rounded-full bg-white animate-pulse"></span>
-                    <span class="text-sm font-bold tracking-widest font-mono">LACAS SUITE</span>
-                </div>
-                <span class="text-xs px-2 py-0.5 rounded-full bg-dark-800 border border-dark-600 text-zinc-400 font-mono">v21.0-SECURE</span>
+            <div class="flex items-center space-x-3">
+                <span class="w-3 h-3 rounded-full bg-white animate-pulse"></span>
+                <span class="text-sm font-bold tracking-widest font-mono">LACAS SUITE</span>
             </div>
 
             <!-- Tab Switching Buttons -->
@@ -57,8 +65,8 @@
                 <button onclick="toggleLanguage()" id="langBtn" class="px-3 py-1.5 rounded-lg bg-dark-800 border border-dark-600 text-xs font-mono font-semibold hover:bg-dark-700 transition">
                     TR / EN
                 </button>
-                <a href="https://github.com" target="_blank" class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition" data-en="GitHub Repository" data-tr="GitHub Deposu">
-                    GitHub
+                <a href="#pricing" class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition" data-en="Get Access ($49)" data-tr="Erişim Satın Al ($49)">
+                    Get Access ($49)
                 </a>
             </div>
         </div>
@@ -71,7 +79,7 @@
         <section id="heroSection" class="max-w-6xl mx-auto px-6 pt-12 pb-20 text-center relative">
             <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.06),rgba(255,255,255,0))] pointer-events-none"></div>
             
-            <!-- Devasa Program Logoları (Yan Yana / Ortalanmış) -->
+            <!-- Devasa Program Logoları -->
             <div class="flex items-center justify-center space-x-6 md:space-x-12 mb-10">
                 <div class="p-4 rounded-3xl bg-dark-900/80 border border-dark-700 shadow-[0_0_30px_rgba(255,255,255,0.05)] transform hover:scale-105 transition duration-500">
                     <img src="LacasClient.png" alt="Client Emblem" class="w-28 h-28 md:w-40 md:h-40 object-contain filter drop-shadow-[0_0_20px_rgba(255,255,255,0.15)]">
@@ -161,69 +169,49 @@
                 </div>
             </div>
 
-            <!-- 20+ Advanced Features Expanded Grid -->
+            <!-- Advanced Features Grid with Interactive Click/Hover Popover Simulation -->
             <div class="mb-12">
-                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="20+ Integrated Enterprise Sub-Systems" data-tr="20+ Entegre Kurumsal Alt Sistem">20+ Integrated Enterprise Sub-Systems</h3>
+                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="Interactive Sub-Systems (Click to Inspect)" data-tr="İnteraktif Alt Sistemler (İncelemek İçin Tıklayın)">Interactive Sub-Systems (Click to Inspect)</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
+                    <div onclick="inspectFeature('HWID Hardware Lock', 'Validates motherboard serial numbers and CPU identifiers against local encrypted state files to prevent unauthorized replication.')" class="p-5 rounded-xl glass-card cursor-pointer">
                         <span class="text-xs font-mono text-zinc-500">01 / SHIELD</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="HWID Hardware Lock" data-tr="HWID Donanım Kilidi">HWID Hardware Lock</h4>
                         <p class="text-xs text-zinc-400" data-en="Motherboard serial and CPU hash validation bound to client instance." data-tr="İstemci örneğine bağlı anakart seri numarası ve CPU hash doğrulaması.">Motherboard serial and CPU hash validation bound to client instance.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">02 / PROXY</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auth Proxy Generator" data-tr="Auth Proxy Üretici">Auth Proxy Generator</h4>
-                        <p class="text-xs text-zinc-400" data-en="Creates temporary Chrome extension zip packages for authenticated proxy gateways." data-tr="Kimlik doğrulamalı proxy ağ geçitleri için geçici Chrome uzantısı zip paketleri oluşturur.">Creates temporary Chrome extension zip packages for authenticated proxy gateways.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">03 / BYPASS</span>
+                    <div onclick="inspectFeature('Organic Anti-Bot Noise', 'Injects human-like Gaussian delays and micro-scroll patterns to bypass aggressive bot detection algorithms.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">02 / BYPASS</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Organic Anti-Bot Noise" data-tr="Organik Anti-Bot Gürültüsü">Organic Anti-Bot Noise</h4>
                         <p class="text-xs text-zinc-400" data-en="Gaussian distribution delays and random viewport micro-scrolls." data-tr="Gauss dağılım gecikmeleri ve rastgele görünüm alanı mikro kaydırmaları.">Gaussian distribution delays and random viewport micro-scrolls.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">04 / MEMORY</span>
+                    <div onclick="inspectFeature('RAM Garbage Purge', 'Executes periodic forced garbage collection cycles and process recycling to maintain zero memory bloat during multi-day runs.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">03 / MEMORY</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="RAM Garbage Purge" data-tr="RAM Çöp Temizliği">RAM Garbage Purge</h4>
                         <p class="text-xs text-zinc-400" data-en="Forced garbage collection cycles to prevent memory bloat during multi-day runs." data-tr="Çok günlük çalışmalarda bellek şişmesini önlemek için zorunlu çöp toplama döngüleri.">Forced garbage collection cycles to prevent memory bloat during multi-day runs.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">05 / AUDIO</span>
+                    <div onclick="inspectFeature('Motherboard Beep Matrix', 'Triggers hardware-level Win32 acoustic frequency alerts to confirm state transitions without looking at monitor.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">04 / AUDIO</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Motherboard Beep Matrix" data-tr="Anakart Bip Matrisi">Motherboard Beep Matrix</h4>
                         <p class="text-xs text-zinc-400" data-en="Acoustic frequency alerts for start, stop, and error states via Win32 API." data-tr="Win32 API ile başlangıç, durdurma ve hata durumları için akustik frekans uyarıları.">Acoustic frequency alerts for start, stop, and error states via Win32 API.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">06 / DOM</span>
+                    <div onclick="inspectFeature('Auto DOM ID Harvester', 'Parses live target source code using precise regex patterns to capture internal cwRating objects automatically.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">05 / DOM</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auto DOM ID Harvester" data-tr="Otomatik DOM Kimlik Avcısı">Auto DOM ID Harvester</h4>
                         <p class="text-xs text-zinc-400" data-en="Regex pattern matching to extract cwRating parameters directly from target source." data-tr="Hedef kaynaktan cwRating parametrelerini doğrudan çıkarmak için regex desen eşleştirme.">Regex pattern matching to extract cwRating parameters directly from target source.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">07 / TIMER</span>
+                    <div onclick="inspectFeature('Auto-Rest & Cycle Loop', 'Pauses execution after scheduled intervals, saves forensic reports, rests precisely for 1 minute, and restarts.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">06 / TIMER</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Auto-Rest & Cycle Loop" data-tr="Otomatik Dinlenme Döngüsü">Auto-Rest & Cycle Loop</h4>
                         <p class="text-xs text-zinc-400" data-en="Scheduled rests (15-120 min) with automatic session recycling." data-tr="Otomatik oturum geri dönüşümü ile zamanlanmış dinlenmeler (15-120 dk).">Scheduled rests (15-120 min) with automatic session recycling.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">08 / EXPORT</span>
+                    <div onclick="inspectFeature('Desktop Report Dumper', 'Compiles all activity logs and performance metrics into timestamped plaintext documents on your desktop.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">07 / EXPORT</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Desktop Report Dumper" data-tr="Masaüstü Rapor Dökümü">Desktop Report Dumper</h4>
                         <p class="text-xs text-zinc-400" data-en="Timestamped .txt session log generator exported directly to desktop." data-tr="Doğrudan masaüstüne aktarılan zaman damgalı .txt oturum günlük üreteci.">Timestamped .txt session log generator exported directly to desktop.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">09 / THREAD</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Parallel Worker Pools" data-tr="Paralel İşçi Havuzları">Parallel Worker Pools</h4>
-                        <p class="text-xs text-zinc-400" data-en="Independent multi-threaded execution channels for high throughput." data-tr="Yüksek verim için bağımsız çok iş parçacıklı yürütme kanalları.">Independent multi-threaded execution channels for high throughput.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">10 / LOCK</span>
+                    <div onclick="inspectFeature('Mutex Single Instance', 'Enforces strict execution barriers ensuring only one instance runs at any given time via OS naming tables.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-zinc-500">08 / LOCK</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Mutex Single Instance" data-tr="Mutex Tekil Örnek Kilidi">Mutex Single Instance</h4>
                         <p class="text-xs text-zinc-400" data-en="Prevents duplicate execution using Windows global named mutexes." data-tr="Windows global adlandırılmış mutex'leri kullanarak kopya yürütmeyi önler.">Prevents duplicate execution using Windows global named mutexes.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">11 / LATENCY</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Jitter Balancer" data-tr="Gecikme Dengeleyici">Jitter Balancer</h4>
-                        <p class="text-xs text-zinc-400" data-en="Smooths out network variance to maintain stable polling rates." data-tr="Kararlı yoklama oranlarını korumak için ağ varyansını yumuşatır.">Smooths out network variance to maintain stable polling rates.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-zinc-500 transition">
-                        <span class="text-xs font-mono text-zinc-500">12 / TLS</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Cipher Suite Shield" data-tr="Şifre Paketi Kalkanı">Cipher Suite Shield</h4>
-                        <p class="text-xs text-zinc-400" data-en="Obfuscates encrypted TLS handshakes against deep packet inspection." data-tr="Derin paket incelemesine karşı şifreli TLS el sıkışmalarını gizler.">Obfuscates encrypted TLS handshakes against deep packet inspection.</p>
                     </div>
                 </div>
             </div>
@@ -257,11 +245,11 @@
                             <input type="text" id="socUrl" value="https://httpbin.org/headers" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-mono text-zinc-400 mb-1 text-rose-400" data-en="Mandatory SOCKS5 Proxy Pool" data-tr="Zorunlu SOCKS5 Proxy Havuzu">Mandatory SOCKS5 Proxy Pool</label>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1 text-cyan-400" data-en="Mandatory SOCKS5 Proxy Pool" data-tr="Zorunlu SOCKS5 Proxy Havuzu">Mandatory SOCKS5 Proxy Pool</label>
                             <textarea id="socProxy" rows="2" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-cyan-400 focus:outline-none focus:border-white transition">socks5://user:pass@127.0.0.1:1080</textarea>
                         </div>
                         <div>
-                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Operation Strategy" data-tr="Çalışma Stratejisi">Operation Strategy</label>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1" data-en="Operation Strategy" data-tr="Çalıştırma Stratejisi">Operation Strategy</label>
                             <select id="socMode" class="w-full bg-dark-950 border border-dark-600 rounded-lg px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-white transition">
                                 <option>Autonomous Secure Mode</option>
                                 <option>Deep Calm Mode</option>
@@ -304,71 +292,94 @@
                 </div>
             </div>
 
-            <!-- 20+ Aegis Advanced Features Grid -->
+            <!-- Aegis Advanced Features Grid -->
             <div class="mb-12">
-                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="Advanced SOC & Defensive Sub-Systems" data-tr="Gelişmiş SOC & Savunma Alt Sistemleri">Advanced SOC & Defensive Sub-Systems</h3>
+                <h3 class="text-xl font-bold mb-6 tracking-tight" data-en="Advanced SOC Sub-Systems (Click to Inspect)" data-tr="Gelişmiş SOC Alt Sistemleri (İncelemek İçin Tıklayın)">Advanced SOC Sub-Systems (Click to Inspect)</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">13 / TUNNEL</span>
+                    <div onclick="inspectFeature('Strict Proxy Validation', 'Tests all entry points against public IP reflection servers before launching asynchronous stress loops.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">09 / TUNNEL</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Strict Proxy Validation" data-tr="Sıkı Proxy Doğrulama">Strict Proxy Validation</h4>
                         <p class="text-xs text-zinc-400" data-en="Validates external proxy responsiveness prior to releasing traffic." data-tr="Trafik bırakılmadan önce dış proxy yanıt verebilirliğini doğrular.">Validates external proxy responsiveness prior to releasing traffic.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">14 / RECON</span>
+                    <div onclick="inspectFeature('Intelligent WAF Profiler', 'Identifies remote protection gateways including Cloudflare, Akamai, and Fastly prior to packet delivery.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">10 / RECON</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Intelligent WAF Profiler" data-tr="Akıllı WAF Profili Oluşturucu">Intelligent WAF Profiler</h4>
                         <p class="text-xs text-zinc-400" data-en="Detects Cloudflare, Akamai, and server signatures instantly." data-tr="Cloudflare, Akamai ve sunucu imza izlerini anında algılar.">Detects Cloudflare, Akamai, and server signatures instantly.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">15 / KILLSWITCH</span>
+                    <div onclick="inspectFeature('Emergency Killswitch', 'Instantly severs all socket connections and purges runtime memory blocks upon operator override.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">11 / KILLSWITCH</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Emergency Killswitch" data-tr="Acil Durum Killswitch">Emergency Killswitch</h4>
                         <p class="text-xs text-zinc-400" data-en="Instant socket severance and memory wipe upon user trigger." data-tr="Kullanıcı tetiklemesinde anında soket kesmesi ve bellek silme.">Instant socket severance and memory wipe upon user trigger.</p>
                     </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">16 / ISOLATION</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Cross-Instance Port Lock" data-tr="Çapraz Örnek Port Kilidi">Cross-Instance Port Lock</h4>
-                        <p class="text-xs text-zinc-400" data-en="Port 59237 binding prevents EN and TR editions from running together." data-tr="Port 59237 bağı, EN ve TR sürümlerinin birlikte çalışmasını engeller.">Port 59237 binding prevents EN and TR editions from running together.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">17 / CLOAK</span>
+                    <div onclick="inspectFeature('Silent Lockdown Cloak', 'Enters zero-trace cloaked state automatically if high error thresholds or rate limiters are tripped.')" class="p-5 rounded-xl glass-card cursor-pointer">
+                        <span class="text-xs font-mono text-cyan-500">12 / CLOAK</span>
                         <h4 class="font-bold text-sm mt-1 mb-2" data-en="Silent Lockdown Cloak" data-tr="Sessiz Kilit Maskelemesi">Silent Lockdown Cloak</h4>
                         <p class="text-xs text-zinc-400" data-en="Zero-trace shutdown mode upon encountering aggressive rate limits." data-tr="Agresif oran sınırlarıyla karşılaşırken sıfır izli kapanma modu.">Zero-trace shutdown mode upon encountering aggressive rate limits.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">18 / THREADPOOL</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Asynchronous Workers" data-tr="Asenkron İşçiler">Asynchronous Workers</h4>
-                        <p class="text-xs text-zinc-400" data-en="ThreadPoolExecutor pipeline scaling dynamically based on CPU core count." data-tr="CPU çekirdek sayısına göre dinamik olarak ölçeklenen ThreadPoolExecutor hattı.">ThreadPoolExecutor pipeline scaling dynamically based on CPU core count.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">19 / VPNCHECK</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="Network Interface Monitor" data-tr="Ağ Arayüz Monitörü">Network Interface Monitor</h4>
-                        <p class="text-xs text-zinc-400" data-en="Background daemon tracking tun, tap, wireguard, and VPN adapter states." data-tr="tun, tap, wireguard ve VPN bağdaştırıcı durumlarını takip eden arka plan programı.">Background daemon tracking tun, tap, wireguard, and VPN adapter states.</p>
-                    </div>
-                    <div class="p-5 rounded-xl bg-dark-900 border border-dark-700 hover:border-cyan-500 transition">
-                        <span class="text-xs font-mono text-cyan-500">20 / EXPORTER</span>
-                        <h4 class="font-bold text-sm mt-1 mb-2" data-en="SOC Intelligence Report" data-tr="SOC İstihbarat Raporu">SOC Intelligence Report</h4>
-                        <p class="text-xs text-zinc-400" data-en="Comprehensive forensic reports exported to desktop after each operation." data-tr="Her operasyondan sonra masaüstüne aktarılan kapsamlı adli raporlar.">Comprehensive forensic reports exported to desktop after each operation.</p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- ================= PRICING SECTION ($49 / LACAS ELITE LIFETIME) ================= -->
+        <section id="pricing" class="max-w-4xl mx-auto px-6 py-20 text-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" data-en="Secure Your Access" data-tr="Erişiminizi Güvenceye Alın">Secure Your Access</h2>
+            <p class="text-zinc-400 text-sm md:text-base mb-12" data-en="Single comprehensive license plan. Complete lifetime access to both LacasClient and Aegis SOC suites." data-tr="Tek kapsamlı lisans planı. Hem LacasClient hem de Aegis SOC paketlerine tam ömür boyu erişim.">Single comprehensive license plan. Complete lifetime access to both LacasClient and Aegis SOC suites.</p>
+
+            <div class="p-8 md:p-12 rounded-3xl bg-dark-900 border border-dark-700 shadow-2xl relative overflow-hidden max-w-lg mx-auto text-left">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+                
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-white text-black font-bold uppercase tracking-wider" data-en="Lifetime License" data-tr="Ömür Boyu Lisans">Lifetime License</span>
+                        <h3 class="text-2xl font-black mt-3 text-white">LACAS ELITE LIFETIME</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-4xl font-black text-white">$49</span>
+                        <span class="block text-xs font-mono text-zinc-500" data-en="One-time payment" data-tr="Tek seferlik ödeme">One-time payment</span>
+                    </div>
+                </div>
+
+                <ul class="space-y-3 mb-8 text-xs font-mono text-zinc-300">
+                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Full LacasClient (EN & TR editions)" data-tr="Tam LacasClient (EN & TR sürümleri)">Full LacasClient (EN & TR editions)</span></li>
+                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Full Aegis SOC Command Center" data-tr="Tam Aegis SOC Komuta Merkezi">Full Aegis SOC Command Center</span></li>
+                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Hardware HWID Binding & Protection" data-tr="Donanım HWID Bağlama & Koruma">Hardware HWID Binding & Protection</span></li>
+                    <li class="flex items-center space-x-2"><span>✓</span> <span data-en="Lifetime Updates & Priority Support" data-tr="Ömür Boyu Güncellemeler & Öncelikli Destek">Lifetime Updates & Priority Support</span></li>
+                </ul>
+
+                <a href="mailto:lacasclient@gmail.com?subject=Lacas%20Elite%20Lifetime%20License%20Purchase&body=Hello,%20I%20want%20to%20purchase%20the%20Lacas%20Suite%20license%20for%20$49." class="block w-full py-4 rounded-xl bg-white text-black font-bold text-center text-sm hover:bg-zinc-200 transition shadow-lg shadow-white/5" data-en="PURCHASE VIA GMAIL" data-tr="GMAİL İLE SATIN AL">
+                    PURCHASE VIA GMAIL
+                </a>
+                <div class="text-center mt-4 text-[11px] font-mono text-zinc-500">
+                    Direct Contact: <span class="text-zinc-300">lacasclient@gmail.com</span>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with v1.0 Signature -->
     <footer class="py-8 bg-dark-900 border-t border-dark-700 text-center text-xs text-zinc-500 font-mono">
         <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
-            <span>LACAS CLIENT & AEGIS COMMAND SUITE</span>
+            <span>LACAS CLIENT & AEGIS COMMAND SUITE — v1.0</span>
             <span class="text-emerald-400">STATUS: ALL PROTOCOLS SECURE</span>
         </div>
     </footer>
 
-    <!-- Scripts for Scroll Fade, Tab Switching, Translation & Simulation -->
+    <!-- Interactive Modal / Inspector Popup for Features -->
+    <div id="featureModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 animate-fade-in">
+        <div class="bg-dark-900 border border-dark-700 rounded-2xl max-w-md w-full p-6 relative">
+            <h4 id="modalTitle" class="text-lg font-bold text-white mb-2">Feature Inspection</h4>
+            <p id="modalDesc" class="text-xs font-mono text-zinc-400 leading-relaxed mb-6">Detailed technical specs...</p>
+            <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-white text-black font-bold text-xs hover:bg-zinc-200 transition">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
-        // Scroll Fade Effect for Hero Section
         window.addEventListener('scroll', () => {
             const hero = document.getElementById('heroSection');
             const scrollY = window.scrollY;
-            const fadeLimit = 350; // Kaydırma mesafesi
+            const fadeLimit = 350;
             
             if (scrollY <= fadeLimit) {
                 const opacity = 1 - (scrollY / fadeLimit);
@@ -422,7 +433,16 @@
             document.getElementById('langBtn').textContent = currentLang === 'en' ? 'TR / EN' : 'EN / TR';
         }
 
-        // Sandbox Simulator for LacasClient
+        function inspectFeature(title, desc) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('featureModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('featureModal').classList.add('hidden');
+        }
+
         let simLikes = 0;
         let simTraffic = 0;
         function triggerSimAction(action) {
@@ -446,7 +466,6 @@
             }
         }
 
-        // Sandbox Simulator for Aegis SOC
         let socTotalReq = 0;
         let socErrCount = 0;
         function triggerSocAction(action) {
