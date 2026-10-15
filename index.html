@@ -150,10 +150,77 @@ body::after{content:"";position:fixed;inset:-24%;z-index:-1;pointer-events:none;
 @media(max-width:760px){body::after{inset:-12%;filter:blur(28px);opacity:.34}body::before{inset:-8%;opacity:.2}#ambientCanvas{opacity:.38}.glass-panel,.tour-card,.mock-window{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.reveal,.soft-reveal{filter:none!important;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)!important}.glass-panel:hover,.tour-card:hover,.feature-card:hover{transform:translateY(-3px)}#sectionRail{display:none}}
 @media(max-width:380px){#heroSection{padding-left:1rem;padding-right:1rem}#heroSection .flex.items-center.justify-center.space-x-8>div{padding:.65rem}#heroSection img{width:4.5rem;height:4.5rem}#heroSection .flex.items-center.justify-center.space-x-8>div:nth-child(2){margin-left:.7rem!important}header>div{padding-left:.85rem;padding-right:.85rem}}
 @media(hover:none){#heroSection .flex.items-center.justify-center.space-x-8>div:hover{transform:none!important}#heroSection .flex.items-center.justify-center.space-x-8>div:hover::before{opacity:.2}button:hover,.feature-card:hover,.tour-card:hover{transform:none}}
+</style><style>
+/* Adaptive rendering: keep the visual system while reducing costly compositing on touch devices. */
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  #ambientCanvas { display:none!important; }
+  body::before, body::after { animation:none!important; filter:none!important; transform:none!important; }
+  #heroSection::before { animation:none!important; filter:blur(24px)!important; opacity:.52!important; }
+  #heroSection img, .floaty { animation:none!important; will-change:auto!important; }
+  .reveal,.soft-reveal { filter:none!important; }
+  .glass-panel,.tour-card,.mock-window,#sectionRail,header,.ui-toast,#commandPalette,#backToTop {
+    -webkit-backdrop-filter:none!important; backdrop-filter:none!important;
+  }
+  .glass-panel,.tour-card,.mock-window { background-color:rgba(10,10,12,.94); }
+  .feature-card::before { display:none!important; }
+  .feature-card,.glass-panel,.tour-card,.mock-window { will-change:auto!important; }
+}
+@media (max-width: 760px) {
+  html,body { max-width:100%; overflow-x:clip; }
+  main { width:100%; }
+  #mainContent { padding-top:9.5rem!important; }
+  #heroSection { padding-top:1.25rem!important; padding-bottom:3.5rem!important; }
+  #heroSection h1 { font-size:clamp(2.35rem,11vw,4.25rem)!important; line-height:.98!important; }
+  #heroSection p { max-width:38rem; margin-left:auto; margin-right:auto; }
+  #viewClient,#viewAegis,.max-w-7xl,.max-w-6xl { max-width:100%; }
+  #viewClient,#viewAegis { padding-left:1rem!important; padding-right:1rem!important; }
+  section.max-w-7xl { padding-left:1rem!important; padding-right:1rem!important; }
+  .glass-panel { border-radius:1.35rem!important; }
+  pre,code { max-width:100%; overflow-x:auto; }
+  img,svg,video,canvas { max-width:100%; }
+  button,a { touch-action:manipulation; }
+  #backToTop { right:.75rem; bottom:max(.75rem,env(safe-area-inset-bottom)); }
+}
+@media (max-width: 480px) {
+  #mainContent { padding-top:10rem!important; }
+  header>div { padding-left:.75rem!important; padding-right:.75rem!important; }
+  header>div>.flex.items-center.space-x-4 { gap:.25rem!important; }
+  header>div>.flex.items-center.space-x-4>button { min-height:42px; padding:.45rem .55rem!important; font-size:10px!important; }
+  header>div>.flex.items-center.space-x-4>a { display:none!important; }
+  header>div>.bg-dark-900 button { min-height:44px; font-size:9px!important; white-space:normal!important; line-height:1.2; }
+  #heroSection .flex.items-center.justify-center.space-x-8 { gap:.7rem!important; margin-bottom:2rem!important; }
+  #heroSection .logo-emblem-card { padding:.65rem!important; border-radius:1rem!important; }
+  #heroSection img { width:clamp(4rem,20vw,5.5rem)!important; height:clamp(4rem,20vw,5.5rem)!important; }
+  #heroSection h1 { font-size:clamp(2.1rem,11vw,3.25rem)!important; }
+  #heroSection .text-\[10px\] { letter-spacing:.08em; }
+  .grid.grid-cols-2 { grid-template-columns:1fr!important; }
+  .p-8 { padding:1.25rem!important; }
+  .p-7 { padding:1.15rem!important; }
+  .py-20 { padding-top:3.5rem!important; padding-bottom:3.5rem!important; }
+  .py-16 { padding-top:3rem!important; padding-bottom:3rem!important; }
+}
+@media (max-width: 360px) {
+  #mainContent { padding-top:10.5rem!important; }
+  header>div>.flex.items-center.space-x-3 span:last-child { font-size:10px; }
+  header>div>.bg-dark-900 button { padding:.45rem .2rem!important; font-size:8px!important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #ambientCanvas { display:none!important; }
+  body::before,body::after,#heroSection::before { animation:none!important; }
+}
+</style><style>
+/* Quiet, clean starfield: no scan lines, trails, grain, or grid texture. */
+body::after { content:none!important; display:none!important; }
+.scanline { display:none!important; }
+#ambientCanvas { display:block!important; opacity:.42; }
+@media (max-width:760px), (hover:none) and (pointer:coarse) {
+  #ambientCanvas { display:block!important; opacity:.3; }
+}
+@media (prefers-reduced-motion:reduce) { #ambientCanvas { display:none!important; } }
 </style></head>
 <body class="antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-    <div class="scanline" aria-hidden="true"></div>
+    
     <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-tr="Ana içeriğe geç">Skip to main content</a>
     <div id="scrollProgress" aria-hidden="true"></div><canvas id="ambientCanvas" aria-hidden="true"></canvas>
     <!-- Üst Navigasyon & Sekme Kontrolcüsü -->
@@ -595,28 +662,28 @@ body::after{content:"";position:fixed;inset:-24%;z-index:-1;pointer-events:none;
         function refreshSpacePowerMode(){
             const memory=Number(navigator.deviceMemory)||8;
             const cores=Number(navigator.hardwareConcurrency)||8;
-            const compact=window.matchMedia('(max-width: 760px)').matches;
+            const compact=window.matchMedia('(max-width: 760px)').matches||window.matchMedia('(hover: none) and (pointer: coarse)').matches;
             const saveData=!!navigator.connection?.saveData;
             lowPowerSpace=compact||memory<=4||cores<=4||saveData;
-            disableSpaceCanvas=(memory<=2)||saveData;
+            disableSpaceCanvas=false;
             if(ambient)ambient.style.display=disableSpaceCanvas?'none':'block';
         }
         function spawnStar(){return{x:(Math.random()*2-1)*.92,y:(Math.random()*2-1)*.86,z:.16+Math.random()*.84,speed:.00012+Math.random()*.0002,px:0,py:0,hasPrev:false}}
         function resizeAmbient() {
             refreshSpacePowerMode();
             if (!ambient || !ambientCtx || motionQuery.matches || disableSpaceCanvas) return;
-            const ratio = Math.min(window.devicePixelRatio || 1, lowPowerSpace ? 1 : 1.25);
+            const ratio = Math.max(.75,Math.min(window.devicePixelRatio||1,lowPowerSpace?.9:1.2));
             ambient.width = Math.round(window.innerWidth * ratio); ambient.height = Math.round(window.innerHeight * ratio);
             ambient.style.width = window.innerWidth + 'px'; ambient.style.height = window.innerHeight + 'px'; ambientCtx.setTransform(ratio,0,0,ratio,0,0);
             const area=innerWidth*innerHeight;
-            const count=lowPowerSpace?Math.min(54,Math.max(24,Math.floor(area/26000))):Math.min(150,Math.max(72,Math.floor(area/14000)));
+            const count=lowPowerSpace?Math.min(34,Math.max(14,Math.floor(area/36000))):Math.min(110,Math.max(48,Math.floor(area/19000)));
             particles = Array.from({length:count},spawnStar);
             spaceCenterX=innerWidth*.5;spaceCenterY=innerHeight*.47;
         }
         function drawAmbient(now) {
             ambientFrame = 0;
             if (!ambientCtx || document.hidden || motionQuery.matches || disableSpaceCanvas) return;
-            if (now-lastAmbientDraw < (lowPowerSpace?42:32)) { ambientFrame=requestAnimationFrame(drawAmbient); return; }
+            if (now-lastAmbientDraw < (lowPowerSpace?40:33)) { ambientFrame=requestAnimationFrame(drawAmbient); return; }
             const dt=Math.min(50,lastAmbientDraw?now-lastAmbientDraw:32);lastAmbientDraw=now;
             const w=innerWidth,h=innerHeight;
             ambientCtx.clearRect(0,0,w,h);
@@ -634,7 +701,7 @@ body::after{content:"";position:fixed;inset:-24%;z-index:-1;pointer-events:none;
                 const x=cx+rx*w*.52*depth,y=cy+ry*h*.52*depth;
                 if(x < -32 || x > w+32 || y < -32 || y > h+32){particles[i]=spawnStar();continue;}
                 const glow=Math.min(.62,.12+(1-p.z)*.62),radius=.35+(1-p.z)*1.35;
-                if(!lowPowerSpace&&p.hasPrev&&p.z<.62){ambientCtx.beginPath();ambientCtx.moveTo(p.px,p.py);ambientCtx.lineTo(x,y);ambientCtx.lineWidth=.35+(1-p.z)*.8;ambientCtx.strokeStyle=`rgba(245,246,250,${glow*.34})`;ambientCtx.stroke();}
+                
                 ambientCtx.beginPath();ambientCtx.arc(x,y,radius,0,Math.PI*2);ambientCtx.fillStyle=`rgba(248,249,252,${glow})`;ambientCtx.fill();
                 p.px=x;p.py=y;p.hasPrev=true;
             }
