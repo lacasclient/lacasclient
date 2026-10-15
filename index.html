@@ -71,8 +71,8 @@
         a,button{ -webkit-tap-highlight-color:transparent }
         button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--electric);outline-offset:4px}
         #heroSection{isolation:isolate;perspective:1200px}
-        #heroSection::before{content:"";position:absolute;inset:5% 12% 10%;z-index:-1;background:radial-gradient(ellipse at center,rgba(255,255,255,.075),rgba(170,174,182,.045) 38%,transparent 72%);filter:blur(22px);animation:heroAura 8s ease-in-out infinite alternate}
-        @keyframes heroAura{to{transform:scale(1.2) translateY(-12px);opacity:.65;filter:blur(36px) hue-rotate(28deg)}}
+        #heroSection::before{content:"";position:absolute;inset:-22% -28% -16%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 48% 42% at 50% 31%,rgba(255,255,255,.042),rgba(210,213,220,.022) 42%,transparent 76%),radial-gradient(ellipse 34% 48% at 50% 57%,rgba(255,255,255,.018),transparent 78%);filter:blur(48px);opacity:.72;animation:heroAura 30s cubic-bezier(.45,0,.2,1) infinite alternate;mask-image:radial-gradient(ellipse 72% 68% at 50% 46%,#000 18%,rgba(0,0,0,.72) 56%,transparent 100%)}
+        @keyframes heroAura{0%{transform:translate3d(-.6%,.4%,0) scale(.98);opacity:.58}100%{transform:translate3d(.6%,-.5%,0) scale(1.04);opacity:.78}}
         @keyframes logoArrival{0%{opacity:0;transform:translateY(48px) rotateX(24deg) scale(.78);filter:blur(18px)}65%{opacity:1;transform:translateY(-7px) rotateX(-3deg) scale(1.035);filter:blur(0)}100%{opacity:1;transform:translateY(0) rotateX(0) scale(1);filter:blur(0)}}
         @keyframes logoHover{0%,100%{transform:translateY(0) rotateY(-4deg)}50%{transform:translateY(-12px) rotateY(4deg)}}
         @keyframes haloSpin{to{transform:rotate(360deg)}}
@@ -185,7 +185,7 @@ body::after{content:"";position:fixed;inset:-24%;z-index:-1;pointer-events:none;
         
         <!-- HERO BÖLÜMÜ -->
         <section id="heroSection" class="max-w-6xl mx-auto px-6 pt-12 pb-24 text-center relative">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.08),rgba(255,255,255,0))] pointer-events-none"></div>
+            
             
             <div class="flex items-center justify-center space-x-8 md:space-x-16 mb-12">
                 <div class="p-5 rounded-3xl bg-dark-900/90 border border-white/10 logo-emblem-card shadow-2xl">
